@@ -1,0 +1,103 @@
+/* Grandes zones de la page */
+body {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0;
+	background-color: #E9FFB2;
+}
+#header {
+	height: 90px; 
+	text-align: right;
+	padding-right: 15px;
+	padding-top: 10px;
+}
+#conteneur {
+	position: relative;
+	width: 800px;
+	margin: 0 auto; 
+	background-color:#E9FFB2;
+	height: 100%; /* a enlever */
+}
+#gauche {
+	position: absolute;
+	left:0;
+	width: 139px;
+}
+html>body #centre { /* non compris par IE */
+	margin-left: 150px;
+	height: auto;
+	min-height:400px;
+}
+#centre {
+	background-color:#DAFF7F;
+	height: 400px;
+	/* margin-left: 150px;
+	min-height:400px; */
+	height: 100%; /* a enlever */
+	border: dashed 1px black;
+}
+#pied {
+	height: 30px;
+	background-color: #E9FFB2;
+	text-align: right;
+}
+
+/* Header */
+#nom{
+	font-size: 2em;
+	font-weight: 900;
+	font-variant: small-caps;
+	font-stretch: wider;
+	color: #314400;
+}
+#titre{
+	font-style: italic;
+	font-size: 1.3em;
+	color: #364900;
+}
+#header a img{
+	border-color: #E9FFB2;
+}
+
+/* Colonne de gauche */
+#gauche div{
+	margin: 15px 0 0 10px;
+}
+#menu {
+	/* margin: 0;
+	padding:0; */
+}
+#menu ul{
+	list-style-type: none;
+	margin: 0;
+	padding:0;
+}
+#menu li {
+	/* border-top: 1px solid #660000; */
+	font-size:1.2em;
+	font-weight:bold;
+	margin-top: 5px;
+}
+#menu a {
+    padding-right: 10px;
+	padding-top:0.4em;
+    width: 100%; 
+    height: 1.6em;
+    display: block;
+	text-align: right;
+    text-decoration: none;
+    color: #000;	
+}
+.current{
+	background-color:#DAFF7F;
+	border: dashed 1px black;
+}
+#menu a:hover {
+    background: #DEFF8C;
+}
+
+/* Divers */
+acronym{
+	cursor: help;
+}

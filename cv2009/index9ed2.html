@@ -1,0 +1,772 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+
+
+<!-- Mirrored from 91.121.140.82/cv2009/?lang=en by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Apr 2024 10:41:07 GMT -->
+<head>
+	<title>Clément Grimal : Computer Science and Telecommunications Master student</title>
+	<meta name="Language" content="fr" />
+	<meta name="Author" lang="fr" content="Clément Grimal" />
+	<meta name="Reply-to" content="clement.grimal@gmail.com (Clément Grimal)" />
+	<meta name="Description" content="Clément Grimal, clément, clement, grimal, GRIMAL, ingénieur, ingenieur, informatique, enseeiht, ENSEEIHT" />
+	<meta name="Indentifier-URL" content="http://www.clementgrimal.fr/" />
+	<meta name="robots" content="all" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta http-equiv="Content-Language" content="fr" />
+	<meta name="verify-v1" content="O/WP17SK0HncF+SnkdIsfWnCAriP3CyvursA/uD+Pyw=" />
+	<link rel="icon" type="image/png" href="../images/ico2.html" />
+	<style type="text/css" title="currentStyle" media="screen">
+			@import "css/style.css";
+	</style>	
+	
+	<!-- compliance patch for microsoft browsers -->
+	<!--<script src="lib/IE7_0_9/ie7-standard-p.js" type="text/javascript">-->
+	</script>
+	
+	<script type="text/javascript" src="lib/jquery-1.2.2.js"></script>
+	<script type="text/javascript" src="lib/interface.js"></script>
+	<script type="text/javascript">
+	// des variables pour stocker l'élément
+	// en cours d'affichage
+	// et celui que l'on voudra afficher au clic
+	var current;
+	var next;
+	var current_item;
+	// lorsque le document est chargé totalement
+	$(document).ready(function() {
+		//on masque les séparateurs entre les parties
+		$(".separator").hide();
+	
+		// on masque toutes les divisions de classe partie (sélecteur CSS)
+		$("div.partie").hide();
+		// on choisit la division à afficher par défaut
+		current = $("div#accueil");
+		// et on la montre
+		current.show();
+		current_item = $("div#gauche ul li a[@href='#accueil']");
+		current_item.addClass("current");
+		
+		// pour chacun des liens du menu de navigation
+		// lorsqu'on clic dessus
+		$("div#gauche ul li a").click(function() {
+		 	// on stocke la "cible" à afficher
+			next = $("div"+this.getAttribute("href",2));
+			
+			if(current.attr("id")!=next.attr("id")){
+			
+				// Gestion du menu
+				current_item.removeClass("current");
+				current_item = $(this);
+				current_item.addClass("current");	
+			
+			 	// on masque la zone courante
+			 	// et une fois ça fait (fonction "callback")
+				current.fadeOut(1300, function() {
+				
+			 	 	// on affiche la zone "cible"
+					current = next;
+					current.fadeIn(600);
+				});
+			}
+		 	// on finit par annuler l'action sur le lien
+			return false;
+		});
+		
+		// Gestion des déroulant plus d'informations...
+		$('.more').find('dd').hide().end().find('dt').click(function() {
+        var answer = $(this).next();
+        if (answer.is(':visible')) {
+            answer.slideUp(300);
+        } else {
+            answer.slideDown(300);
+        }
+		});			
+		
+	});
+</script>
+	
+</head>
+
+<body>
+
+<div id="conteneur">
+
+	<div id="header">
+	<div id="nom">
+		Clément Grimal
+	</div>
+	<div id="titre">
+		Computer Science and Telecommunications Master student - Artificial Intelligence<br />
+						3rd year student at <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>-<acronym title="National Polytechnic Institute">INP</acronym>
+						 - <acronym title="Computer Science and Applied Mathematics">IMA</acronym>	</div>
+	
+	<div id="choix_langue">
+		<a href="indexe68f.html?lang=fr"><img src="images/fr.gif" alt="Français" title="Français"/></a>
+		<a href="index9ed2.html?lang=en"><img src="images/en.gif" alt="English" title="English"/></a>
+	</div>	
+	</div>
+	
+	<div>
+		  <!--[if lt IE 7]>
+  <div style='border: 1px solid #F7941D; background: #FEEFDA; text-align: center; clear: both; height: 75px; position: relative; margin:1em;'>
+    <div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-cornerx.jpg' style='border: none;' alt='Close this notice'/></a></div>
+    <div style='width: 640px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black;'>
+      <div style='width: 75px; float: left;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-warning.jpg' alt='Warning!'/></div>
+      <div style='width: 275px; float: left; font-family: Arial, sans-serif;'>
+        <div style='font-size: 14px; font-weight: bold; margin-top: 12px;'>Vous utilisez un navigateur dépassé depuis près de 8 ans !</div>
+        <div style='font-size: 12px; margin-top: 6px; line-height: 12px;'>Pour une meilleure expérience web, prenez le temps de mettre votre navigateur à jour.</div>
+      </div>
+      <div style='width: 75px; float: left;'><a href='http://fr.www.mozilla.com/fr/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-firefox.jpg' style='border: none;' alt='Télécharger Firefox 3.5'/></a></div>
+      <div style='width: 75px; float: left;'><a href='http://www.microsoft.com/downloads/details.aspx?FamilyID=341c2ad5-8c3d-4347-8c03-08cdecd8852b&DisplayLang=fr' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-ie8.jpg' style='border: none;' alt='Télécharger Internet Explorer 8'/></a></div>
+      <div style='width: 73px; float: left;'><a href='http://www.apple.com/fr/safari/download/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-safari.jpg' style='border: none;' alt='Télécharger Safari 4'/></a></div>
+      <div style='float: left;'><a href='http://www.google.com/chrome?hl=fr' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-chrome.jpg' style='border: none;' alt='Télécharger Google Chrome'/></a></div>
+    </div>
+  </div>
+  <![endif]-->
+	</div>
+	
+	<noscript>
+	<div id="noscript">
+	<h4>Your browser doesn't support JavaScript</h4>
+<p>
+	If your browser support it, you should activate JavaScript to profit of my personnal webpage.
+	Though, you'll have the same informations, but browsing will be less pleasing.
+</p>	</div>
+	</noscript>
+
+	<div id="gauche">
+		<div id="menu">
+	 	<ul>
+	<li><a href="#accueil">Home</a></li>
+	<li><a href="#formation">Education</a></li>
+	<li><a href="#experiences">Experiences</a></li>
+	<li><a href="#realisations">Realizations</a></li>
+	<li><a href="#connaissances">Knowledges</a></li>
+	<li><a href="#langues">Languages</a></li>
+	<li><a href="#autres">Others</a></li>
+</ul>
+
+<div id="dl">
+	<a href="documents/%5ben%5dResume_Clement_Grimal.pdf">My Resume in pdf format</a>
+</div>		</div>
+	</div>
+	  
+	<div id="centre">
+		
+		<div class="partie" id="accueil">
+			<div class="element">
+	<div class="element_title">
+	Who am I ?
+	</div>
+	<div class="element_body">
+		<p>Since 2006, I am preparing my degree of Computer Science and Applied Mathematics Engineer at the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>-<acronym title="National Polytechnic Institute">INP</acronym>.</p>
+		<p>During this training, I am both acquiring numerous technical knowledges in relation with programming languages, networks architecture (and many others), as well as project leading experiences, by myself or in a team.</p>
+		<p>In addition, I have discovered websites development, I have already realized a website for the association of current and former students of the <acronym title="Polytechnic Preparatory Classes">CPP</acronym> of Toulouse as well as this personnal page, but many projects are in the pipeline.</p>
+		
+		<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			The website of the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym> : <a href="http://www.enseeiht.fr/">http://www.enseeiht.fr</a><br />
+			The website of the <acronym title="Association of former students of the CPP of Toulouse">AAECPPT</acronym> : <a href="http://www.aaecppt.fr/">http://www.aaecppt.fr</a>
+		</dd>
+	</dl>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Address
+	</div>
+	<div class="element_body">
+		8, rue Jacques BREL<br />
+		87220 Feytiat<br />
+		France<br />
+		05 55 31 26 29<br />
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Student address
+	</div>
+	<div class="element_body">
+		58, rue Jean Micoud<br />
+		31500 Toulouse<br />
+		France<br />
+		05 81 83 02 17<br />
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	How to contact me ?
+	</div>
+	<div class="element_body">
+		<div class="label">Mobile phone</div>
+		<div class="face_label">(+33)(0)6 30 40 75 05 <i>(unavailable for a little while)</i></div>
+		
+		<div class="label">E-mail</div>
+		<div class="face_label">
+			<a href="mailto:clement.grimal(at)gmail.com">clement.grimal(at)gmail(dot)com</a>
+		</div>
+		
+		<div class="label">Website</div>
+		<div class="face_label"><a href="http://www.clementgrimal.fr/">www.clementgrimal.fr</a></div>
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="formation">
+			<div class="element">
+	<div class="element_title">
+	Since 2008
+	<div class="sub">
+		<acronym title="Paul Sabatier University">UPS</acronym> and <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>-<acronym title="National Polytechnic Institute">INP</acronym>, Toulouse (31), France<br />
+		Paul Sabatier University.<br />
+		National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications.
+	</div></div>
+	<div class="element_body">
+	<p>
+		Master's degree in Computer science and Telecommunications (specialty in Artificial Intelligence).<br />
+		Expected graduation : September 2009.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Master presentation : <a href="http://www.irit.fr/M2RIT/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=46&amp;Itemid=55">website of the Master, "Presentation" section</a><br />
+			Presentation of the Artificial Intelligence speciality : <a href="http://www.irit.fr/M2RIT/index.php?option=com_content&amp;view=section&amp;layout=blog&amp;id=12&amp;Itemid=76">website of the MAster, "<acronym title="Artificial Intelligence">AI</acronym> speciality" section</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Since 2006
+	<div class="sub">
+	<acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>-<acronym title="National Polytechnic Institute">INP</acronym>, Toulouse (31), France<br />
+		National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications.
+	</div></div>
+	<div class="element_body">
+	<p>
+		3rd year Computer science degree student. <br />
+		Expected graduation : September 2009.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			The website of the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym> : <a href="http://www.enseeiht.fr/">website of the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym></a><br />
+			Présentation du département <acronym title="Informatique et Mathématiques Appliquées">IMA</acronym> : <a href="http://www.enseeiht.fr/fr/formation/formations_en_informatique_ex2.html">site de l'<acronym title="Ecole Nationale Supérieure en Electrotechnique, Electronique, Informatique, Hydraulique et des Télécomunications">ENSEEIHT</acronym>, rubrique "Présentation département <acronym title="Informatique et Mathématiques Appliquées">IMA</acronym>"</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	2004-2006
+	<div class="sub">
+	<acronym title="Polytechnic Preparatory Classes">CPP</acronym>, Labège (31), France<br />
+		Polytechnic Preparatory Classes : Preparatory classes of the <acronym title="National Polytechnic Institute">INP</acronym>.
+	</div></div>
+	<div class="element_body">
+	<p>
+		2nd of Toulouse promotion.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			The national website of the <acronym title="Polytechnic Preparatory Classes">CPP</acronym> : <a href="http://www.cpp-inp.org/">http://www.cpp-inp.org</a><br/>
+			The website of the <acronym title="Polytechnic Preparatory Classes">CPP</acronym> of Toulouse : <a href="http://www.inp-toulouse.fr/cpp/cpp.shtml">http://www.inp-toulouse.fr/cpp/cpp.shtml</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	2003-2004
+	<div class="sub">
+	Lycée Turgot, Limoges (87), France
+	</div></div>
+	<div class="element_body">
+	<p>
+		Baccalauréat S. <br />
+		Equivalent to 'A' levels in Mathematics, Physics and Engineer science.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			The website of the Lycée Turgot : <a href="http://www.lyc-turgot.ac-limoges.fr/">http://www.lyc-turgot.ac-limoges.fr</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="experiences">
+			<div class="element">
+	<div class="element_title">
+	Summer 2008 (13 weeks)
+	<div class="sub">
+	<acronym title="Xerox Research Center Europe">XRCE</acronym>, Grenoble, France.
+	</div></div>
+	<div class="element_body">
+	<p>
+		Development internship in a research area.<br />
+		Conception of a web application to show and demonstrate work on interactive machine
+		learning and semantic annotation of documents.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Download the report in pdf format [fr] : <a href="documents/Rapport_XRCE.pdf">Training period report</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Since 2007
+	<div class="sub">
+	Website conception and design.
+	</div></div>
+	<div class="element_body">
+	<p>
+	Use of <acronym title="eXtensible HyperText Markup Language">xHTML</acronym>, <acronym title="Cascading Style Sheet">CSS</acronym>, JavaScript, jQuery, <acronym title="Hypertext Preprocessor">PHP</acronym>, <acronym title="Structured Query Language">SQL</acronym>.<br />
+	Respect of the Web standards according to the W3C.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Example :<br/>
+			The website of the <acronym title="Association of former students of the CPP of Toulouse">AAECPPT</acronym> : <a href="http://www.aaecppt.fr/">http://www.aaecppt.fr</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	2006-2007
+	<div class="sub">
+	<acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>-<acronym title="National Polytechnic Institute">INP</acronym>, Toulouse (31), France
+	</div></div>
+	<div class="element_body">
+	<p>
+	Many projects, by myself or in a team, examples :<br />
+	Server for an electronic trading application (<acronym title="Java Enterprise Edition">J2EE</acronym>), Management of duplicated objects with <acronym title="Remote Method Invocation">RMI</acronym>, Compiler.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Download the <acronym title="Project of management of Duplicated Objects">POD</acronym> report in pdf format [fr] : <a href="documents/Rapport_POD.pdf">Project report</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Summer 2007 (8 weeks)
+	<div class="sub">
+	Boube's Farm, Boussens, France.
+	</div></div>
+	<div class="element_body">
+	<p>
+Help to the realisation of many tasks that had been waiting for several months.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Download the report in pdf format [fr] : <a href="documents/Rapport_Stage_1A.pdf">Training period report</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	2006-2007
+	</div>
+	<div class="element_body">
+	<p>
+	Michelet secondary school, Toulouse (31), France.<br />
+School team project for the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym>. <br />
+School support for pupils in difficulties.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Download the project report in pdf format [fr] : <a href="documents/Rapport_pif.pdf">Project report</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	May 2006 (5 weeks)
+	</div>
+	<div class="element_body">
+	<p>
+	<acronym title="Institute of Computer Science Research of Toulouse">IRIT</acronym>, Toulouse (31), France. <br />
+	Institute of Computer Science Research of Toulouse.<br />
+	Technical training period in research environment. <br />
+	Activities on approximated resolutions on a combinatorial optimization problem : the travelling salesman problem.
+	</p>
+	
+	<dl class="more">
+		<dt>More details...</dt>
+		<dd>
+			Download the report in pdf format [fr] : <a href="documents/Rapport_stageCPP.pdf">Training period report</a>
+		</dd>
+	</dl>
+	
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="realisations">
+			<div class="element">
+	<div class="element_title">
+	<acronym title="Visual Interactive System for Annotation and LearnIng at Xerox">Visalix</acronym> : a web application
+	</div>
+	<div class="element_body">
+	<p>
+		Description to come...
+	</p>
+	<p>
+		Visible on <a href="http://visalix.xrce.xerox.com/">http://visalix.xrce.xerox.com</a>
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+		The website of the <acronym title="Association of former students of the CPP of Toulouse">AAECPPT</acronym>
+	</div>
+	<div class="element_body">
+	<p>
+		I have realized this website to answer to the demand of the president of the association to set up an online directory of all the former students of the <acronym title="Polytechnic Preparatory Classes">CPP</acronym> of Toulouse, and of all the commpanies which are employing former students.
+	</p>
+	<p>
+		Thus, I have develop this site using mainly <acronym title="eXtensible HyperText Markup Language">xHTML</acronym> and <acronym title="Cascading Style Sheet">CSS</acronym> for the presentation, and <acronym title="Hypertext Preprocessor">PHP</acronym> et <acronym title="Structured Query Language">SQL</acronym> for the database administration. I have also develop an administration section for the site, to enable the managing of the database, of the published articles, as well as sending e-mails to all the students.<br />
+		According to the french laws concerning "Computer Science and Liberties", students can connect on the site to modify their datas.
+	</p>
+	<p>
+		The website is online at <a href="http://www.aaecppt.fr/">http://www.aaecppt.fr</a> and has already brung together more than 300 students !
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+		Project of duplicated objects management
+	</div>
+	<div class="element_body">
+	<p>
+		As a part of my training at the <acronym title="National Polytechnic Institute of Engineering in Electreotechnology, Electronics, Computer science, Hydraulics and Telecommunications">ENSEEIHT</acronym> on communicating and concurrent systems, I had carried through a project dealing with the management of duplicated objects, using Java <acronym title="Remote Method Invocation">RMI</acronym> concerning the communication between the shared out Java objects.
+	</p>
+	<p>
+		Applications could choose to share an object by registering it to the server, next, another application could decide to look for a shared object. In order to guarantee consistency of such a system, we have used the lock principle, to read or to write. An object must only have one writer or several readers at the same time.
+	</p>
+	<p>
+		You can download the subject of this project (<a href="documents/Sujet_POD.pdf"><acronym title="Project of Duplicated Objects management">POD</acronym> subject in french</a>), as well as the final report (<a href="documents/Rapport_POD.pdf"><acronym title="Project of Duplicated Objects management">POD</acronym> Report in french</a>).
+	</p>
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="connaissances">
+			<div class="element">
+	<div class="element_title">
+	Operating system
+	</div>
+	<div class="element_body">
+	<p>
+	Windows XP, Windows Vista, Solaris 9, Linux/Ubuntu.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Office softwares
+	</div>
+	<div class="element_body">
+	<p>
+	Microsoft Office, OpenOffice, LateX, The Gimp, Xara Xtreme.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Programming languages
+	</div>
+	<div class="element_body">
+	<p>
+	Python (Numpy), Actionscript 3.0, C, C++, Fortran90, CaML, Coq, MatLab, Assembleur,  Java (<acronym title="Remote Method Invocation">RMI</acronym>, Swing, <acronym title="JavaServer Pages">JSP</acronym>, Servlet, <acronym title="Java Enterprise Edition">J2EE</acronym> server, <acronym title="Java DataBase Connectivity">JDBC</acronym>), Corba, <acronym title="Temporal Logic &amp; Actions">TLA</acronym>, 
+	<acronym title="VHSIC Hardware Description Language">VHDL</acronym>.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Hardware
+	</div>
+	<div class="element_body">
+	<p>
+		Computer assembling and fixing.
+	</p>
+	<p>
+		Setting up of local networks  : Ethernet and Wifi.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Databases
+	</div>
+	<div class="element_body">
+	<p>
+	Relational model, <acronym title="Structured Query Language">SQL</acronym>, phpMyAdmin, <acronym title="Java DataBase Connectivity">JDBC</acronym>, Hibernate.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Web development
+	</div>
+	<div class="element_body">
+	<p>
+	Tomcat, Apache, <acronym title="eXtensible HyperText Markup Language">xHTML</acronym>, 
+	<acronym title="Cascading Style Sheet">CSS</acronym>, JavaScript, jQuery, 
+	<acronym title="Asynchronous Javascript and XML">AJAX</acronym>, 
+	<acronym title="Hypertext Preprocessor">PHP</acronym>,  
+	<acronym title="Structured Query Language">SQL</acronym>, 
+	<acronym title="Java DataBase Connectivity">JDBC</acronym>, Hibernate, Flash (<acronym title="ActionScript 3.0">AS</acronym> 3.0) et Flex.<br />
+	Use of the standards of the <acronym title="World Wide Web Consortium">W3C</acronym>.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Structured informations
+	</div>
+	<div class="element_body">
+	<p>
+	<acronym title="eXtensible Markup Language">XML</acronym>, <acronym title="Document Object Model">DOM</acronym>, <acronym title="Simple API for XML">SaX</acronym>, <acronym title="XML Path Language">Xpath</acronym>, <acronym title="eXtensible Stylesheet Language Transformations">XSLT</acronym>.
+	</p>
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="langues">
+			<div class="element">
+	<div class="element_title">
+		French
+	</div>
+	<div class="element_body">
+	<img class="flag" src="images/flag_france.png" alt="Drapeau français" width="48" height="32"/>
+	<p>
+		Native speaker.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+		English
+	</div>
+	<div class="element_body">
+	<img class="flag" src="images/flag_gb.png" alt="Drapeau britannique" width="48" height="32"/>
+	<p>
+		Advanced level. 
+	<p>
+		15 years of studies.<br/>
+		One 2 weeks journey in Ireland in families.
+	</p>
+	<p>
+		TOEIC score (June 2008) : 950<br />
+		Meeting leading, project presentation, phone conversation, report redaction.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+		Spanish
+	</div>
+	<div class="element_body">
+	<img class="flag" src="images/flag_espagne.png" alt="Drapeau espagnol" width="48" height="32"/>
+	<p>
+		Intermediate level.
+	</p>
+	<p>
+		7 years of studies.<br />
+		Many journeys in Barcelona, Spain, including a 1 week stay.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+		Japanese
+	</div>
+	<div class="element_body">
+	<img class="flag" src="images/flag_japon.png" alt="Drapeau japonais" width="48" height="32"/>
+	<p>
+		2 years of studies.
+	</p>
+	<p>
+		Basic conversation.
+	</p>
+	</div>
+</div>		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+			<hr />
+		</div>
+		
+		<div class="partie" id="autres">
+			<div class="element">
+	<div class="element_title">
+	Various informations
+	</div>
+	<div class="element_body">
+	<p>
+		Driving license.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Sportive activities
+	</div>
+	<div class="element_body">
+	<p>
+		Tennis in a club during about 4 years.<br/>
+		Nowadays, occasionally only.
+	</p>
+	<p>
+		Table tennis, school level.
+	</p>
+	<p>
+		Squash.
+	</p>
+	<p>
+		Jogging.
+	</p>
+	</div>
+</div>
+
+<div class="element">
+	<div class="element_title">
+	Spare time
+	</div>
+	<div class="element_body">
+	<p>
+		Reading : french press, novels.
+	</p>
+	<p>
+		Movies.
+	</p>
+	<p>
+		Music : jazz (swing and be-bop), blues, french music.
+	</p>
+	</div>
+</div>
+		</div>
+		
+		<div class="separator">
+			[<a href="#conteneur" title="Revenir en haut de la page">Haut de page</a>]
+		</div>
+		
+  	</div>
+
+	  
+	<div id="pied">
+		<p>
+			<a href="http://validator.w3.org/check?uri=http://91.121.140.82/cv2009/?lang=en">
+			<img src="images/xhtml10.png" alt="Valid XHTML 1.0 Strict" height="15" width="80" />
+			</a>
+		</p>
+		<p>
+			<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://91.121.140.82/cv2009/?lang=en">
+			<img src="images/css.gif" alt="Valid CSS 2.0" height="15" width="80" />
+			</a>
+		</p>
+		<p>
+			<a href="http://www.mozilla-europe.org/fr/products/firefox/">
+			<img src="images/getfirefox.gif" alt="Télécharger Firefox" height="15" width="80" />
+			</a>
+		</p>
+	</div>
+</div>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=3354988; 
+var sc_invisible=0; 
+var sc_partition=36; 
+var sc_security="befb6bdb"; 
+</script>
+
+<script type="text/javascript" src="../../www.statcounter.com/counter/counter_xhtml.js"></script>
+<!-- End of StatCounter Code -->
+
+</body>
+
+
+<!-- Mirrored from 91.121.140.82/cv2009/?lang=en by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Apr 2024 10:41:09 GMT -->
+</html>

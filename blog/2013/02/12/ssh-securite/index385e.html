@@ -1,0 +1,586 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/02/12/ssh-securite/?replytocom=226522 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Sécuriser son accès SSH | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="ssh,raspberrypi,securité,administration,unix,raspbian,debian,raspberry-pi,sécurité,de,le,à,en,il,clement,grimal,blog,raspeberry,pi" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Sécuriser son accès SSH" />
+	<meta property="og:url" content="index.html" />
+	<meta property="article:published_time" content="2013-02-12" />
+	<meta property="article:modified_time" content="2013-02-12" />
+	<meta property="article:author" content="../../../../author/admin/index.html" />
+	<meta property="article:section" content="Non classé" />
+	<meta property="article:tag" content="administration" />
+	<meta property="article:tag" content="raspberry-pi" />
+	<meta property="article:tag" content="sécurité" />
+	<meta property="article:tag" content="unix" />
+	<meta property="og:site_name" content="Les notes de Clément" />
+	<meta name="twitter:card" content="summary" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Sécuriser son accès SSH Flux des commentaires" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min4587.js?ver=3.8.41'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Raspberry Pi : gestion de sa carte SD' href='../../06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html' />
+<link rel='next' title='Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;' href='../../../03/21/projet-sur-les-epaules-de-darwin/index.html' />
+<meta name="generator" content="WordPress 3.8.41" />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../indexc9bf.html?p=355' />
+<meta name='robots' content='noindex,follow' />
+<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="single single-post postid-355 single-format-standard custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+	
+		
+		<div class="post-355 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-raspberry-pi tag-securite tag-unix single-page" id="post-355">
+		
+			<h2 class="entry-title">Sécuriser son accès SSH</h2>
+
+			<p class="entry-meta-single">
+				Le 12 février 2013 // Mots-clés : <a href="../../../../tag/administration/index.html" rel="tag">administration</a>, <a href="../../../../tag/raspberry-pi/index.html" rel="tag">raspberry-pi</a>, <a href="../../../../tag/securite/index.html" rel="tag">sécurité</a>, <a href="../../../../tag/unix/index.html" rel="tag">unix</a>			</p>
+
+<!--
+<p class="entry-meta-single">Le 12 février 2013</p>
+-->
+			<div class="entry-content">
+				
+				<div id="toc_container" class="toc_transparent no_bullets"><p class="toc_title">Table des mati&egrave;res</p><ul class="toc_list"><li><a href="#Pourquoi_se_protger"><span class="toc_number toc_depth_1">1</span> Pourquoi se protéger ?</a></li><li><a href="#Quelques_rgles_simples"><span class="toc_number toc_depth_1">2</span> Quelques règles simples</a><ul><li><a href="#Changer_le_port"><span class="toc_number toc_depth_2">2.1</span> Changer le port</a></li><li><a href="#Dsactiver_la_connexion_root"><span class="toc_number toc_depth_2">2.2</span> Désactiver la connexion root</a></li><li><a href="#Installation_drsquoun_logiciel_qui_bannit_en_cas_drsquochec"><span class="toc_number toc_depth_2">2.3</span> Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</a></li><li><a href="#Ne_pas_utiliser_de_mot_de_passe"><span class="toc_number toc_depth_2">2.4</span> Ne pas utiliser de mot de passe</a></li><li><a href="#Sources"><span class="toc_number toc_depth_2">2.5</span> Sources</a></li></ul></li></ul></div>
+<p style="clear: both;" >Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&rsquo;y connecter un écran, une souris et un écran, il est très commode de s&rsquo;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&rsquo;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, le connecter à son réseau avec un câble Ethernet, et depuis son ordinateur personnel (connecté au même réseau), faire :</p>
+<pre class="brush:bash">ssh pi@raspberry
+</pre>
+<p>Ensuite, si l&rsquo;on ajoute une règle NAT sur sa box pour rediriger le port 22 (celui du serveur SSH), on peut se connecter, en utilisant l&rsquo;adresse IP externe à la place de raspberry, à son Raspberry Pi de n&rsquo;importe où ! Et ce n&rsquo;importe quand ! C&rsquo;est super n&rsquo;est-ce pas ? Sauf qu&rsquo;il serait bon que n&rsquo;importe qui ne puisse pas le faire&#8230; On va donc voir quelles règles simples appliquées pour réduire les chances qu&rsquo;un petit malin se connecte sur votre réseau.</p>
+<h2><span id="Pourquoi_se_protger">Pourquoi se protéger ?</span></h2>
+<p>Pour commencer, il faut dire qu&rsquo;il y a pénurie d&rsquo;adresse IP dans le monde, car leur nombre n&rsquo;est pas infinie et il y a de plus en plus d&rsquo;appareils reliés à internet ! C&rsquo;est pourquoi il existe une nouvelle norme IPv6, mais elle n&rsquo;est pas encore majoritairement utilisée. De plus, sur toute machine Linux, il y a pas défaut un compte <code>root</code>, qui est le super administrateur de la machine ! En bref, il peut tout faire, et c&rsquo;est par lui que vous passer dès lors que vous modifier votre système (voir la commande <code>sudo</code> par exemple, qui veut dire &laquo;&nbsp;super user do&nbsp;&raquo;). Donc en faisant :</p>
+<pre class="brush:bash">ssh root@adresse_aleatoire
+</pre>
+<p>J&rsquo;ai plutôt de bonne chance d&rsquo;essayer de me connecter à un ordinateur existant, ayant un serveur SSH utilisant le port 22, et ayant un utilisateur s&rsquo;appelant <code>root</code> ! Ensuite, rien de m&rsquo;empêche d&rsquo;essayer automatiquement des milliers de mots de passe, et avec un peu de chance, je le trouverais ! Il suffit d&rsquo;un programme qui teste méthodiquement toutes les chaînes de caractères, à raison d&rsquo;un essai par seconde, on peut tester 86400 mots de passe par jour ! Même si le nombre de combinaisons possibles est largement plus grand que ça, avec le temps nécessaire, un pirate pourra alors se connecter en root à votre Raspberry Pi !</p>
+<blockquote>
+<p>Mais il va faire quoi ? Ecouter ma musique ?!</p>
+</blockquote>
+<p>Il y a peu de chance&#8230; Son intérêt sera plutôt d&rsquo;installer un programme sur votre système, qu&rsquo;il pourra utiliser à sa guise plus tard s&rsquo;il désire lancer une attaque vers un site en particulier. Votre ordinateur est alors devenu ce que l&rsquo;on appelle un zombie, faisant partie d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Botnet#Usages_principaux_des_botnets_malveillants" target="_blank">BotNet</a> !</p>
+<h2><span id="Quelques_rgles_simples">Quelques règles simples</span></h2>
+<p>Pour éviter ce scénario, on peut appliquer les quelques règles suivantes.</p>
+<h3><span id="Changer_le_port">Changer le port</span></h3>
+<p>Rien de plus simple, éditer la configuration de votre serveur <code>ssh</code>, qui est décrite dans le fichier <code>/etc/ssh/sshd_config</code>, pour y faire figurer la ligne :</p>
+<pre class="brush:plain">Port 1337
+</pre>
+<p><strong>Attention : </strong>vous risquez d&rsquo;être déconnecté si vous faite l&rsquo;opération en étant justement connecté en SSH&#8230; Donc vous pouvez dans un premier temps utiliser 2 ports, le 22 et le 1337 en dupliquant cette ligne. Puis supprimer la ligne Port 22 ultérieurement. Vous pouvez remplacer 1337 par n&rsquo;importe quel numéro compris entre 1024 et 65537, en vérifiant qu&rsquo;il n&rsquo;est pas déjà utilisé par un autre programme.</p>
+<p>Il faut alors penser à changer la règle NAT dans votre box, pour rediriger le port 1337 (et plus le 22). Pour vous connecter maintenant, utilisez l&rsquo;option <code>-p</code> de la commande <code>ssh</code> :</p>
+<pre class="brush:bash">ssh -p 1337 pi@raspberry
+</pre>
+<h3><span id="Dsactiver_la_connexion_root">Désactiver la connexion root</span></h3>
+<p>Pour éviter à quiconque (vous y compris) de vous connecter directement en super utilisateur à votre Raspberry Pi . Il faut également éditer le fichier <code>/etc/ssh/sshd_config</code>, pour modifier la ligne:</p>
+<pre class="brush:plain">PermitRootLogin no
+</pre>
+<h3><span id="Installation_drsquoun_logiciel_qui_bannit_en_cas_drsquochec">Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</span></h3>
+<p>Pour éviter les attaques de type &laquo;&nbsp;brute force&nbsp;&raquo; qui consiste à essayer le plus possible de mots de passe, il est possible d&rsquo;installer un logiciel qui va se charger de bannir une adresse IP si un utilisateur échoue à se connecter plus d&rsquo;un certain nombre de fois. J&rsquo;utilise personnellement le logiciel <code>fail2ban</code> (il y en a d&rsquo;autres !), disponible dans les dépôts. Il y a pas grand chose à faire pour le configurer, on modifie le fichier <code>/etc/fail2ban/jail.conf</code>, les paramètres intéressants sont les suivants :</p>
+<pre class="brush:plain">ignoreip = 127.0.0.1/8
+bantime  = 600
+maxretry = 3
+
+destemail = votre_adresse@mail.com
+
+action = %(action_mwl)s
+</pre>
+<p><code>ignoreip</code> permet de ne pas se faire bannir depuis le Raspberry Pi lui même, <code>bantime</code> est le temps de bannissement en secondes (10 minutes par défaut donc), <code>maxretry</code> le nombre d&rsquo;échecs pour être bannit. Ensuite, <code>destmail</code> est l&rsquo;adresse email à laquelle seront envoyés les alertes, et surtout action sera l&rsquo;action en cas de bannissement. J&rsquo;aime bien <code>action_mwl</code> qui est celle qui envoie le plus d&rsquo;informations. Cette action (les autres aussi) peut  elle-même être personnalisée en éditant le fichier  <code>/etc/fail2ban/action.d/sendmail-whois-lines.conf</code></p>
+<p><strong>Remarque :</strong> pour que l&rsquo;envoi des mail se passe correctement, il vous faudra avoir correctement installé et configuré un MTA sur votre système, et j&rsquo;ai déjà expliqué comment faire dans ce billet : <a href="../../../01/24/raspberry-pi-serveur-web-sfr-box/index.html#Envoi_de_mail">Installation d&rsquo;un serveur web (Envoi de mail)</a></p>
+<h3><span id="Ne_pas_utiliser_de_mot_de_passe">Ne pas utiliser de mot de passe</span></h3>
+<p>Finalement, il est possible de ne pas utiliser de mot de passe pour se connecter, mais de passer par la génération de clé de cryptage. Cette méthode est très bien pour des installations critiques, mais je trouve que l&rsquo;on perd alors en flexibilité, et je ne l&rsquo;utilise personnellement pas&#8230; Je ne détaillerai donc pas ici comme procéder, mais il existe de nombreux tutoriels en ligne, par exemple : <a href="http://www.lea-linux.org/documentations/Trucs:Connection_SSH_sans_mot_de_passe">lea-linux.org : Connection_SSH_sans_mot_de_passe</a></p>
+<h3><span id="Sources">Sources</span></h3>
+<ul>
+<li>Pénurie d&rsquo;adresses IP v4 annoncée : <a href="http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html">http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html</a></li>
+<li>Discussion sur comment sécuriser l&rsquo;accès SSH à son Raspberry : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122</a></li>
+<li>Changer le port SSH : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.itworld.com/nls_unixssh0500506</a></li>
+<li>Wiki sur l&rsquo;installation et la configuration de Fail2ban : <a href="https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban">https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban</a></li>
+</ul>				
+			</div><!-- close .entry-content -->
+			
+			            
+			<!--				
+<div class="entry-meta-single">
+					Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/securite/" rel="tag">sécurité</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a>				</div>--><!-- close .entry-meta-single -->
+
+					
+		</div><!-- close #post -->
+		
+		<div id="single">
+		
+			<div class="single-block">
+			
+				
+		
+			
+		<h3 id="comments">12 commentaires. <!--'Sécuriser son accès SSH'--></h3>
+		<ol class="commentlist">
+							   <li class="comment even thread-even depth-1" id="li-comment-420">
+		 <div id="comment-420">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">garfield</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-420">26 juillet 2013 à 9 h 55 min</a></div>
+	
+		  <p>Bonjour et merci pour toutes ces infos partagées.<br />
+Je pense qu&rsquo;il n&rsquo;est pas nécessaire de changer le port ssh sur le Raspberry lui-même, une simple règle NAT sur la box peut suffire, exemple :<br />
+port 1234 de l&rsquo;ip public vers le port 22 de l&rsquo;ip du Raspberry<br />
+Vous êtes d&rsquo;accord avec moi ?<br />
+L&rsquo;avantage c&rsquo;est que sur le réseau interne on reste sur le port 22.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexd77f.html?replytocom=420#respond' onclick='return addComment.moveForm("comment-420", "420", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	<ul class="children">
+	   <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-431">
+		 <div id="comment-431">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Clément</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-431">28 juillet 2013 à 18 h 16 min</a></div>
+	
+		  <p>Oui vous avez tout à fait raison !<br />
+C&rsquo;est même ce que j&rsquo;ai fait en fait&#8230;</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index75f6.html?replytocom=431#respond' onclick='return addComment.moveForm("comment-431", "431", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-38201">
+		 <div id="comment-38201">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.facebook.com/profile.php?id=100003469663206' rel='external nofollow' class='url'>Muhamad</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-38201">2 octobre 2015 à 4 h 03 min</a></div>
+	
+		  <p>I&rsquo;ve seen that the BeagleBoard was used for several appcilations in the university space, like for a RTK-processing device or image processing using OpenCV. My colleague used it with a 800 Mhz TI OMAP and embeddedLinux. But you can also get WinCE, Angstrf6m and ANDROID.The successor is the PandaBoard, which features a Dual-Core ARM.Thomas</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index387e.html?replytocom=38201#respond' onclick='return addComment.moveForm("comment-38201", "38201", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-54876">
+		 <div id="comment-54876">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.facebook.com/profile.php?id=100003469759321' rel='external nofollow' class='url'>Nader</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-54876">21 décembre 2015 à 16 h 57 min</a></div>
+	
+		  <p>I seldom write rkerams, however i did a few searching and wound up here Missing Images In Oscommerce | Web Hosting Tutorials. And I do have a few questions for you if you do not mind. Could it be only me or does it look like some of these comments look like they are left by brain dead people?   And, if you are posting on other online sites, I&rsquo;d like to keep up with anything fresh you have to post. Could you list of every one of all your community pages like your linkedin profile, Facebook page or twitter feed?</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexd84d.html?replytocom=54876#respond' onclick='return addComment.moveForm("comment-54876", "54876", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-137422">
+		 <div id="comment-137422">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.f-er.ru/' rel='external nofollow' class='url'>http://www.f-er.ru/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137422">28 avril 2016 à 17 h 19 min</a></div>
+	
+		  <p>I was just  talking with my friend  about this yesterday  at the resturant.  Don&#8217;t  remember  how in the world we landed  on the  topic actually , they brought it up.  I do recall   having a  wonderful   steak salad with ranch  on it.  I digress&#8230;</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexc602.html?replytocom=137422#respond' onclick='return addComment.moveForm("comment-137422", "137422", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-137546">
+		 <div id="comment-137546">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.sorethumbsblog.com/' rel='external nofollow' class='url'>http://www.sorethumbsblog.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137546">29 avril 2016 à 2 h 06 min</a></div>
+	
+		  <p>That&rsquo;s a smart way of looking at the world.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexa946.html?replytocom=137546#respond' onclick='return addComment.moveForm("comment-137546", "137546", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-137548">
+		 <div id="comment-137548">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.ionicbathfootdetox.com/' rel='external nofollow' class='url'>http://www.ionicbathfootdetox.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137548">29 avril 2016 à 2 h 12 min</a></div>
+	
+		  <p>Martona que maÃ±ana mas interesante haciendo YOGA.Me alegro que lo compartas; nos acordamos de las maÃ±anasdel taichiy en Panillo. Esperiencias para repetir siempre quese pueda, que bien que las aproveches.  BESOTES</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index5ef3.html?replytocom=137548#respond' onclick='return addComment.moveForm("comment-137548", "137548", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-177005">
+		 <div id="comment-177005">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-177005">28 octobre 2019 à 4 h 02 min</a></div>
+	
+		  <p>Latimer just couldn&rsquo;t translate that play into games because he couldn&rsquo;t always decipher Manning&rsquo;s many changes in the play call at the line.<br />
+The Jets (3-1) advanced five places to No. 9 after a win over Miami in London, while the Kansas City Chiefs fell seven spots to 20th after a loss to Cincinnati.<br />
+Marqise Lee, Allen Robinson, Allen Hurns and rookie Rashad Greene are considered locks. That leaves Sterling, Ace Sanders and half a dozen others vying for the last spot or two.<br />
+&laquo;&nbsp;There was really no frustration on our part, as a defense,&nbsp;&raquo; said Peter Boulware, the four-time Pro Bowl linebacker who played alongside Ray Lewis. &laquo;&nbsp;We were a team that wanted to do whatever it took to win the games. As a defensive player, we liked the game being on us.&nbsp;&raquo;<br />
+LOS ANGELES (AP) 锟?A snapshot of stadium proposals in the Los Angeles area that could become home for an NFL team.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index49c6.html?replytocom=177005#respond' onclick='return addComment.moveForm("comment-177005", "177005", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-226522">
+		 <div id="comment-226522">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-226522">20 juillet 2020 à 3 h 43 min</a></div>
+	
+		  <p>try this out <a href="https://casinox-jp.com/" rel="nofollow">https://casinox-jp.com/</a></p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index385e.html?replytocom=226522#respond' onclick='return addComment.moveForm("comment-226522", "226522", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-537136">
+		 <div id="comment-537136">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-537136">20 avril 2023 à 11 h 18 min</a></div>
+	
+		  <p>here are some links to internet sites that we link to simply because we consider they are worth visiting</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index5258.html?replytocom=537136#respond' onclick='return addComment.moveForm("comment-537136", "537136", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-570354">
+		 <div id="comment-570354">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-570354">13 octobre 2023 à 10 h 33 min</a></div>
+	
+		  <p>It&rsquo;s in fact very complex in this busy life to listen news on Television,<br />
+thus I just use the web for that purpose, and take the most up-to-date information.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index1fde.html?replytocom=570354#respond' onclick='return addComment.moveForm("comment-570354", "570354", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-606075">
+		 <div id="comment-606075">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-606075">6 avril 2024 à 0 h 40 min</a></div>
+	
+		  <p>There are so many options that you are confused.<br />
+This can work as worse time to buy. For example, she was without her prior year return, one item that we specifically request.<br />
+http://<a href="http://www.willowbrookmuseum.org/" rel="nofollow">http://www.willowbrookmuseum.org</a></p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index58ec.html?replytocom=606075#respond' onclick='return addComment.moveForm("comment-606075", "606075", "respond", "355")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+		</ol>
+	
+		
+		
+		
+
+
+		
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Répondre à <a href="#comment-226522">GlennGah</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond">Annuler le commentaire</a></small></h3>
+									<form action="http://clementgrimal.fr/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" /></p>
+<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" /></p>
+												<p class="comment-form-comment"><label for="comment">Commentaire</label><textarea id="comment" name="comment" rows="8"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Valider le commentaire" />
+							<input type='hidden' name='comment_post_ID' value='355' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='226522' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="848dc4d8a1" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="208"/></p>					</form>
+							</div><!-- #respond -->
+			
+			
+			</div><!-- close .single-block -->
+			
+			<div class="nav">
+			
+				<div class="nav-left">&laquo; <a href="../../../03/21/projet-sur-les-epaules-de-darwin/index.html" rel="next">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a></div>
+				<div class="nav-right"><a href="../../06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html" rel="prev">Raspberry Pi : gestion de sa carte SD</a> &raquo;</div>
+			
+			</div><!-- close .nav -->
+		
+		</div><!-- close #single -->
+		
+	
+</div><!-- close #content -->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../../12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="../../../03/21/projet-sur-les-epaules-de-darwin/index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="../../06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../../../../tag/administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../../../../tag/android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../../../../tag/blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../../../../tag/cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../../../../tag/culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../../../../tag/darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../../../../tag/dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../../../../tag/geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../../../../tag/git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../../../../tag/hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../../../../tag/mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../../../../tag/musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../../../../tag/outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../../../../tag/partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../../../../tag/python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../../../../tag/radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='../../../../tag/raspberry-pi/index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../../../../tag/reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../../../../tag/science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../../../../tag/science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../../../../tag/securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='../../../../tag/tutoriel/index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../../../../tag/ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../../../../tag/unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../../../../tag/videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../../../../tag/web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../../12/index.html'>décembre 2013</a></li>
+	<li><a href='../../../03/index.html'>mars 2013</a></li>
+	<li><a href='../../index.html'>février 2013</a></li>
+	<li><a href='../../../01/index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript' src='../../../../wp-content/plugins/akismet/_inc/form5b75.js?ver=3.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/02/12/ssh-securite/?replytocom=226522 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:27 GMT -->
+</html>

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; raspberry-pi</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/raspberry-pi/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Sécuriser son accès SSH</title>
+		<link>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/</link>
+		<comments>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/#comments</comments>
+		<pubDate>Tue, 12 Feb 2013 18:14:30 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[sécurité]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=355</guid>
+		<description><![CDATA[Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&#8217;y connecter un écran, une souris et un écran, il est très commode de s&#8217;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&#8217;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p style="clear: both;" >Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&rsquo;y connecter un écran, une souris et un écran, il est très commode de s&rsquo;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&rsquo;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, le connecter à son réseau avec un câble Ethernet, et depuis son ordinateur personnel (connecté au même réseau), faire :</p>
+<pre class="brush:bash">ssh pi@raspberry
+</pre>
+<p>Ensuite, si l&rsquo;on ajoute une règle NAT sur sa box pour rediriger le port 22 (celui du serveur SSH), on peut se connecter, en utilisant l&rsquo;adresse IP externe à la place de raspberry, à son Raspberry Pi de n&rsquo;importe où ! Et ce n&rsquo;importe quand ! C&rsquo;est super n&rsquo;est-ce pas ? Sauf qu&rsquo;il serait bon que n&rsquo;importe qui ne puisse pas le faire&#8230; On va donc voir quelles règles simples appliquées pour réduire les chances qu&rsquo;un petit malin se connecte sur votre réseau.</p>
+<h2>Pourquoi se protéger ?</h2>
+<p>Pour commencer, il faut dire qu&rsquo;il y a pénurie d&rsquo;adresse IP dans le monde, car leur nombre n&rsquo;est pas infinie et il y a de plus en plus d&rsquo;appareils reliés à internet ! C&rsquo;est pourquoi il existe une nouvelle norme IPv6, mais elle n&rsquo;est pas encore majoritairement utilisée. De plus, sur toute machine Linux, il y a pas défaut un compte <code>root</code>, qui est le super administrateur de la machine ! En bref, il peut tout faire, et c&rsquo;est par lui que vous passer dès lors que vous modifier votre système (voir la commande <code>sudo</code> par exemple, qui veut dire &laquo;&nbsp;super user do&nbsp;&raquo;). Donc en faisant :</p>
+<pre class="brush:bash">ssh root@adresse_aleatoire
+</pre>
+<p>J&rsquo;ai plutôt de bonne chance d&rsquo;essayer de me connecter à un ordinateur existant, ayant un serveur SSH utilisant le port 22, et ayant un utilisateur s&rsquo;appelant <code>root</code> ! Ensuite, rien de m&rsquo;empêche d&rsquo;essayer automatiquement des milliers de mots de passe, et avec un peu de chance, je le trouverais ! Il suffit d&rsquo;un programme qui teste méthodiquement toutes les chaînes de caractères, à raison d&rsquo;un essai par seconde, on peut tester 86400 mots de passe par jour ! Même si le nombre de combinaisons possibles est largement plus grand que ça, avec le temps nécessaire, un pirate pourra alors se connecter en root à votre Raspberry Pi !</p>
+<blockquote>
+<p>Mais il va faire quoi ? Ecouter ma musique ?!</p>
+</blockquote>
+<p>Il y a peu de chance&#8230; Son intérêt sera plutôt d&rsquo;installer un programme sur votre système, qu&rsquo;il pourra utiliser à sa guise plus tard s&rsquo;il désire lancer une attaque vers un site en particulier. Votre ordinateur est alors devenu ce que l&rsquo;on appelle un zombie, faisant partie d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Botnet#Usages_principaux_des_botnets_malveillants" target="_blank">BotNet</a> !</p>
+<h2>Quelques règles simples</h2>
+<p>Pour éviter ce scénario, on peut appliquer les quelques règles suivantes.</p>
+<h3>Changer le port</h3>
+<p>Rien de plus simple, éditer la configuration de votre serveur <code>ssh</code>, qui est décrite dans le fichier <code>/etc/ssh/sshd_config</code>, pour y faire figurer la ligne :</p>
+<pre class="brush:plain">Port 1337
+</pre>
+<p><strong>Attention : </strong>vous risquez d&rsquo;être déconnecté si vous faite l&rsquo;opération en étant justement connecté en SSH&#8230; Donc vous pouvez dans un premier temps utiliser 2 ports, le 22 et le 1337 en dupliquant cette ligne. Puis supprimer la ligne Port 22 ultérieurement. Vous pouvez remplacer 1337 par n&rsquo;importe quel numéro compris entre 1024 et 65537, en vérifiant qu&rsquo;il n&rsquo;est pas déjà utilisé par un autre programme.</p>
+<p>Il faut alors penser à changer la règle NAT dans votre box, pour rediriger le port 1337 (et plus le 22). Pour vous connecter maintenant, utilisez l&rsquo;option <code>-p</code> de la commande <code>ssh</code> :</p>
+<pre class="brush:bash">ssh -p 1337 pi@raspberry
+</pre>
+<h3>Désactiver la connexion root</h3>
+<p>Pour éviter à quiconque (vous y compris) de vous connecter directement en super utilisateur à votre Raspberry Pi . Il faut également éditer le fichier <code>/etc/ssh/sshd_config</code>, pour modifier la ligne:</p>
+<pre class="brush:plain">PermitRootLogin no
+</pre>
+<h3>Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</h3>
+<p>Pour éviter les attaques de type &laquo;&nbsp;brute force&nbsp;&raquo; qui consiste à essayer le plus possible de mots de passe, il est possible d&rsquo;installer un logiciel qui va se charger de bannir une adresse IP si un utilisateur échoue à se connecter plus d&rsquo;un certain nombre de fois. J&rsquo;utilise personnellement le logiciel <code>fail2ban</code> (il y en a d&rsquo;autres !), disponible dans les dépôts. Il y a pas grand chose à faire pour le configurer, on modifie le fichier <code>/etc/fail2ban/jail.conf</code>, les paramètres intéressants sont les suivants :</p>
+<pre class="brush:plain">ignoreip = 127.0.0.1/8
+bantime  = 600
+maxretry = 3
+
+destemail = votre_adresse@mail.com
+
+action = %(action_mwl)s
+</pre>
+<p><code>ignoreip</code> permet de ne pas se faire bannir depuis le Raspberry Pi lui même, <code>bantime</code> est le temps de bannissement en secondes (10 minutes par défaut donc), <code>maxretry</code> le nombre d&rsquo;échecs pour être bannit. Ensuite, <code>destmail</code> est l&rsquo;adresse email à laquelle seront envoyés les alertes, et surtout action sera l&rsquo;action en cas de bannissement. J&rsquo;aime bien <code>action_mwl</code> qui est celle qui envoie le plus d&rsquo;informations. Cette action (les autres aussi) peut  elle-même être personnalisée en éditant le fichier  <code>/etc/fail2ban/action.d/sendmail-whois-lines.conf</code></p>
+<p><strong>Remarque :</strong> pour que l&rsquo;envoi des mail se passe correctement, il vous faudra avoir correctement installé et configuré un MTA sur votre système, et j&rsquo;ai déjà expliqué comment faire dans ce billet : <a href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/#Envoi_de_mail">Installation d&rsquo;un serveur web (Envoi de mail)</a></p>
+<h3>Ne pas utiliser de mot de passe</h3>
+<p>Finalement, il est possible de ne pas utiliser de mot de passe pour se connecter, mais de passer par la génération de clé de cryptage. Cette méthode est très bien pour des installations critiques, mais je trouve que l&rsquo;on perd alors en flexibilité, et je ne l&rsquo;utilise personnellement pas&#8230; Je ne détaillerai donc pas ici comme procéder, mais il existe de nombreux tutoriels en ligne, par exemple : <a href="http://www.lea-linux.org/documentations/Trucs:Connection_SSH_sans_mot_de_passe">lea-linux.org : Connection_SSH_sans_mot_de_passe</a></p>
+<h3>Sources</h3>
+<ul>
+<li>Pénurie d&rsquo;adresses IP v4 annoncée : <a href="http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html">http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html</a></li>
+<li>Discussion sur comment sécuriser l&rsquo;accès SSH à son Raspberry : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122</a></li>
+<li>Changer le port SSH : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.itworld.com/nls_unixssh0500506</a></li>
+<li>Wiki sur l&rsquo;installation et la configuration de Fail2ban : <a href="https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban">https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban</a></li>
+</ul>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/feed/</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+		<item>
+		<title>Raspberry Pi : gestion de sa carte SD</title>
+		<link>http://clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/</link>
+		<comments>http://clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/#comments</comments>
+		<pubDate>Wed, 06 Feb 2013 21:41:04 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=399</guid>
+		<description><![CDATA[A force de jouer avec mon Raspberry Pi, j&#8217;ai eu le désagrément de le voir refuser de démarrer&#8230; La partition /root de ma carte SD était corrompue. J&#8217;ai donc du me résoudre à réinstaller Raspbian, et à repartir de zéro, l&#8217;occasion cependant d&#8217;apprendre à faire des sauvegardes et des restaurations ! Bien sûr, je travaille [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>A force de jouer avec mon Raspberry Pi, j&rsquo;ai eu le désagrément de le voir refuser de démarrer&#8230; La partition <code>/root</code> de ma carte SD était corrompue. J&rsquo;ai donc du me résoudre à réinstaller Raspbian, et à repartir de zéro, l&rsquo;occasion cependant d&rsquo;apprendre à faire des sauvegardes et des restaurations !</p>
+<p>Bien sûr, je travaille sous Linux (Xubuntu puisque vous voulez tout savoir), et si vous êtes sous Windows, je sais qu&rsquo;il est possible de faire la même chose, mais je ne le couvrirai pas dans ce billet.</p>
+<p>Ce qu&rsquo;il faut comprendre, c&rsquo;est que comme ma carte SD est de taille relativement faible (8Go), il est facile de faire une sauvegarde complète de son contenu (surtout en compressant le résultat).</p>
+<p>La commande qu&rsquo;il faut utiliser est la commande <code>dd</code>, la même que j&rsquo;ai utilisé pour ma première installation de Raspbian. Ses deux arguments principaux sont :</p>
+<ul>
+<li><code>if</code> :  fichier d&rsquo;entrée (ou périphérique)</li>
+<li><code>of</code> : fichier de sortie (ou périphérique)</li>
+</ul>
+<p>Il faut déjà savoir à quel périphérique correspond votre lecteur de carte SD, utilisez la commande <code>fdisk</code> :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Et cherchez un disque d&rsquo;environ 8Go. Si Raspbian est installé sur la carte, vous avez normalement deux partitions, voilà ce que j&rsquo;obtiens par exemple :</p>
+<pre class="brush:plain">Disk /dev/sda: 7969 MB, 7969177600 bytes
+4 heads, 16 sectors/track, 243200 cylinders, total 15564800 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00017b69
+
+		Device Boot      Start         End      Blocks   Id  System
+/dev/sda1            8192      122879       57344    c  W95 FAT32 (LBA)
+/dev/sda2          122880    15564799     7720960   83  Linux
+</pre>
+<h2>Sauvegarde</h2>
+<p>Je sais donc que c&rsquo;est <code>/dev/sda</code> qui correspond à ma carte SD que je souhaite sauvegarder. Pour faire une sauvegarde, il me suffit alors d&rsquo;utiliser :</p>
+<pre class="brush:bash">sudo dd if=/dev/sda of=/chemin/vers/ma/sauvegarde.img bs=1M
+</pre>
+<p>Le fichier <code>/chemin/vers/ma/sauvegarde.img</code> fait alors exactement 8Go. J&rsquo;ai personnellement fait plusieurs sauvegardes pendant que je re-configurais mon Raspberry Pi. Par exemple, après avoir fait une mise à jour complète du système, <a title="Raspberry Pi : installation et partage d’un disque dur externe" href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/">installer vos disques externes</a>, sécuriser votre accès SSH (article à venir), <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">installer votre serveur web</a> et <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">configurer votre DNS dynamique</a>, une petite sauvegarde du système ne fait pas de mal !</p>
+<h2>Restauration</h2>
+<p>Il est possible de restaurer cette image en inversant les argument <code>if</code> et <code>of</code> :</p>
+<pre class="brush:bash">sudo dd if=/chemin/vers/ma/sauvegarde.img of=/dev/sda bs=1M
+</pre>
+<p><strong>Attention : </strong> en utilisant <code>of=/dev/sda</code> vous écrasez complètement le disque sda, donc vérifiez bien avec la commande <code>fdisk</code>.</p>
+<h2>Compression</h2>
+<p>Si vous faites régulièrement l&rsquo;opération, pensez qu&rsquo;il est possible de compresser les images pour qu&rsquo;elles occupent moins de 8Go sur votre disque en utilisant la commande <code>gzip</code> par exemple :</p>
+<pre class="brush:bash">gzip /chemin/vers/ma/sauvegarde.img
+</pre>
+<p>qui créera un fichier <code>/chemin/vers/ma/sauvegarde.img.gz</code>, bien plus petit que 8Go. Il est également possible de faire la sauvegarde et la compression en une seule opération, et pour cela, je vous recommande la lecture des pages 12 et 13 du dernier numéro du magazine MagPi (dans les sources).</p>
+<h2><strong>Effacer la table de partition</strong></h2>
+<p>Lorsque j&rsquo;ai eu mon problème de partition <code>/root</code> corrompue, même en re-copiant une image toute fraîche de Raspbian sur ma carte SD, mon Raspberry Pi refuser toujours de démarrer. Il a fallu que j&rsquo;efface complètement la table de partition de la carte avec la commande :</p>
+<pre class="brush:bash">sudo dd if=/dev/zero of=/dev/sda bs=1M count=2
+</pre>
+<p><strong>Attention :</strong> vérifiez bien que <code>/dev/sda</code> est la carte SD, et pas un autre disque dur !</p>
+<h2 class="beforelist">Sources</h2>
+<ul>
+<li>Le blog qui m&rsquo;a sauvé : <a href="http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278" target="_blank">http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278</a></li>
+<li>Le numéro du magazine MagPi avec un article très complet sur la gestion de sa carte SD en pages 12 et 13 : <a href="http://issuu.com/themagpi/docs/issue_9_final" target="_blank">http://issuu.com/themagpi/docs/issue_9_final</a></li>
+</ul>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		</item>
+		<item>
+		<title>Raspberry Pi : installation et partage d&#8217;un disque dur externe</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comments</comments>
+		<pubDate>Wed, 30 Jan 2013 17:50:04 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[partage]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[tutoriel]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286</guid>
+		<description><![CDATA[Comme je souhaite utiliser mon Raspberry comme &#171;&#160;serveur de stockage&#160;&#187; entre autres, j&#8217;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&#8217;explique comment j&#8217;ai configuré ledit disque dur, pour un partage simple. Le montage Dans le monde Unix, le verbe &#171;&#160;monter&#160;&#187; désigne l&#8217;opération [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Comme je souhaite utiliser mon Raspberry comme &laquo;&nbsp;serveur de stockage&nbsp;&raquo; entre autres, j&rsquo;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&rsquo;explique comment j&rsquo;ai configuré ledit disque dur, pour un partage simple.</p>
+<h3>Le montage</h3>
+<p>Dans le monde Unix, le verbe &laquo;&nbsp;monter&nbsp;&raquo; désigne l&rsquo;opération barbare qui consiste à faire en sorte de pouvoir accéder à votre disque dur (ou autre périphérique). En effet, quand on le branche simplement, on ne peut pas y accéder tant qu&rsquo;il n&rsquo;a pas été monté. Donc on va faire en sorte que ce disque dur là tout neuf soit automatiquement monté dans un répertoire de notre choix, avec les permissions qui vont bien, afin d&rsquo;être sûr de toujours le retrouver.</p>
+<p>Pour savoir à quel &laquo;&nbsp;device&nbsp;&raquo; il correspond, utilisez la commande :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Dans le résultat obtenu, il faut chercher le bloc qui correspond au disque dur, pour moi c&rsquo;est :</p>
+<pre class="brush:plain">Disk /dev/sdb: 2000.4 GB, 2000398933504 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x524a5d81
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048  3907024895  1953511424    7  HPFS/NTFS/exFAT
+</pre>
+<p>Puisque je sais qu&rsquo;il fait 2To (enfin 2000398933504 octets). Il correspond donc à <code>/dev/sdb1</code> (une seule partition) et il est formaté en NTFS, tout va bien. Maintenant, il va nous falloir une seconde info le concernant : son UUID. C&rsquo;est un identifiant unique, pour le trouver, utilisez la commande :</p>
+<pre class="brush:bash">ls -l /dev/disk/by-uuid/
+</pre>
+<p>Et cherchez l&rsquo;UUID recherché est la suite de numéro et de lettres qui précède le <code>-&gt; ../../sdb1</code> dans mon cas. Dernière étape : choisir et créer le répertoire dans lequel on veut monter ce disque. J&rsquo;ai choisit de créer un dossier <code>/storage/</code> dans lequel je monterai mes disques durs, et donc pour celui là en l&rsquo;occurrence, on va créer le répertoire <code>/storage/mon_disque</code> :</p>
+<pre class="brush:bash">sudo mkdir /storage
+sudo mkdir /storage/mon_disque
+</pre>
+<p>On peut maintenant configurer le fichier <code>/etc/fstab</code> pour y ajouter la ligne qui correspondra au montage de notre disque dur :</p>
+<pre class="brush:bash">sudo vim /etc/fstab
+</pre>
+<p>Et ajoutez la ligne suivante à la fin :</p>
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    defaults    0    2
+</pre>
+<p>Voilà, vous pouvez maintenant monter manuellement votre disque en faisant la commande [<b>AJOUT : </b>il faut avoir installer le paquet <code>ntfs-3g</code> avant !] :</p>
+<pre class="brush:bash">sudo mount /dev/sdb1
+</pre>
+<p>Mais tout l&rsquo;intérêt est que maintenant, à chaque fois que vous brancherez <strong>ce disque</strong> sur <strong>ce raspberry</strong>, il sera toujours monté de la même façon, dans le dossier <code>/storage/mon_disque/</code> !</p>
+<p>Un point qui ne me plaisait pas spécialement avec cette configuration très simple, est que le disque dur est en accès 777, c&rsquo;est à dire que tout le monde peut écrire dessus ! Je ne sais pas si cela est fondamentalement grave mais j&rsquo;ai préféré changer les permissions. Le seul point délicat, c&rsquo;est que certains logiciels ont besoin de pouvoir accéder à ce disque : samba, client bittorrent, serveur web, etc&#8230; On va voir dans la suite comment j&rsquo;ai choisi de gérer cela.</p>
+<h3>Les permissions</h3>
+<p>Ce qui m&rsquo;a semblé le plus simple, c&rsquo;est de créer un groupe storage qui aura tous les droits sur mes disques durs externes, et j&rsquo;y ajouterai à la main les utilisateurs. Voilà la démarche que j&rsquo;ai suivie :</p>
+<ol>
+<li>Création du groupe :
+<pre class="brush:bash">sudo groupadd storage
+</pre>
+</li>
+<li>Récupération de l&rsquo;id de ce groupe. La commande :
+<pre class="brush:bash">cat /etc/group |grep storage
+</pre>
+<p>devrait vous renvoyer une seule ligne ressemblant à <code>:storage:x:1005:</code> L&rsquo;id du groupe est donc 1005, et on va en avoir besoin plus tard.</p>
+</li>
+<li>Ajout de l&rsquo;utilisateur pi (ou toto si vous vous appelez toto) :
+<pre class="brush:bash">sudo usermod -a -G storage pi
+</pre>
+</li>
+<li>Modification du fichier <code>/etc/fstab</code> pour que le dossier de montage appartienne au groupe storage (on remplace les options defaults) :
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    suid,dev,auto,async,gid=1005,umask=007    0    2
+</pre>
+<p>Le 1005 correspond à l&rsquo;id du groupe storage et le umask est un paramètre assez compliqué (voir mes sources à la fin du billet), mais la valeur 007 implique que les utilisateurs n&rsquo;appartenant pas au groupe storage pourront lire et parcourir le disque, mais pas écrire dessus.</p>
+</li>
+<li>Eventuellement, ajout des autres utilisateurs correspondant aux logiciels qui doivent pouvoir écrire sur le disque. Par exemple, si vous souhaitez partager certains dossiers via votre serveur web (voir mon billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a>), l&rsquo;utilisateur correspondant au serveur Apache2 est www-data. Il faut donc faire :
+<pre class="brush:bash">sudo usermod -a -G storage www-data
+</pre>
+</li>
+</ol>
+<h3>Partage sur le serveur Web</h3>
+<p>J&rsquo;ai expliqué dans le billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a> comment installer un simple serveur Apache. Vous pouvez par exemple partager un dossier de votre disque dur directement via le web en créant un lien symbolique. Par exemple, si vous souhaitez partager tout le contenu du dossier <code>/storage/mon_disque/dossier_public/</code>, vous pouvez utiliser la commande :</p>
+<pre class="brush:bash">sudo ln -s /storage/mon_disque/dossier_public/ /var/www/dossier_public
+</pre>
+<p>Si l&rsquo;adresse pour accéder à voter serveur web est <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com</a> (vous avez utiliser mon tutoriel <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">Utilisation d’un DNS dynamique</a> ?), vous (ou n&rsquo;importe qui attention !) pouvez consulter le contenu de ce dossier à l&rsquo;adresse : <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com/dossier_public/</a></p>
+<p>Il est possible de protéger ce que vous partager sur votre serveur web, par mot de passe par exemple, mais j&rsquo;en parlerai plus tard. J&rsquo;ajoute tout de même un lien la dessus dans les sources de ce billet.</p>
+<h3>Partage avec Samba</h3>
+<p>Je pense que j&rsquo;écrirai un billet là-dessus, mais juste au cas où vous auriez déjà configuré un serveur Samba (partage de certains répertoires, y compris avec Windows), sachez que si vous avez suivi ce tutoriel, il vous faudra modifier légèrement votre configuration. Dans le fichier <code>/etc/samba/smb.conf</code>, pour chacun de vos partage, ajoutez la ligne force group = storage, ce qui donnera par exemple :</p>
+<pre class="brush:plain">[mon_disque]
+	path = /storage/mon_disque
+	browseable = yes
+	read only = no
+	guest ok = yes
+	force group = storage
+</pre>
+<h3>Accès par client Bittorrent</h3>
+<p>On verra dans un prochain billet comment installer un client Bittorrent (Transmission) sur votre Raspberry Pi, et le configure pour que les fichiers téléchargés arrivent sur votre disque externe. Il ne faudra donc pas oublier d&rsquo;ajouter l&rsquo;utilisateur debian-transmission au groupe storage :</p>
+<pre class="brush:bash">sudo usermod -a -G storage debian-transmission
+</pre>
+<h3>Sources</h3>
+<ul>
+<li>Manuel de fstab sur le site Ubuntu-fr : <a href="http://doc.ubuntu-fr.org/mount_fstab" target="_blank">http://doc.ubuntu-fr.org/mount_fstab</a></li>
+<li>Aide sur l&rsquo;utilisation de umask (en anglais) : <a href="http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html" target="_blank">http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</a></li>
+<li>Protection par mot de passe de dossiers pour Apache : <a href="http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/" target="_blank">http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/</a></li>
+</ul>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Utilisation d&#8217;un DNS dynamique</title>
+		<link>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/#comments</comments>
+		<pubDate>Tue, 29 Jan 2013 18:12:06 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[dns]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=303</guid>
+		<description><![CDATA[Comme vous le savez, je possède depuis peu un Raspberry Pi, et j&#8217;y ai installé un serveur web. J&#8217;ai écrit un billet là dessus, et à ce moment là, pour accéder à ce site web, je m&#8217;étais passé d&#8217;utiliser un service de DNS dynamique, et il fallait donc que j&#8217;utilise directement l&#8217;adresse IP de ma [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Comme vous le savez, je possède depuis peu un Raspberry Pi, et j&rsquo;y ai installé un serveur web. J&rsquo;ai écrit <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">un billet là dessus</a>, et à ce moment là, pour accéder à ce site web, je m&rsquo;étais passé d&rsquo;utiliser un service de DNS dynamique, et il fallait donc que j&rsquo;utilise directement l&rsquo;adresse IP de ma box SFR. Non seulement ce n&rsquo;est pas pratique, mais en plus, si l&rsquo;adresse IP change (on redémarre la box par exemple), c&rsquo;est embêtant. J&rsquo;avais donc fait un script pour détecter un changement d&rsquo;adresse IP, chargé de m&rsquo;envoyé un e-mail.</p>
+<p>Bref, ce n&rsquo;était pas très sérieux ! Heureusement, un collègue (<a title="Profil Twitter de Toumt4m" href="https://twitter.com/Toumt4m" target="_blank">@Toumt4m</a>) m&rsquo;a éclairé sur l&rsquo;utilisation pratique du DNS dynamique !</p>
+<h3>C&rsquo;est quoi le DNS ?</h3>
+<p>N&rsquo;étant pas un spécialiste, je me garderai bien de vouloir vous expliquer en détail les mécanismes du DNS. Mais en quelques mots, c&rsquo;est l&rsquo;annuaire d&rsquo;internet. En effet, chaque site web est hébergé sur un ordinateur. Un ordinateur qui doit donc être relié à internet, il a ainsi une adresse IP. Pour accéder au site web qu&rsquo;il héberge, il suffit alors de taper l&rsquo;adresse IP dans son navigateur. Vous voulez visiter google.fr, rien de plus simple : <a href="http://74.125.230.215" target="_blank">74.125.230.215</a></p>
+<p>Seulement voilà, ce n&rsquo;est pas très simple de retenir toutes ces adresses IP, donc le DNS nous permet de retenir le nom de domaine du site, et il se chargera pour nous de le traduire vers l&rsquo;adresse IP correspondante. Si vous voulez en savoir plus, un bon point de départ est la page Wikipédia : <a href="https://fr.wikipedia.org/wiki/Domain_Name_System" target="_blank">wikipedia.org/wiki/Domain_Name_System</a></p>
+<p>Finalement, lorsque l&rsquo;adresse IP du serveur qui héberge notre site web peut changer, il faut utiliser un service de DNS dynamique qui permet de mettre à jour en temps réel le DNS. Nous allons donc voir comment utiliser un tel service.</p>
+<h3>Inscription au service</h3>
+<p>Il existe pléthore de sites proposant ce type de service, j&rsquo;ai personnellement opté pour <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> (si vous en connaissez des mieux, ça m&rsquo;intéresse !). C&rsquo;est très simple, il suffit de s&rsquo;inscrire, puis d&rsquo;ajouter un sous-domaine comme mon-rpi.dnsdynamic.com et de lui associer son adresse IP. Pour connaître votre adresse IP externe, vous pouvez par exemple allez sur le site <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> (si curl est installé sur votre Raspberry, tapé <code>curl ipogre.com</code> dans un terminal).</p>
+<p>Voilà ! Maintenant, en tapant mon-rpi.dnsdynamic.com dans votre navigateur, vous devriez tomber sur le site web que vous hébergez sur votre Raspberry. Mais celà fonctionne également pour vous connecter en ssh par exemple (à condition d&rsquo;avoir redirigé correctement le port de votre serveur ssh&#8230;).</p>
+<h3>Mise à jour automatique</h3>
+<p>Si votre adresse IP change, il y a plus simple que de se connecter sur <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> pour mettre à jour votre sous-domaine. Vous pouvez utiliser l&rsquo;API de ce site. En pratique, il vous suffit d&rsquo;installer <code>ddclient</code> :</p>
+<pre class="brush:bash">		sudo apt-get install ddclient
+	
+</pre>
+<p>Vous pouvez ensuite reprendre le fichier de configuration <code>/etc/ddclient.conf</code> proposé, en modifiant identifiant, mot de passe et nom du sous-domaine choisi :</p>
+<pre class="brush:plain">	   # Configuration file for ddclient generated by debconf
+		#
+		# /etc/ddclient.conf
+
+		daemon=60                           # check every 60 seconds
+		syslog=yes                          # log update msgs to syslog
+		mail=root                           # mail all msgs to root
+		mail-failure=root                   # mail failed update msgs to root
+		pid=/var/run/ddclient.pid           # record PID in file.
+		ssl=yes                             # use ssl-support.  Works with
+												# ssl-library
+		use=web, web=myip.dnsdynamic.com    # get ip from server.
+		server=www.dnsdynamic.org           # default server
+		login=votre_adresse@mail.com        # default login
+		password=votre_mot_de_passe         # default password
+		server=www.dnsdynamic.org,          \
+		protocol=dyndns2                    \
+		mon-rpi.dnsdynamic.com
+	
+</pre>
+<p>Ce logiciel s&rsquo;exécute ensuite comme un démon, mais vous pouvez également le lancer en ligne de commande en faisant :</p>
+<pre class="brush:bash">		ddclient -daemon=0 -verbose
+	
+</pre>
+<p>J&rsquo;ai personnelement ajouté cette ligne à mon script (voir le billet &#8230;), c&rsquo;est pas très propre mais comme ça je recevrai toujours l&rsquo;e-mail en plus.</p>
+<div>
+<p class="beforelist"><strong>Sources :</strong></p>
+<ul>
+<li>Dynamic DNS :
+<ul>
+<li><a title="Les DNS Dynamiques sur la documention Ubuntu-fr" href="http://doc.ubuntu-fr.org/dns_dynamique" target="_blank">Les DNS Dynamiques sur la documention Ubuntu-fr</a></li>
+<li><a title="La page Wikipédia (en anglais) sur le DNS dynamique" href="https://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">La page Wikipédia (en anglais) sur le DNS dynamique</a></li>
+</ul>
+</li>
+<li><a title="Le site dnsdynamic.org que j'ai utilisé" href="https://www.dnsdynamic.org" target="_blank">Le site dnsdynamic.org que j&rsquo;ai utilisé</a></li>
+<li><a title="Page du logiciel ddclient pour la mise à jour automatique" href="http://sourceforge.net/p/ddclient/wiki/Home/" target="_blank">Page du logiciel ddclient pour la mise à jour automatique</a></li>
+</ul>
+</div>
+]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		</item>
+		<item>
+		<title>Raspberry Pi : installation d&#8217;un serveur web</title>
+		<link>http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/#comments</comments>
+		<pubDate>Thu, 24 Jan 2013 18:01:01 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[tutoriel]]></category>
+		<category><![CDATA[unix]]></category>
+		<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=222</guid>
+		<description><![CDATA[Dans ce billet, je vais décrire comment j&#8217;ai installé un serveur web sur mon Raspberry Pi, mais surtout comment j&#8217;ai configuré mon installation sachant que mon fournisseur d&#8217;accès est SFR. Dans la première moitié, je décris l&#8217;installation du serveur et la configuration minimale pour tester. Et dans la seconde partie, je décris comment s&#8217;en sortir [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Dans ce billet, je vais décrire comment j&rsquo;ai installé un serveur web sur mon Raspberry Pi, mais surtout comment j&rsquo;ai configuré mon installation sachant que mon fournisseur d&rsquo;accès est SFR.</p>
+<p>Dans la première moitié, je décris l&rsquo;installation du serveur et la configuration minimale pour tester. Et dans la seconde partie, je décris comment s&rsquo;en sortir sans adresse IP fixe (comme c&rsquo;est le cas chez SFR).</p>
+<p><strong>MODIFICATION : </strong>j&rsquo;ai finalement réussi à utilisé un service de DNS dynamique, qui me permet de ne pas forcément utiliser mon script compliqué : <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">voir ce billet</a> ! </p>
+<h3 style="clear: both;">Installation du serveur et configuration minimale</h3>
+<h4>Installation du serveur</h4>
+<p>On va installer un serveur web, communément appelé <a href="https://fr.wikipedia.org/wiki/LAMP" target="_blak">LAMP</a>, pour Linux / Apache / MySQL / PHP. Avec ça vous aurez de quoi faire tourner un petit site web, avec base de données et pages dynamiques. Il suffit d&rsquo;installer les paquets suivants :</p>
+<pre class="brush:bash">	sudo apt-get install apache2 php5 mysql-server libapache2-mod-php5 php5-mysql
+</pre>
+<p>La racine de votre site se situe alors dans le dossier <code>/var/www/</code> et si vous allez sur la page <a href="http://localhost:80" target="_blank">localhost:80</a>, vous devriez voir la page par défaut d&rsquo;Apache qui dit &laquo;&nbsp;It Works!&nbsp;&raquo;.</p>
+<h4>Trouver son adresse IP externe</h4>
+<p>Il y a plusieurs façon de faire : vous pouvez vous rendre sur l&rsquo;interface de votre box <a href="http://192.168.1.1" target="_blank">192.168.1.1</a> et l&rsquo;adresse IP est alors visible en haut à droite. Vous pouvez également utiliser un site web tel que <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> (nous l&rsquo;utiliserons d&rsquo;ailleurs dans la seconde partie).</p>
+<p>Mais si vous donner cette adresse IP à quelqu&rsquo;un pour qu&rsquo;il puisse voir le site web hebergé sur votre Raspberry, cela ne marchera pas car il &laquo;&nbsp;atterrira&nbsp;&raquo; sur la box ! On va donc voir comment la paramétrer dans la suite.</p>
+<h4>Paramètrer sa box</h4>
+<p>Par défaut, lorsqu&rsquo;un nouvel équipement se connecte à la box (wifi ou ethernet), elle lui attribue une adresse IP locale aléatoire du type <code>192.168.1.XX</code>. Pour que le Raspberry soit toujours à la même adresse (ce sera mieux pour le retrouver), on va demander à la box de lui attribuer une IP locale fixe. Il faut aller sur l&rsquo;interface de la box (<a href="http://localhost:80" target="_blank">localhost:80</a>), dans l&rsquo;onglet DHCP de la section Réseau. Regarder l&rsquo;aide de SFR à ce sujet qui est très bien faire : <a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Héberger son site web à la maison avec sa box</a>.</p>
+<p>Maintenant, il faut rediriger le port 80 (celui du serveur web) vers votre Raspberry. C&rsquo;est aussi expliqué sur la page d&rsquo;aide de SFR, et il suffit d&rsquo;ajouter une règle NAT. D&rsquo;ailleurs, vous pouvez en profiter pour ajouter d&rsquo;autres règles. En redirigeant également le port 22, vous pourrez vous connecter en ssh à votre Raspberry depuis n&rsquo;importe où !</p>
+<h4>Test</h4>
+<p>Vous pouvez maintenant donner votre adresse IP externe à votre fameux ami qui meurt d&rsquo;envie de voir le site web que vous hébergez sur votre Raspberry. Disons que cette adresse est <code>A.B.C.D</code>, s&rsquo;il se rend à l&rsquo;adresse <a href="#">A.B.C.D</a> sur son navigateur, il atterrira sur votre site ! Si vous testez de chez vous, vous arriverez sur l&rsquo;interface de la box, ce qui est moins intéressant, utilisez l&rsquo;adresse IP locale de votre raspberry.</p>
+<p>&nbsp;</p>
+<h3>Script pour ne pas utiliser DynDNS</h3>
+<p>Chez SFR, l&rsquo;adresse IP de votre box change régulièrement, et il est possible de souscrire à un service de DNS dynamique pour que l&rsquo;adresse <a href="javascript:void(0)">mon-rpi.dyndns.fr</a> redirige toujours vers votre box. Seulement je n&rsquo;ai pas réussi ! Il faut normalement aller dans l&rsquo;onglet DynDNS de la section Réseau de l&rsquo;interface de la box, mais le dervide dyndns.fr n&rsquo;est pas présent, et donc j&rsquo;ai préféré m&rsquo;en passer pour l&rsquo;instant.</p>
+<p>Pour ne pas être bloqué, on m&rsquo;a soufflé l&rsquo;idée suivante : faire un script qui vérifie si l&rsquo;adresse IP a changée, si oui le script doit m&rsquo;envoyer un mail avec la nouvelle adresse IP. Puis il suffit de faire s&rsquo;exécuter ce script automatiquement à intervalles réguliers.</p>
+<h4>Le script</h4>
+<p>On va mettre le script dans le répertoire <code>/usr/local/bin/ipcheck.sh</code> :</p>
+<pre class="brush:bash">#!/bin/bash
+IPFILE=/etc/ipaddress
+
+CURRENT_IP=$(curl ipogre.com)
+
+MAIL_TO=votre_adresse@domaine.fr
+
+if [ -f $IPFILE ]; then
+	KNOWN_IP=$(cat $IPFILE)
+	else
+	KNOWN_IP=
+fi
+
+if [ "$CURRENT_IP" != "$KNOWN_IP" ]; then
+	echo $CURRENT_IP &gt; $IPFILE
+
+	MAIL_SUBJECT="L'adresse IP du RPI a changé !"
+	MAIL_BODY="C'est maintenant $CURRENT_IP"
+
+	echo $MAIL_BODY | mail -s "$MAIL_SUBJECT" $MAIL_TO
+	logger -t ipcheck -- Nouvelle adresse IP : $CURRENT_IP
+else
+	logger -t ipcheck -- Même adresse IP.
+fi
+</pre>
+<p>Donc l&rsquo;adresse IP va être stockée dans le fichier <code>/etc/ipaddress</code> et on utilise le site <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> pour récupérer l&rsquo;adresse externe. Puis on compare l&rsquo;ancienne adresse avec la courante, et si ce n&rsquo;est pas la même, on envoie le mail. Voyons maintenant ce qu&rsquo;il faut installer et configurer pour que tout marche bien.</p>
+<h4>Installation curl</h4>
+<p>Je ne sais plus s&rsquo;il est installé de base dans Raspbian, dans le doute :</p>
+<pre class="brush:bash">	sudo apt-get install curl
+</pre>
+<h4>Envoi de mail</h4>
+<p>La partie qui risque de poser problème concerne l&rsquo;envoi de mail. Car la commande <code>mail</code> ne fait qu&rsquo;appeler le <a title="Définition de MTA" href="https://fr.wikipedia.org/wiki/Mail_Transfer_Agent" target="_blank">MTA</a> installé localement. J&rsquo;ai opté pour <a title="Page du paquet Debian" href="http://wiki.debian.org/sSMTP" target="_blank"><code>ssmtp</code></a> qui est très simple à installer et configurer :</p>
+<pre class="brush:bash">sudo apt-get install ssmtp
+</pre>
+<p>Je l&rsquo;ai configurer pour utilisé mon compte Gmail pour les envois. Il faut alors éditer le fichier <code>/etc/ssmtp/ssmtp.conf</code> pour modifier les lignes suivantes :</p>
+<pre class="brush:plain">mailhub=smtp.gmail.com:587
+UseTLS=Yes
+UseSTARTTLS=Yes
+AuthUser=votre_login_gmail
+AuthPass=votre_mot_de_passe_gmail
+</pre>
+<p><strong>Attention</strong>, votre mot de passe Gmail n&rsquo;est pas crypté, il faut donc s&rsquo;assurer que le fichier ne sera pas lisible par n&rsquo;importe qui ! :</p>
+<pre class="brush:bash">sudo chmod 640 /etc/ssmtp/ssmtp.conf
+sudo chown root:mail /etc/ssmtp/ssmtp.conf
+</pre>
+<h4>Cron du script</h4>
+<p>On va &laquo;&nbsp;croner&nbsp;&raquo; ce script pour qu&rsquo;il s&rsquo;exécute automatiquement toutes les heures. Comme il n&rsquo;y a que l&rsquo;utilisateur <code>root</code> (cf. le <code>chown</code> à l&rsquo;étape précédente), il faut ajouter la tâche en sudo :</p>
+<pre class="brush:bash">	sudo crontab -e
+</pre>
+<p>Et ajouter la ligne suivante :</p>
+<pre class="brush:bash">0 * * * * /usr/local/bin/ipcheck.sh &gt;/dev/null 2&gt;&amp;1
+</pre>
+<p>Voilà ! Maintenant, toutes les heures, votre RPi vérifiera que son adresse IP externe n&rsquo;a pas changée. Si elle a en effet changée, il vous enverra un e-mail pour vous donner la nouvelle adresse. Vous pourrez également voir le log dans le fichier <code>/var/log/user.log</code>, en utilisant la commande <code>tail</code> par exemple.</p>
+<h3>Conclusion</h3>
+<p>Bien sûr, le gros problème avec cette solution (sans DNS dynamique), est qu&rsquo;il vous faudra prévenir vos amis à chaque changement d&rsquo;adresse IP ! Ce n&rsquo;est bien sûr pas une solution viable pour un vrai site (mais fait uniquement pour partager avec des amis), et il faudra alors songer à acheter un vrai nom de domaine, associé à une solution de DNS dynamique.</p>
+<div>
+<p class="beforelist"><strong>Sources (en anglais&#8230;) :</strong></p>
+<ul>
+<li><a href="http://www.penguintutor.com/linux/raspberrypi-webserver" target="_blank">Installation serveur web sur Raspberry Pi</a></li>
+<li><a href="http://ubuntuforums.org/archive/index.php/t-526176.html" target="_blank">Récupérer son adresse IP externe depuis le terminal, et script pour l&rsquo;envoi d&rsquo;un mail si modifiée</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Serveur web derrière box SFR</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/emails-avec-sfr/desactiver-filtrage-smtp/fc-2491-69602" target="_blank">Autoriser l&rsquo;envoi de mail derrière votre box SFR</a></li>
+<li><a href="http://stackoverflow.com/questions/9168432/unix-standard-directory-to-put-custom-executables-or-scripts" target="_blank">Où placer ces exécutables perso ?</a></li>
+</ul>
+</div>
+<p>N&rsquo;hésitez pas à me faire part de toute remarques / corrections / erreurs !</p>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>Sur les épaules de Darwin</title>
+		<link>http://clementgrimal.fr/blog/2013/01/17/sur-les-epaules-de-darwin/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/17/sur-les-epaules-de-darwin/#comments</comments>
+		<pubDate>Thu, 17 Jan 2013 19:50:37 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[culture]]></category>
+		<category><![CDATA[darwin]]></category>
+		<category><![CDATA[geekeries]]></category>
+		<category><![CDATA[radio]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[science]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=42</guid>
+		<description><![CDATA[Tous les samedis matins de 11h à 12h sur France Inter, est diffusée une émission de vulgarisation scientifique formidable &#171;&#160;Sur les épaules de Darwin&#160;&#187; présentée par le biologiste Jean-Claude Ameisen. Cette émission n&#8217;est pas réservée aux scientifiques car les sujets sont abordés de façon très simple. La voix de Jean-Claude Ameisen est totalement envoûtante, associée [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="alignleft" alt="" src="http://media.tumblr.com/tumblr_m9sdy9GfqU1qiol4t.jpg" width="128" height="128" />
+<p>Tous les samedis matins de 11h à 12h sur France Inter, est diffusée une émission de vulgarisation scientifique formidable &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo; présentée par le biologiste Jean-Claude Ameisen.</p>
+<p>Cette émission n&rsquo;est pas réservée aux scientifiques car les sujets sont abordés de façon très simple. La voix de Jean-Claude Ameisen est totalement envoûtante, associée au rythme de l&rsquo;émission plutôt posé, elle vous fera certainement voyager !
+</p>
+<p>
+Comme toutes les émissions de France Inter, vous pouvez ré-écouter (ou télécharger) les émissions déjà diffusées. À ce propos, comme il n&rsquo;est pas facilement possible de télécharger les émissions passées depuis plus de 2 mois (et qui ne sont plus dans le RSS), j&rsquo;ai créé plusieurs petits programmes (en python) qui récupèrent toutes les infos sur les émissions (date, titre, etc.) et récupèrent les liens pour ré-écouter ou télécharger ces émissions. À partir de toutes ces infos, je génère une simple page web pour partager de façon simple ces précieuses informations : <a href="http://clementgrimal.fr/darwin/">http://clementgrimal.fr/darwin/</a>
+</p>
+<p>
+Vous pouvez donc y ré-écouter et télécharger vos épisodes préférés de cette formidable émission. Si vous êtes intéressé par ces programmes, je peux vous les transmettre, et je pense de toute façon les mettre sur une plate-forme de partage (comme GitHub) prochainement.
+</p>
+<p>
+De plus, comme je viens de recevoir mon Raspberry Pi (un petit ordinateur pas cher : <a href="https://fr.wikipedia.org/wiki/Raspberry_Pi">page Wikipedia</a>), j&rsquo;ai automatisé la mise à jour de cette page web, donc elle sera toujours à jour, même si je suis en vacances !
+</p>
+<p>
+Bon je pense que le sujet de ce billet a pas mal dérivé&#8230; J&rsquo;en écrirai probablement d&rsquo;autres pour parler plus des programmes Python et de l&rsquo;utilisation de mon Raspberry Pi !
+</p>
+<p>
+Ce qu&rsquo;il faut retenir, c&rsquo;est que si j&rsquo;ai fait tout ces efforts, c&rsquo;est que cette émission le mérite amplement, tant elle est passionnante. Donc si vous ne la connaissez pas et que vous aimez la vulgarisation scientifique : foncez !
+</p>
+<p>
+Toutes les informations, et les liens vers le site de l&rsquo;émission sur France Inter sont<br />
+sur ma page&nbsp;: <a href="http://clementgrimal.fr/darwin/">http://clementgrimal.fr/darwin/</a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/17/sur-les-epaules-de-darwin/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>

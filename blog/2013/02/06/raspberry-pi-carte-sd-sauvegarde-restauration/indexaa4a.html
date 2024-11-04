@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/?replytocom=144117 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Raspberry Pi : gestion de sa carte SD | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="raspberrypi carte sd restauration sauvegarde partition,administration,raspberry-pi,de,la,:,est,carte,clement,grimal,blog,raspeberry,pi,raspberrypi" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Raspberry Pi : gestion de sa carte SD" />
+	<meta property="og:url" content="index.html" />
+	<meta property="article:published_time" content="2013-02-06" />
+	<meta property="article:modified_time" content="2013-02-06" />
+	<meta property="article:author" content="../../../../author/admin/index.html" />
+	<meta property="article:section" content="Non classé" />
+	<meta property="article:tag" content="administration" />
+	<meta property="article:tag" content="raspberry-pi" />
+	<meta property="og:site_name" content="Les notes de Clément" />
+	<meta name="twitter:card" content="summary" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Raspberry Pi : gestion de sa carte SD Flux des commentaires" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min4587.js?ver=3.8.41'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Capture vidéo, compression et filigrane sous Unix' href='../../05/capture-video-compression-filigrane-unix/index.html' />
+<link rel='next' title='Sécuriser son accès SSH' href='../../12/ssh-securite/index.html' />
+<meta name="generator" content="WordPress 3.8.41" />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../index0945.html?p=399' />
+<meta name='robots' content='noindex,follow' />
+<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="single single-post postid-399 single-format-standard custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+	
+		
+		<div class="post-399 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-raspberry-pi single-page" id="post-399">
+		
+			<h2 class="entry-title">Raspberry Pi : gestion de sa carte SD</h2>
+
+			<p class="entry-meta-single">
+				Le 6 février 2013 // Mots-clés : <a href="../../../../tag/administration/index.html" rel="tag">administration</a>, <a href="../../../../tag/raspberry-pi/index.html" rel="tag">raspberry-pi</a>			</p>
+
+<!--
+<p class="entry-meta-single">Le 6 février 2013</p>
+-->
+			<div class="entry-content">
+				
+				<div id="toc_container" class="toc_transparent no_bullets"><p class="toc_title">Table des mati&egrave;res</p><ul class="toc_list"><li><a href="#Sauvegarde"><span class="toc_number toc_depth_1">1</span> Sauvegarde</a></li><li><a href="#Restauration"><span class="toc_number toc_depth_1">2</span> Restauration</a></li><li><a href="#Compression"><span class="toc_number toc_depth_1">3</span> Compression</a></li><li><a href="#Effacer_la_table_de_partition"><span class="toc_number toc_depth_1">4</span> Effacer la table de partition</a></li><li><a href="#Sources"><span class="toc_number toc_depth_1">5</span> Sources</a></li></ul></div>
+<p>A force de jouer avec mon Raspberry Pi, j&rsquo;ai eu le désagrément de le voir refuser de démarrer&#8230; La partition <code>/root</code> de ma carte SD était corrompue. J&rsquo;ai donc du me résoudre à réinstaller Raspbian, et à repartir de zéro, l&rsquo;occasion cependant d&rsquo;apprendre à faire des sauvegardes et des restaurations !</p>
+<p>Bien sûr, je travaille sous Linux (Xubuntu puisque vous voulez tout savoir), et si vous êtes sous Windows, je sais qu&rsquo;il est possible de faire la même chose, mais je ne le couvrirai pas dans ce billet.</p>
+<p>Ce qu&rsquo;il faut comprendre, c&rsquo;est que comme ma carte SD est de taille relativement faible (8Go), il est facile de faire une sauvegarde complète de son contenu (surtout en compressant le résultat).</p>
+<p>La commande qu&rsquo;il faut utiliser est la commande <code>dd</code>, la même que j&rsquo;ai utilisé pour ma première installation de Raspbian. Ses deux arguments principaux sont :</p>
+<ul>
+<li><code>if</code> :  fichier d&rsquo;entrée (ou périphérique)</li>
+<li><code>of</code> : fichier de sortie (ou périphérique)</li>
+</ul>
+<p>Il faut déjà savoir à quel périphérique correspond votre lecteur de carte SD, utilisez la commande <code>fdisk</code> :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Et cherchez un disque d&rsquo;environ 8Go. Si Raspbian est installé sur la carte, vous avez normalement deux partitions, voilà ce que j&rsquo;obtiens par exemple :</p>
+<pre class="brush:plain">Disk /dev/sda: 7969 MB, 7969177600 bytes
+4 heads, 16 sectors/track, 243200 cylinders, total 15564800 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00017b69
+
+		Device Boot      Start         End      Blocks   Id  System
+/dev/sda1            8192      122879       57344    c  W95 FAT32 (LBA)
+/dev/sda2          122880    15564799     7720960   83  Linux
+</pre>
+<h2><span id="Sauvegarde">Sauvegarde</span></h2>
+<p>Je sais donc que c&rsquo;est <code>/dev/sda</code> qui correspond à ma carte SD que je souhaite sauvegarder. Pour faire une sauvegarde, il me suffit alors d&rsquo;utiliser :</p>
+<pre class="brush:bash">sudo dd if=/dev/sda of=/chemin/vers/ma/sauvegarde.img bs=1M
+</pre>
+<p>Le fichier <code>/chemin/vers/ma/sauvegarde.img</code> fait alors exactement 8Go. J&rsquo;ai personnellement fait plusieurs sauvegardes pendant que je re-configurais mon Raspberry Pi. Par exemple, après avoir fait une mise à jour complète du système, <a title="Raspberry Pi : installation et partage d’un disque dur externe" href="../../../01/30/raspberry-pi-partage-disque-dur-usb/index.html">installer vos disques externes</a>, sécuriser votre accès SSH (article à venir), <a title="Raspberry Pi : installation d’un serveur web" href="../../../01/24/raspberry-pi-serveur-web-sfr-box/index.html">installer votre serveur web</a> et <a title="Utilisation d’un DNS dynamique" href="../../../01/29/utilisation-dns-dynamique/index.html">configurer votre DNS dynamique</a>, une petite sauvegarde du système ne fait pas de mal !</p>
+<h2><span id="Restauration">Restauration</span></h2>
+<p>Il est possible de restaurer cette image en inversant les argument <code>if</code> et <code>of</code> :</p>
+<pre class="brush:bash">sudo dd if=/chemin/vers/ma/sauvegarde.img of=/dev/sda bs=1M
+</pre>
+<p><strong>Attention : </strong> en utilisant <code>of=/dev/sda</code> vous écrasez complètement le disque sda, donc vérifiez bien avec la commande <code>fdisk</code>.</p>
+<h2><span id="Compression">Compression</span></h2>
+<p>Si vous faites régulièrement l&rsquo;opération, pensez qu&rsquo;il est possible de compresser les images pour qu&rsquo;elles occupent moins de 8Go sur votre disque en utilisant la commande <code>gzip</code> par exemple :</p>
+<pre class="brush:bash">gzip /chemin/vers/ma/sauvegarde.img
+</pre>
+<p>qui créera un fichier <code>/chemin/vers/ma/sauvegarde.img.gz</code>, bien plus petit que 8Go. Il est également possible de faire la sauvegarde et la compression en une seule opération, et pour cela, je vous recommande la lecture des pages 12 et 13 du dernier numéro du magazine MagPi (dans les sources).</p>
+<h2><span id="Effacer_la_table_de_partition"><strong>Effacer la table de partition</strong></span></h2>
+<p>Lorsque j&rsquo;ai eu mon problème de partition <code>/root</code> corrompue, même en re-copiant une image toute fraîche de Raspbian sur ma carte SD, mon Raspberry Pi refuser toujours de démarrer. Il a fallu que j&rsquo;efface complètement la table de partition de la carte avec la commande :</p>
+<pre class="brush:bash">sudo dd if=/dev/zero of=/dev/sda bs=1M count=2
+</pre>
+<p><strong>Attention :</strong> vérifiez bien que <code>/dev/sda</code> est la carte SD, et pas un autre disque dur !</p>
+<h2 class="beforelist"><span id="Sources">Sources</span></h2>
+<ul>
+<li>Le blog qui m&rsquo;a sauvé : <a href="http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278" target="_blank">http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278</a></li>
+<li>Le numéro du magazine MagPi avec un article très complet sur la gestion de sa carte SD en pages 12 et 13 : <a href="http://issuu.com/themagpi/docs/issue_9_final" target="_blank">http://issuu.com/themagpi/docs/issue_9_final</a></li>
+</ul>				
+			</div><!-- close .entry-content -->
+			
+			            
+			<!--				
+<div class="entry-meta-single">
+					Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>				</div>--><!-- close .entry-meta-single -->
+
+					
+		</div><!-- close #post -->
+		
+		<div id="single">
+		
+			<div class="single-block">
+			
+				
+		
+			
+		<h3 id="comments">7 commentaires. <!--'Raspberry Pi : gestion de sa carte SD'--></h3>
+		<ol class="commentlist">
+							   <li class="comment even thread-even depth-1" id="li-comment-14">
+		 <div id="comment-14">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Pl</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-14">7 février 2013 à 10 h 39 min</a></div>
+	
+		  <p>Attention à Raspbian, perso j&rsquo;ai du la virer pour une Debian car elle ne supportait pas la machine virtuelle java, fort utile pour un serveur !</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index360b.html?replytocom=14#respond' onclick='return addComment.moveForm("comment-14", "14", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	<ul class="children">
+	   <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-15">
+		 <div id="comment-15">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Clément</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-15">7 février 2013 à 14 h 40 min</a></div>
+	
+		  <p>C&rsquo;est gênant en effet&#8230; Personnellement, je n&rsquo;ai pas encore eu besoin de la JVM, mais j&rsquo;ai rapidement regardé sur internet (<a href="http://raspberrypi.stackexchange.com/questions/48/how-can-i-run-java-software" target="_blank" rel="nofollow">http://raspberrypi.stackexchange.com/questions/48/how-can-i-run-java-software</a> et <a href="http://ac31004.blogspot.fr/2012/07/java-performance-on-raspbian-vs-debian.html" target="_blank" rel="nofollow">http://ac31004.blogspot.fr/2012/07/java-performance-on-raspbian-vs-debian.html</a> entre autres), et j&rsquo;ai l&rsquo;impression qu&rsquo;il est tout à fait possible de faire tourner des programmes Java sur Raspbian (avec OpenJDK) mais qu&rsquo;il y a cependant un problème de performance. A ce moment là, tu as raison, il vaut mieux privilégier Debian !</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index8528.html?replytocom=15#respond' onclick='return addComment.moveForm("comment-15", "15", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-240">
+		 <div id="comment-240">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Morganbzh</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-240">23 mai 2013 à 11 h 22 min</a></div>
+	
+		  <p>La commande pour effacer ma table de partition m&rsquo;intéresse bien car je rencontre aussi une impossibilité de démarrage. La commande marche nickel mais je voulais savoir comment tu procèdes après. Tu recrée une table par Gparted, tu formates, tu reflash une image direct ?</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index7a35.html?replytocom=240#respond' onclick='return addComment.moveForm("comment-240", "240", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-54845">
+		 <div id="comment-54845">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.facebook.com/profile.php?id=100003469729558' rel='external nofollow' class='url'>Yasin</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-54845">21 décembre 2015 à 16 h 22 min</a></div>
+	
+		  <p>This is a really inlenligett way to answer the question.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexcbeb.html?replytocom=54845#respond' onclick='return addComment.moveForm("comment-54845", "54845", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-60263">
+		 <div id="comment-60263">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://carinsurancequoteslow.pw/' rel='external nofollow' class='url'>auto insurance</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-60263">1 janvier 2016 à 20 h 22 min</a></div>
+	
+		  <p>It&rsquo;s really great that people are sharing this information.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index5dc9.html?replytocom=60263#respond' onclick='return addComment.moveForm("comment-60263", "60263", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-137409">
+		 <div id="comment-137409">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.f-er.ru/' rel='external nofollow' class='url'>http://www.f-er.ru/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137409">28 avril 2016 à 16 h 27 min</a></div>
+	
+		  <p>Disaster films survival guide point: Practice throwing your arms over your face/head while falling, because there will at some point during the story be a huge explosion or other mass movement of (hopefully) inanimate material.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexe4a8.html?replytocom=137409#respond' onclick='return addComment.moveForm("comment-137409", "137409", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	<ul class="children">
+	   <li class="comment even depth-2" id="li-comment-144117">
+		 <div id="comment-144117">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://dhluas.com/' rel='external nofollow' class='url'>Julz</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-144117">1 mars 2017 à 2 h 24 min</a></div>
+	
+		  <p>18ll1SjÃ¤2vk:art inser de flesta att just dem exempel som du tar upp hÃ¤r inte var seriÃ¶st menade. Tror snarare att vi uppfattade det som att han seriÃ¶st menade att vi var pÃ¥ vÃ¤g Ã¥t firmahÃ¥llet men att han kryddade artikeln med lite humor.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexaa4a.html?replytocom=144117#respond' onclick='return addComment.moveForm("comment-144117", "144117", "respond", "399")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ol>
+	
+		
+		
+		
+
+
+		
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Répondre à <a href="#comment-144117">Julz</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond">Annuler le commentaire</a></small></h3>
+									<form action="http://clementgrimal.fr/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" /></p>
+<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" /></p>
+												<p class="comment-form-comment"><label for="comment">Commentaire</label><textarea id="comment" name="comment" rows="8"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Valider le commentaire" />
+							<input type='hidden' name='comment_post_ID' value='399' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='144117' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="58e934799c" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="34"/></p>					</form>
+							</div><!-- #respond -->
+			
+			
+			</div><!-- close .single-block -->
+			
+			<div class="nav">
+			
+				<div class="nav-left">&laquo; <a href="../../12/ssh-securite/index.html" rel="next">Sécuriser son accès SSH</a></div>
+				<div class="nav-right"><a href="../../05/capture-video-compression-filigrane-unix/index.html" rel="prev">Capture vidéo, compression et filigrane sous Unix</a> &raquo;</div>
+			
+			</div><!-- close .nav -->
+		
+		</div><!-- close #single -->
+		
+	
+</div><!-- close #content -->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../../12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="../../../03/21/projet-sur-les-epaules-de-darwin/index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="../../12/ssh-securite/index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../../../../tag/administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../../../../tag/android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../../../../tag/blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../../../../tag/cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../../../../tag/culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../../../../tag/darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../../../../tag/dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../../../../tag/geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../../../../tag/git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../../../../tag/hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../../../../tag/mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../../../../tag/musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../../../../tag/outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../../../../tag/partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../../../../tag/python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../../../../tag/radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='../../../../tag/raspberry-pi/index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../../../../tag/reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../../../../tag/science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../../../../tag/science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../../../../tag/securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='../../../../tag/tutoriel/index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../../../../tag/ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../../../../tag/unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../../../../tag/videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../../../../tag/web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../../12/index.html'>décembre 2013</a></li>
+	<li><a href='../../../03/index.html'>mars 2013</a></li>
+	<li><a href='../../index.html'>février 2013</a></li>
+	<li><a href='../../../01/index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="../../12/ssh-securite/index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="../../12/ssh-securite/index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="../../12/ssh-securite/index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="../../12/ssh-securite/index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="../../12/ssh-securite/index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript' src='../../../../wp-content/plugins/akismet/_inc/form5b75.js?ver=3.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/?replytocom=144117 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:34 GMT -->
+</html>

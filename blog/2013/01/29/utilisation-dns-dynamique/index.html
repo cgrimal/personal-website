@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:32:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Utilisation d&rsquo;un DNS dynamique | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="administration,dns,raspberry-pi,unix,de,#,le,en,vous,clement,grimal,blog,raspeberry,pi,raspberrypi" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Utilisation d&rsquo;un DNS dynamique" />
+	<meta property="og:url" content="index.html" />
+	<meta property="article:published_time" content="2013-01-29" />
+	<meta property="article:modified_time" content="2013-01-30" />
+	<meta property="article:author" content="../../../../author/admin/index.html" />
+	<meta property="article:section" content="Non classé" />
+	<meta property="article:tag" content="administration" />
+	<meta property="article:tag" content="dns" />
+	<meta property="article:tag" content="raspberry-pi" />
+	<meta property="article:tag" content="unix" />
+	<meta property="og:site_name" content="Les notes de Clément" />
+	<meta name="twitter:card" content="summary" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Utilisation d&rsquo;un DNS dynamique Flux des commentaires" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min4587.js?ver=3.8.41'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Raspberry Pi : installation d&rsquo;un serveur web' href='../../24/raspberry-pi-serveur-web-sfr-box/index.html' />
+<link rel='next' title='Raspberry Pi : installation et partage d&rsquo;un disque dur externe' href='../../30/raspberry-pi-partage-disque-dur-usb/index.html' />
+<meta name="generator" content="WordPress 3.8.41" />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../indexa853.html?p=303' />
+<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="single single-post postid-303 single-format-standard custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+	
+		
+		<div class="post-303 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-dns tag-raspberry-pi tag-unix single-page" id="post-303">
+		
+			<h2 class="entry-title">Utilisation d&rsquo;un DNS dynamique</h2>
+
+			<p class="entry-meta-single">
+				Le 29 janvier 2013 // Mots-clés : <a href="../../../../tag/administration/index.html" rel="tag">administration</a>, <a href="../../../../tag/dns/index.html" rel="tag">dns</a>, <a href="../../../../tag/raspberry-pi/index.html" rel="tag">raspberry-pi</a>, <a href="../../../../tag/unix/index.html" rel="tag">unix</a>			</p>
+
+<!--
+<p class="entry-meta-single">Le 29 janvier 2013</p>
+-->
+			<div class="entry-content">
+				
+				<p>Comme vous le savez, je possède depuis peu un Raspberry Pi, et j&rsquo;y ai installé un serveur web. J&rsquo;ai écrit <a title="Raspberry Pi : installation d’un serveur web" href="../../24/raspberry-pi-serveur-web-sfr-box/index.html">un billet là dessus</a>, et à ce moment là, pour accéder à ce site web, je m&rsquo;étais passé d&rsquo;utiliser un service de DNS dynamique, et il fallait donc que j&rsquo;utilise directement l&rsquo;adresse IP de ma box SFR. Non seulement ce n&rsquo;est pas pratique, mais en plus, si l&rsquo;adresse IP change (on redémarre la box par exemple), c&rsquo;est embêtant. J&rsquo;avais donc fait un script pour détecter un changement d&rsquo;adresse IP, chargé de m&rsquo;envoyé un e-mail.</p>
+<p>Bref, ce n&rsquo;était pas très sérieux ! Heureusement, un collègue (<a title="Profil Twitter de Toumt4m" href="https://twitter.com/Toumt4m" target="_blank">@Toumt4m</a>) m&rsquo;a éclairé sur l&rsquo;utilisation pratique du DNS dynamique !</p>
+<h3>C&rsquo;est quoi le DNS ?</h3>
+<p>N&rsquo;étant pas un spécialiste, je me garderai bien de vouloir vous expliquer en détail les mécanismes du DNS. Mais en quelques mots, c&rsquo;est l&rsquo;annuaire d&rsquo;internet. En effet, chaque site web est hébergé sur un ordinateur. Un ordinateur qui doit donc être relié à internet, il a ainsi une adresse IP. Pour accéder au site web qu&rsquo;il héberge, il suffit alors de taper l&rsquo;adresse IP dans son navigateur. Vous voulez visiter google.fr, rien de plus simple : <a href="http://74.125.230.215/" target="_blank">74.125.230.215</a></p>
+<p>Seulement voilà, ce n&rsquo;est pas très simple de retenir toutes ces adresses IP, donc le DNS nous permet de retenir le nom de domaine du site, et il se chargera pour nous de le traduire vers l&rsquo;adresse IP correspondante. Si vous voulez en savoir plus, un bon point de départ est la page Wikipédia : <a href="https://fr.wikipedia.org/wiki/Domain_Name_System" target="_blank">wikipedia.org/wiki/Domain_Name_System</a></p>
+<p>Finalement, lorsque l&rsquo;adresse IP du serveur qui héberge notre site web peut changer, il faut utiliser un service de DNS dynamique qui permet de mettre à jour en temps réel le DNS. Nous allons donc voir comment utiliser un tel service.</p>
+<h3>Inscription au service</h3>
+<p>Il existe pléthore de sites proposant ce type de service, j&rsquo;ai personnellement opté pour <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> (si vous en connaissez des mieux, ça m&rsquo;intéresse !). C&rsquo;est très simple, il suffit de s&rsquo;inscrire, puis d&rsquo;ajouter un sous-domaine comme mon-rpi.dnsdynamic.com et de lui associer son adresse IP. Pour connaître votre adresse IP externe, vous pouvez par exemple allez sur le site <a href="http://www.ipogre.com/" target="_blank">ipogre.com</a> (si curl est installé sur votre Raspberry, tapé <code>curl ipogre.com</code> dans un terminal).</p>
+<p>Voilà ! Maintenant, en tapant mon-rpi.dnsdynamic.com dans votre navigateur, vous devriez tomber sur le site web que vous hébergez sur votre Raspberry. Mais celà fonctionne également pour vous connecter en ssh par exemple (à condition d&rsquo;avoir redirigé correctement le port de votre serveur ssh&#8230;).</p>
+<h3>Mise à jour automatique</h3>
+<p>Si votre adresse IP change, il y a plus simple que de se connecter sur <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> pour mettre à jour votre sous-domaine. Vous pouvez utiliser l&rsquo;API de ce site. En pratique, il vous suffit d&rsquo;installer <code>ddclient</code> :</p>
+<pre class="brush:bash">		sudo apt-get install ddclient
+	
+</pre>
+<p>Vous pouvez ensuite reprendre le fichier de configuration <code>/etc/ddclient.conf</code> proposé, en modifiant identifiant, mot de passe et nom du sous-domaine choisi :</p>
+<pre class="brush:plain">	   # Configuration file for ddclient generated by debconf
+		#
+		# /etc/ddclient.conf
+
+		daemon=60                           # check every 60 seconds
+		syslog=yes                          # log update msgs to syslog
+		mail=root                           # mail all msgs to root
+		mail-failure=root                   # mail failed update msgs to root
+		pid=/var/run/ddclient.pid           # record PID in file.
+		ssl=yes                             # use ssl-support.  Works with
+												# ssl-library
+		use=web, web=myip.dnsdynamic.com    # get ip from server.
+		server=www.dnsdynamic.org           # default server
+		login=votre_adresse@mail.com        # default login
+		password=votre_mot_de_passe         # default password
+		server=www.dnsdynamic.org,          \
+		protocol=dyndns2                    \
+		mon-rpi.dnsdynamic.com
+	
+</pre>
+<p>Ce logiciel s&rsquo;exécute ensuite comme un démon, mais vous pouvez également le lancer en ligne de commande en faisant :</p>
+<pre class="brush:bash">		ddclient -daemon=0 -verbose
+	
+</pre>
+<p>J&rsquo;ai personnelement ajouté cette ligne à mon script (voir le billet &#8230;), c&rsquo;est pas très propre mais comme ça je recevrai toujours l&rsquo;e-mail en plus.</p>
+<div>
+<p class="beforelist"><strong>Sources :</strong></p>
+<ul>
+<li>Dynamic DNS :
+<ul>
+<li><a title="Les DNS Dynamiques sur la documention Ubuntu-fr" href="http://doc.ubuntu-fr.org/dns_dynamique" target="_blank">Les DNS Dynamiques sur la documention Ubuntu-fr</a></li>
+<li><a title="La page Wikipédia (en anglais) sur le DNS dynamique" href="https://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">La page Wikipédia (en anglais) sur le DNS dynamique</a></li>
+</ul>
+</li>
+<li><a title="Le site dnsdynamic.org que j'ai utilisé" href="https://www.dnsdynamic.org/" target="_blank">Le site dnsdynamic.org que j&rsquo;ai utilisé</a></li>
+<li><a title="Page du logiciel ddclient pour la mise à jour automatique" href="http://sourceforge.net/p/ddclient/wiki/Home/" target="_blank">Page du logiciel ddclient pour la mise à jour automatique</a></li>
+</ul>
+</div>
+				
+			</div><!-- close .entry-content -->
+			
+			            
+			<!--				
+<div class="entry-meta-single">
+					Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/dns/" rel="tag">dns</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a>				</div>--><!-- close .entry-meta-single -->
+
+					
+		</div><!-- close #post -->
+		
+		<div id="single">
+		
+			<div class="single-block">
+			
+				
+		
+			
+		<h3 id="comments">10 commentaires. <!--'Utilisation d&rsquo;un DNS dynamique'--></h3>
+		<ol class="commentlist">
+							   <li class="comment even thread-even depth-1" id="li-comment-8">
+		 <div id="comment-8">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.rionrion.com/' rel='external nofollow' class='url'>Tena Destephano</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-8">1 février 2013 à 17 h 59 min</a></div>
+	
+		  <p>Incredible points. Solid reasons. Sustain the amazing effort.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index94a5.html?replytocom=8#respond' onclick='return addComment.moveForm("comment-8", "8", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-9">
+		 <div id="comment-9">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.referencement-top10.fr/black-hat-seo-referencement/' rel='external nofollow' class='url'>Jami Huppenbauer</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-9">1 février 2013 à 19 h 32 min</a></div>
+	
+		  <p>Felicitation pour ce blogg qui est un total plaisir a decouvrir. Cet article est vraiment très interressant pour les petites sociétés comme moi :-)..</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexfc06.html?replytocom=9#respond' onclick='return addComment.moveForm("comment-9", "9", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-even depth-1" id="li-comment-10">
+		 <div id="comment-10">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.referencement-top10.fr/devenez-leader-dans-votre-activite/' rel='external nofollow' class='url'>Lorenza Steinhoff</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-10">1 février 2013 à 19 h 40 min</a></div>
+	
+		  <p>Ce blog est vraiment très instructif pour nous autres référenceurs. Encore bravo pour votre site qui est un plaisir à lire. Bonne continuation!Cordialement.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index6944.html?replytocom=10#respond' onclick='return addComment.moveForm("comment-10", "10", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-309">
+		 <div id="comment-309">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Nestor</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-309">9 juin 2013 à 20 h 42 min</a></div>
+	
+		  <p>Bonjour,<br />
+J&rsquo;ai bien l&rsquo;impression que dnsdynamic.org n&rsquo;est plus d&rsquo;actualité : l&rsquo;inscription semble possible, mais on ne reçoit jamais le mail de confirmation et de validation..<br />
+En tout cas merci pour ce super blog, sans faute d&rsquo;orthographe, ce qui est une performance ces temps-ci !!<br />
+Bien cordialement</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index8245.html?replytocom=309#respond' onclick='return addComment.moveForm("comment-309", "309", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-even depth-1" id="li-comment-38214">
+		 <div id="comment-38214">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.facebook.com/profile.php?id=100003469745267' rel='external nofollow' class='url'>Bmc</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-38214">2 octobre 2015 à 4 h 44 min</a></div>
+	
+		  <p>　( 2012.03.6 11:49 )   : I intended to send you the tiny otbrevasion so as to say thanks a lot once again for your personal beautiful opinions you&rsquo;ve featured in this case. It&rsquo;s simply strangely open-handed of people like you to give publicly what most people would&rsquo;ve advertised as an e-book to help make some dough for their own end, chiefly considering the fact that you might well have tried it if you ever considered necessary. The ideas likewise worked as the good way to recognize that other individuals have the same passion just like mine to know a whole lot more with regards to this matter. I&rsquo;m sure there are thousands of more fun periods ahead for people who look into your site.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexda82.html?replytocom=38214#respond' onclick='return addComment.moveForm("comment-38214", "38214", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-137547">
+		 <div id="comment-137547">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.sorethumbsblog.com/' rel='external nofollow' class='url'>http://www.sorethumbsblog.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137547">29 avril 2016 à 2 h 11 min</a></div>
+	
+		  <p>Ad TomÃ¡Å¡ Pecina:to je pak problÃ©m, vzhledem k tomu, Å¾e se film vypointuje v poslednÃ­ ÄtvrtinÄ› (jinak bych vÅ¡em doporuÄil trilogii Jasona Bournea, ale ta uÅ¾ nemÃ¡ s pÅ¯vodnÃ­m nÃ¡mÄ›tem prÃ¡va vÅ¯bec nic spoleÄnÃ©ho/ rozhodnÄ› je to ale nejlepÅ¡Ã­ trilogie natoÄenÃ¡ v 21. stoletÃ­ :-))</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexa1a9.html?replytocom=137547#respond' onclick='return addComment.moveForm("comment-137547", "137547", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-even depth-1" id="li-comment-137551">
+		 <div id="comment-137551">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.sorethumbsblog.com/' rel='external nofollow' class='url'>http://www.sorethumbsblog.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137551">29 avril 2016 à 2 h 22 min</a></div>
+	
+		  <p>Liebe BarbaraSchade, dass deine MÃ¼he nicht belohnt wurde &#8211; aber bei dieser Hitze verstehe ich es gut, wenn jeder zuhause ein kÃ¼hles PlÃ¤tzli suchte! SchÃ¶n sind deine Werke!Herzlichst RitaP.S. ich werde am Samstag ENDLICH auch an einem Betonkurs teilnehmen. Das wollte ich ja schon soooo lange und jetzt gibs einen ganz in der NÃ¤he. Aber bestimmt werden meine Erstlingswerke noch ein bisschen mickrig aussehen!</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexca50.html?replytocom=137551#respond' onclick='return addComment.moveForm("comment-137551", "137551", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-137556">
+		 <div id="comment-137556">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.ionicbathfootdetox.com/' rel='external nofollow' class='url'>http://www.ionicbathfootdetox.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-137556">29 avril 2016 à 2 h 34 min</a></div>
+	
+		  <p>Thank you for the valuable info you just provided in this post. Please keep posting more genuine content like this and I&#8217;ll be back for more&#8230;Thank You.The Marketing Guru.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index5f58.html?replytocom=137556#respond' onclick='return addComment.moveForm("comment-137556", "137556", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-even depth-1" id="li-comment-138155">
+		 <div id="comment-138155">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.rab-jeric.com/' rel='external nofollow' class='url'>http://www.rab-jeric.com/</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-138155">1 mai 2016 à 1 h 39 min</a></div>
+	
+		  <p>Deadly accurate answer. You&rsquo;ve hit the bullseye!</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexa746.html?replytocom=138155#respond' onclick='return addComment.moveForm("comment-138155", "138155", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	<ul class="children">
+	   <li class="comment odd alt depth-2" id="li-comment-144123">
+		 <div id="comment-144123">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://lfvjcaqgqyx.com/' rel='external nofollow' class='url'>Stella</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-144123">1 mars 2017 à 2 h 43 min</a></div>
+	
+		  <p>Great points.  It is better to give them good knowledge over a period of time rather than spam them with a bunch of useless kngoledwe.  Your content should be fresh and new and it should be rolled out as much as possible with out it losing its integrity.</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index02a2.html?replytocom=144123#respond' onclick='return addComment.moveForm("comment-144123", "144123", "respond", "303")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ol>
+	
+		
+		
+		
+
+
+		
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Laisser un commentaire <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Annuler le commentaire</a></small></h3>
+									<form action="http://clementgrimal.fr/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" /></p>
+<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" /></p>
+												<p class="comment-form-comment"><label for="comment">Commentaire</label><textarea id="comment" name="comment" rows="8"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Valider le commentaire" />
+							<input type='hidden' name='comment_post_ID' value='303' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="27e5dbe841" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="43"/></p>					</form>
+							</div><!-- #respond -->
+			
+			
+			</div><!-- close .single-block -->
+			
+			<div class="nav">
+			
+				<div class="nav-left">&laquo; <a href="../../30/raspberry-pi-partage-disque-dur-usb/index.html" rel="next">Raspberry Pi : installation et partage d&rsquo;un disque dur externe</a></div>
+				<div class="nav-right"><a href="../../24/raspberry-pi-serveur-web-sfr-box/index.html" rel="prev">Raspberry Pi : installation d&rsquo;un serveur web</a> &raquo;</div>
+			
+			</div><!-- close .nav -->
+		
+		</div><!-- close #single -->
+		
+	
+</div><!-- close #content -->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../../12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="../../../03/21/projet-sur-les-epaules-de-darwin/index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="../../../02/12/ssh-securite/index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="../../../02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../../02/05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../../../../tag/administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../../../../tag/android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../../../../tag/blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../../../../tag/cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../../../../tag/culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../../../../tag/darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../../../../tag/dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../../../../tag/geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../../../../tag/git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../../../../tag/hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../../../../tag/mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../../../../tag/musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../../../../tag/outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../../../../tag/partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../../../../tag/python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../../../../tag/radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='../../../../tag/raspberry-pi/index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../../../../tag/reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../../../../tag/science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../../../../tag/science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../../../../tag/securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='../../../../tag/tutoriel/index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../../../../tag/ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../../../../tag/unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../../../../tag/videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../../../../tag/web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../../12/index.html'>décembre 2013</a></li>
+	<li><a href='../../../03/index.html'>mars 2013</a></li>
+	<li><a href='../../../02/index.html'>février 2013</a></li>
+	<li><a href='../../index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript' src='../../../../wp-content/plugins/akismet/_inc/form5b75.js?ver=3.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:32:08 GMT -->
+</html>

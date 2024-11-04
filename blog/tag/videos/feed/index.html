@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; videos</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/videos/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Capture vidéo, compression et filigrane sous Unix</title>
+		<link>http://clementgrimal.fr/blog/2013/02/05/capture-video-compression-filigrane-unix/</link>
+		<comments>http://clementgrimal.fr/blog/2013/02/05/capture-video-compression-filigrane-unix/#comments</comments>
+		<pubDate>Tue, 05 Feb 2013 18:51:27 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[tutoriel]]></category>
+		<category><![CDATA[unix]]></category>
+		<category><![CDATA[videos]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=412</guid>
+		<description><![CDATA[&#160;Si vous souhaitez faire une capture vidéo de votre écran sous Unix, la commande avconv (anciennement ffmpeg) devrait probablement vous suffire. J&#8217;ai eu besoin de faire ça, et voilà comment que je me suis débrouillé. Capture Pour faire la capture vidéo de l&#8217;écran : avconv -f x11grab -show_region 1 -framerate 24 -s sxga -i :0.0+350,0 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>
+	&nbsp;Si vous souhaitez faire une capture vidéo de votre écran sous Unix, la commande avconv (anciennement ffmpeg) devrait probablement vous suffire. J&rsquo;ai eu besoin de faire ça, et voilà comment que je me suis débrouillé.
+</p>
+<h2 style="clear: both">
+	Capture<br />
+</h2>
+<p>
+	Pour faire la capture vidéo de l&rsquo;écran :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s sxga -i :0.0+350,0 -threads 2 -q 1 -bt 8000000 -b 8500000 video.avi
+</pre>
+<p>
+	Les options utilisées sont les suivantes :
+</p>
+<ul>
+<li>
+		<code>-f x11grab</code> : pour dire que l&rsquo;on capture l&rsquo;écran (le serveur X)
+	</li>
+<li><code>-show_region 1</code> : pour afficher un rectangle autour de la zone de l&rsquo;écran capturée
+	</li>
+<li><code>-framerate 24</code> : on capture 24 images par secondes
+	</li>
+<li><code>-s sxga</code> : la zone capturée fait 1280&#215;1024
+	</li>
+<li><code>-i :0.0+350,0</code> : le décalage (300 pixels en horizontal et 0 en vertical)
+	</li>
+<li><code>-threads 2</code> : le nombre de coeurs de votre processeur utilisés
+	</li>
+<li><code>-q 1</code> : meilleure qualité (pas de compression, ça on verra après)
+	</li>
+<li><code>-bt 8000000 -b 8500000</code> : le débit (&laquo;&nbsp;bitrate&nbsp;&raquo;)&nbsp;et sa tolérance, pour permettre une bonne qualité
+	</li>
+</ul>
+<h2>
+	Compression<br />
+</h2>
+<p>
+	Ensuite, pour compresser la jolie vidéo, il faut modifier l&rsquo;argument q :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -q 12 video_smaller.avi
+</pre>
+<h2>
+	Watermark<br />
+</h2>
+<p>
+	Pour ajouter un filigrane (&laquo;&nbsp;watermark&nbsp;&raquo;) sur la vidéo, il suffit d&rsquo;une image. Prenez par exemple le logo de votre entreprise, et rendez le un peu plus discret à l&rsquo;aide du Gimp par exemple, avec les deux transformations suivantes :
+</p>
+<ul>
+<li>Couleurs &gt; Niveaux &gt; Niveaux de sortie : augmenter le seuil du bas
+	</li>
+<li>Couleurs &gt;&nbsp;Couleur vers alpha&#8230;
+	</li>
+</ul>
+<p>
+	Si cette image est image.png et dans le même dossier que vos vidéos, pour l&rsquo;ajouter en sur-impression à la vidéo :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -vf "movie=image.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -q 12 video_watermark.avi
+</pre>
+<p>
+	J&rsquo;ai gardé l&rsquo;argument <code>-q 12</code> pour compresser la vidéo en même temps, et j&rsquo;ai ajouté l&rsquo;argument <code>-vf</code>, qui est assez compliqué&#8230; Si j&rsquo;ai bien compris, la partie&nbsp;<code>movie=image.png [watermark];</code> définie un calque à ajouter et le nomme watermark, puis la seconde partie&nbsp;<code>[in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]</code> permet d&rsquo;ajouter ce calcque. Le overlay permet de positionner l&rsquo;image, et les nom main_w, main_h, overlay_w et overlay_h correspondent respectivment aux largeurs et hauteurs de la vidéo et de l&rsquo;image. Si vous avez suivi, notre filigrane sera donc centrée ! &nbsp;Mais si vous voulez par exemple la positionner en haut à gauche, il faut utiliser <code>overlay=0:0</code>
+</p>
+<h2>
+	Démo !<br />
+</h2>
+<p>
+	Je fais à la fois la capture, le filigrane et la compression. La commande exacte est la suivante :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s 1280x900 -i :0.0+0,105 -vf "movie=me.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -threads 2 -q 12 -bt 8000000 -b 8500000 demo_blog.flv
+</pre>
+<p>
+	
+				<script type='text/javascript'>
+				if (typeof jQuery == 'undefined') { document.write('<script type="text/javascript" src="http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/jquery.js"><\/script>'); }	
+				</script>
+				<style>.mejs-inner img { max-width:100%; max-height:100%; margin:0 ; padding:0 } 
+				.mejs-overlay-button, .mejs-overlay-loading  {display:none;}</style>
+				<script type='text/javascript' src='http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/mediaelement-and-player.min.js'></script>
+				<link rel='stylesheet' href='http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/mediaelementplayer.mod.css' />
+				<!-- due to the bug - IE8 does not show video --> 
+				<!--[if IE 8]><style> .me-plugin { position: static; } </style><![endif]-->
+				<div style='padding:0;margin:0; border:0;'><video  id='hana_flv_media_1'  src='http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv' width='600' height='338'  
+	preload='true'     controls='controls' >	<object width="600" height="338" type="application/x-shockwave-flash" data="http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf"> 		
+		<param name="movie" value="http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf" /> 
+		<param name="flashvars" value="controls=true&amp;file=http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv&amp;poster=" />		
+		
+	</object></video></div><script type='text/javascript'>
+				 
+				jQuery('#hana_flv_media_1').mediaelementplayer({ pauseOtherPlayers: false , pluginType:'youtube'   });
+				</script>
+</p>
+<p>
+	Ok, ça fait un peu narcissique de se mettre en filigrane mais c'est la première image que j'avais sous la main !
+</p>
+<h2>
+	Sources<br />
+</h2>
+<ul>
+<li>La page du manuel de la commande avconv :&nbsp;<a href="http://libav.org/avconv.html" target="_blank">http://libav.org/avconv.html</a>
+	</li>
+<li>Un billet que j'ai utilisé pour les paramètres concernant la qualité :&nbsp;<a href="http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg">http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg</a>
+	</li>
+<li>Centrage de l'image :&nbsp;<a href="http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg" target="_blank">http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg</a>
+	</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/02/05/capture-video-compression-filigrane-unix/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+<enclosure url="http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv" length="2183144" type="video/x-flv" />
+		</item>
+		<item>
+		<title>Courts métrages de science-fiction</title>
+		<link>http://clementgrimal.fr/blog/2013/01/23/courts-metrages-science-fiction/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/23/courts-metrages-science-fiction/#comments</comments>
+		<pubDate>Wed, 23 Jan 2013 19:00:25 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[culture]]></category>
+		<category><![CDATA[reportage]]></category>
+		<category><![CDATA[science-fiction]]></category>
+		<category><![CDATA[videos]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=75</guid>
+		<description><![CDATA[Petite session Science-fiction avec trois courts métrages qui valent le détour. Et pour aller plus loin, si ce type d&#8217;anticipation et de réflexion sur le trans-humanisme vous intéresse, il y a eu un excellent Thema d&#8217;ARTE en Octobre 2012 là-dessus&#160;: Un monde sans humains ? Louer ou acheter le reportage en VOD Projet web Resistance [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div>
+<p class="beforelist">
+Petite session Science-fiction avec trois courts métrages qui valent le détour. Et pour aller plus loin, si ce type d&rsquo;anticipation et de réflexion sur le trans-humanisme vous intéresse, il y a eu un excellent Thema d&rsquo;ARTE en Octobre 2012 là-dessus&nbsp;:
+</p>
+<ul>
+<li><a href="http://www.arte.tv/fr/un-monde-sans-humains/6968786.html" target="_blank">Un monde sans humains ?</a></li>
+<li><a href="http://www.artevod.com/un_monde_sans_humains" target="_blank">Louer ou acheter le reportage en VOD</a></li>
+<li><a href="http://resistance-2031.arte.tv/" target="_blank">Projet web Resistance 2031</a></li>
+</ul>
+</div>
+<h3 style="text-align: center">Plurality</h3>
+<div style="text-align: center"><iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" src="http://www.youtube.com/embed/IzryBRPwsog?rel=0" width="560"></iframe></div>
+<h3 style="text-align: center">Sight</h3>
+<div style="text-align: center"><iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" mozallowfullscreen="mozallowfullscreen" src="http://player.vimeo.com/video/46304267" webkitallowfullscreen="webkitallowfullscreen" width="560"></iframe></div>
+<h3 style="text-align: center">Tears of Steel</h3>
+<div style="text-align: center"><iframe allowfullscreen="allowfullscreen" frameborder="0" height="315" src="http://www.youtube.com/embed/R6MlUcmOul8?rel=0" width="560"></iframe></div></p>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/23/courts-metrages-science-fiction/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

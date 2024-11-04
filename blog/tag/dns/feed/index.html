@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; dns</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/dns/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Utilisation d&#8217;un DNS dynamique</title>
+		<link>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/#comments</comments>
+		<pubDate>Tue, 29 Jan 2013 18:12:06 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[dns]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=303</guid>
+		<description><![CDATA[Comme vous le savez, je possède depuis peu un Raspberry Pi, et j&#8217;y ai installé un serveur web. J&#8217;ai écrit un billet là dessus, et à ce moment là, pour accéder à ce site web, je m&#8217;étais passé d&#8217;utiliser un service de DNS dynamique, et il fallait donc que j&#8217;utilise directement l&#8217;adresse IP de ma [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Comme vous le savez, je possède depuis peu un Raspberry Pi, et j&rsquo;y ai installé un serveur web. J&rsquo;ai écrit <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">un billet là dessus</a>, et à ce moment là, pour accéder à ce site web, je m&rsquo;étais passé d&rsquo;utiliser un service de DNS dynamique, et il fallait donc que j&rsquo;utilise directement l&rsquo;adresse IP de ma box SFR. Non seulement ce n&rsquo;est pas pratique, mais en plus, si l&rsquo;adresse IP change (on redémarre la box par exemple), c&rsquo;est embêtant. J&rsquo;avais donc fait un script pour détecter un changement d&rsquo;adresse IP, chargé de m&rsquo;envoyé un e-mail.</p>
+<p>Bref, ce n&rsquo;était pas très sérieux ! Heureusement, un collègue (<a title="Profil Twitter de Toumt4m" href="https://twitter.com/Toumt4m" target="_blank">@Toumt4m</a>) m&rsquo;a éclairé sur l&rsquo;utilisation pratique du DNS dynamique !</p>
+<h3>C&rsquo;est quoi le DNS ?</h3>
+<p>N&rsquo;étant pas un spécialiste, je me garderai bien de vouloir vous expliquer en détail les mécanismes du DNS. Mais en quelques mots, c&rsquo;est l&rsquo;annuaire d&rsquo;internet. En effet, chaque site web est hébergé sur un ordinateur. Un ordinateur qui doit donc être relié à internet, il a ainsi une adresse IP. Pour accéder au site web qu&rsquo;il héberge, il suffit alors de taper l&rsquo;adresse IP dans son navigateur. Vous voulez visiter google.fr, rien de plus simple : <a href="http://74.125.230.215" target="_blank">74.125.230.215</a></p>
+<p>Seulement voilà, ce n&rsquo;est pas très simple de retenir toutes ces adresses IP, donc le DNS nous permet de retenir le nom de domaine du site, et il se chargera pour nous de le traduire vers l&rsquo;adresse IP correspondante. Si vous voulez en savoir plus, un bon point de départ est la page Wikipédia : <a href="https://fr.wikipedia.org/wiki/Domain_Name_System" target="_blank">wikipedia.org/wiki/Domain_Name_System</a></p>
+<p>Finalement, lorsque l&rsquo;adresse IP du serveur qui héberge notre site web peut changer, il faut utiliser un service de DNS dynamique qui permet de mettre à jour en temps réel le DNS. Nous allons donc voir comment utiliser un tel service.</p>
+<h3>Inscription au service</h3>
+<p>Il existe pléthore de sites proposant ce type de service, j&rsquo;ai personnellement opté pour <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> (si vous en connaissez des mieux, ça m&rsquo;intéresse !). C&rsquo;est très simple, il suffit de s&rsquo;inscrire, puis d&rsquo;ajouter un sous-domaine comme mon-rpi.dnsdynamic.com et de lui associer son adresse IP. Pour connaître votre adresse IP externe, vous pouvez par exemple allez sur le site <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> (si curl est installé sur votre Raspberry, tapé <code>curl ipogre.com</code> dans un terminal).</p>
+<p>Voilà ! Maintenant, en tapant mon-rpi.dnsdynamic.com dans votre navigateur, vous devriez tomber sur le site web que vous hébergez sur votre Raspberry. Mais celà fonctionne également pour vous connecter en ssh par exemple (à condition d&rsquo;avoir redirigé correctement le port de votre serveur ssh&#8230;).</p>
+<h3>Mise à jour automatique</h3>
+<p>Si votre adresse IP change, il y a plus simple que de se connecter sur <a href="http://www.dnsdynamic.org/" target="_blank">dnsdynamic.org</a> pour mettre à jour votre sous-domaine. Vous pouvez utiliser l&rsquo;API de ce site. En pratique, il vous suffit d&rsquo;installer <code>ddclient</code> :</p>
+<pre class="brush:bash">		sudo apt-get install ddclient
+	
+</pre>
+<p>Vous pouvez ensuite reprendre le fichier de configuration <code>/etc/ddclient.conf</code> proposé, en modifiant identifiant, mot de passe et nom du sous-domaine choisi :</p>
+<pre class="brush:plain">	   # Configuration file for ddclient generated by debconf
+		#
+		# /etc/ddclient.conf
+
+		daemon=60                           # check every 60 seconds
+		syslog=yes                          # log update msgs to syslog
+		mail=root                           # mail all msgs to root
+		mail-failure=root                   # mail failed update msgs to root
+		pid=/var/run/ddclient.pid           # record PID in file.
+		ssl=yes                             # use ssl-support.  Works with
+												# ssl-library
+		use=web, web=myip.dnsdynamic.com    # get ip from server.
+		server=www.dnsdynamic.org           # default server
+		login=votre_adresse@mail.com        # default login
+		password=votre_mot_de_passe         # default password
+		server=www.dnsdynamic.org,          \
+		protocol=dyndns2                    \
+		mon-rpi.dnsdynamic.com
+	
+</pre>
+<p>Ce logiciel s&rsquo;exécute ensuite comme un démon, mais vous pouvez également le lancer en ligne de commande en faisant :</p>
+<pre class="brush:bash">		ddclient -daemon=0 -verbose
+	
+</pre>
+<p>J&rsquo;ai personnelement ajouté cette ligne à mon script (voir le billet &#8230;), c&rsquo;est pas très propre mais comme ça je recevrai toujours l&rsquo;e-mail en plus.</p>
+<div>
+<p class="beforelist"><strong>Sources :</strong></p>
+<ul>
+<li>Dynamic DNS :
+<ul>
+<li><a title="Les DNS Dynamiques sur la documention Ubuntu-fr" href="http://doc.ubuntu-fr.org/dns_dynamique" target="_blank">Les DNS Dynamiques sur la documention Ubuntu-fr</a></li>
+<li><a title="La page Wikipédia (en anglais) sur le DNS dynamique" href="https://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">La page Wikipédia (en anglais) sur le DNS dynamique</a></li>
+</ul>
+</li>
+<li><a title="Le site dnsdynamic.org que j'ai utilisé" href="https://www.dnsdynamic.org" target="_blank">Le site dnsdynamic.org que j&rsquo;ai utilisé</a></li>
+<li><a title="Page du logiciel ddclient pour la mise à jour automatique" href="http://sourceforge.net/p/ddclient/wiki/Home/" target="_blank">Page du logiciel ddclient pour la mise à jour automatique</a></li>
+</ul>
+</div>
+]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,964 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/tag/tutoriel/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Tutoriel | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="clement,grimal,blog,raspeberry,pi,raspberrypi" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux du mot-clé tutoriel" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.8.41" />
+<link type="text/css" rel="stylesheet" href="../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="archive tag tag-tutoriel tag-12 custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+
+	    
+	                        <div class="archive-results"><span>Billets avec le mot-clé <strong>tutoriel</strong></span></div>
+                
+        	
+	<div class="post-412 post type-post status-publish format-standard hentry category-non-classe tag-tutoriel tag-unix tag-videos loop" id="post-412">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/02/05/capture-video-compression-filigrane-unix/index.html" rel="bookmark" title="Permalink to Capture vidéo, compression et filigrane sous Unix">Capture vidéo, compression et filigrane sous Unix</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 5 février 2013 // Mots-clés : <a href="index.html" rel="tag">tutoriel</a>, <a href="../unix/index.html" rel="tag">unix</a>, <a href="../videos/index.html" rel="tag">videos</a><br />
+<a href="../../2013/02/05/capture-video-compression-filigrane-unix/index.html#comments">Un commentaire.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/02/05/capture-video-compression-filigrane-unix/" rel="bookmark" title="Permalink to Capture vidéo, compression et filigrane sous Unix">5 février 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p>
+	&nbsp;Si vous souhaitez faire une capture vidéo de votre écran sous Unix, la commande avconv (anciennement ffmpeg) devrait probablement vous suffire. J&rsquo;ai eu besoin de faire ça, et voilà comment que je me suis débrouillé.
+</p>
+<h2 style="clear: both">
+	Capture<br />
+</h2>
+<p>
+	Pour faire la capture vidéo de l&rsquo;écran :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s sxga -i :0.0+350,0 -threads 2 -q 1 -bt 8000000 -b 8500000 video.avi
+</pre>
+<p>
+	Les options utilisées sont les suivantes :
+</p>
+<ul>
+<li>
+		<code>-f x11grab</code> : pour dire que l&rsquo;on capture l&rsquo;écran (le serveur X)
+	</li>
+<li><code>-show_region 1</code> : pour afficher un rectangle autour de la zone de l&rsquo;écran capturée
+	</li>
+<li><code>-framerate 24</code> : on capture 24 images par secondes
+	</li>
+<li><code>-s sxga</code> : la zone capturée fait 1280&#215;1024
+	</li>
+<li><code>-i :0.0+350,0</code> : le décalage (300 pixels en horizontal et 0 en vertical)
+	</li>
+<li><code>-threads 2</code> : le nombre de coeurs de votre processeur utilisés
+	</li>
+<li><code>-q 1</code> : meilleure qualité (pas de compression, ça on verra après)
+	</li>
+<li><code>-bt 8000000 -b 8500000</code> : le débit (&laquo;&nbsp;bitrate&nbsp;&raquo;)&nbsp;et sa tolérance, pour permettre une bonne qualité
+	</li>
+</ul>
+<h2>
+	Compression<br />
+</h2>
+<p>
+	Ensuite, pour compresser la jolie vidéo, il faut modifier l&rsquo;argument q :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -q 12 video_smaller.avi
+</pre>
+<h2>
+	Watermark<br />
+</h2>
+<p>
+	Pour ajouter un filigrane (&laquo;&nbsp;watermark&nbsp;&raquo;) sur la vidéo, il suffit d&rsquo;une image. Prenez par exemple le logo de votre entreprise, et rendez le un peu plus discret à l&rsquo;aide du Gimp par exemple, avec les deux transformations suivantes :
+</p>
+<ul>
+<li>Couleurs &gt; Niveaux &gt; Niveaux de sortie : augmenter le seuil du bas
+	</li>
+<li>Couleurs &gt;&nbsp;Couleur vers alpha&#8230;
+	</li>
+</ul>
+<p>
+	Si cette image est image.png et dans le même dossier que vos vidéos, pour l&rsquo;ajouter en sur-impression à la vidéo :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -vf "movie=image.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -q 12 video_watermark.avi
+</pre>
+<p>
+	J&rsquo;ai gardé l&rsquo;argument <code>-q 12</code> pour compresser la vidéo en même temps, et j&rsquo;ai ajouté l&rsquo;argument <code>-vf</code>, qui est assez compliqué&#8230; Si j&rsquo;ai bien compris, la partie&nbsp;<code>movie=image.png [watermark];</code> définie un calque à ajouter et le nomme watermark, puis la seconde partie&nbsp;<code>[in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]</code> permet d&rsquo;ajouter ce calcque. Le overlay permet de positionner l&rsquo;image, et les nom main_w, main_h, overlay_w et overlay_h correspondent respectivment aux largeurs et hauteurs de la vidéo et de l&rsquo;image. Si vous avez suivi, notre filigrane sera donc centrée ! &nbsp;Mais si vous voulez par exemple la positionner en haut à gauche, il faut utiliser <code>overlay=0:0</code>
+</p>
+<h2>
+	Démo !<br />
+</h2>
+<p>
+	Je fais à la fois la capture, le filigrane et la compression. La commande exacte est la suivante :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s 1280x900 -i :0.0+0,105 -vf "movie=me.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -threads 2 -q 12 -bt 8000000 -b 8500000 demo_blog.flv
+</pre>
+<p>
+	
+				<script type='text/javascript'>
+				if (typeof jQuery == 'undefined') { document.write('<script type="text/javascript" src="../../wp-content/plugins/hana-flv-player/mediaelement/build/jquery.js"><\/script>'); }	
+				</script>
+				<style>.mejs-inner img { max-width:100%; max-height:100%; margin:0 ; padding:0 } 
+				.mejs-overlay-button, .mejs-overlay-loading  {display:none;}</style>
+				<script type='text/javascript' src='../../wp-content/plugins/hana-flv-player/mediaelement/build/mediaelement-and-player.min.js'></script>
+				<link rel='stylesheet' href='../../wp-content/plugins/hana-flv-player/mediaelement/build/mediaelementplayer.mod.css' />
+				<!-- due to the bug - IE8 does not show video --> 
+				<!--[if IE 8]><style> .me-plugin { position: static; } </style><![endif]-->
+				<div style='padding:0;margin:0; border:0;'><video  id='hana_flv_media_1'  src='../../wp-content/uploads/2013/02/demo_blog.flv' width='600' height='338'  
+	preload='true'     controls='controls' >	<object width="600" height="338" type="application/x-shockwave-flash" data="../../wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf"> 		
+		<param name="movie" value="../../wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf" /> 
+		<param name="flashvars" value="controls=true&amp;file=http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv&amp;poster=" />		
+		
+	</object></video></div><script type='text/javascript'>
+				 
+				jQuery('#hana_flv_media_1').mediaelementplayer({ pauseOtherPlayers: false , pluginType:'youtube'   });
+				</script>
+</p>
+<p>
+	Ok, ça fait un peu narcissique de se mettre en filigrane mais c'est la première image que j'avais sous la main !
+</p>
+<h2>
+	Sources<br />
+</h2>
+<ul>
+<li>La page du manuel de la commande avconv :&nbsp;<a href="http://libav.org/avconv.html" target="_blank">http://libav.org/avconv.html</a>
+	</li>
+<li>Un billet que j'ai utilisé pour les paramètres concernant la qualité :&nbsp;<a href="http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg">http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg</a>
+	</li>
+<li>Centrage de l'image :&nbsp;<a href="http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg" target="_blank">http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg</a>
+	</li>
+</ul>
+<!--
+				<p>
+	&nbsp;Si vous souhaitez faire une capture vidéo de votre écran sous Unix, la commande avconv (anciennement ffmpeg) devrait probablement vous suffire. J&rsquo;ai eu besoin de faire ça, et voilà comment que je me suis débrouillé.
+</p>
+<h2 style="clear: both">
+	Capture<br />
+</h2>
+<p>
+	Pour faire la capture vidéo de l&rsquo;écran :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s sxga -i :0.0+350,0 -threads 2 -q 1 -bt 8000000 -b 8500000 video.avi
+</pre>
+<p>
+	Les options utilisées sont les suivantes :
+</p>
+<ul>
+<li>
+		<code>-f x11grab</code> : pour dire que l&rsquo;on capture l&rsquo;écran (le serveur X)
+	</li>
+<li><code>-show_region 1</code> : pour afficher un rectangle autour de la zone de l&rsquo;écran capturée
+	</li>
+<li><code>-framerate 24</code> : on capture 24 images par secondes
+	</li>
+<li><code>-s sxga</code> : la zone capturée fait 1280&#215;1024
+	</li>
+<li><code>-i :0.0+350,0</code> : le décalage (300 pixels en horizontal et 0 en vertical)
+	</li>
+<li><code>-threads 2</code> : le nombre de coeurs de votre processeur utilisés
+	</li>
+<li><code>-q 1</code> : meilleure qualité (pas de compression, ça on verra après)
+	</li>
+<li><code>-bt 8000000 -b 8500000</code> : le débit (&laquo;&nbsp;bitrate&nbsp;&raquo;)&nbsp;et sa tolérance, pour permettre une bonne qualité
+	</li>
+</ul>
+<h2>
+	Compression<br />
+</h2>
+<p>
+	Ensuite, pour compresser la jolie vidéo, il faut modifier l&rsquo;argument q :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -q 12 video_smaller.avi
+</pre>
+<h2>
+	Watermark<br />
+</h2>
+<p>
+	Pour ajouter un filigrane (&laquo;&nbsp;watermark&nbsp;&raquo;) sur la vidéo, il suffit d&rsquo;une image. Prenez par exemple le logo de votre entreprise, et rendez le un peu plus discret à l&rsquo;aide du Gimp par exemple, avec les deux transformations suivantes :
+</p>
+<ul>
+<li>Couleurs &gt; Niveaux &gt; Niveaux de sortie : augmenter le seuil du bas
+	</li>
+<li>Couleurs &gt;&nbsp;Couleur vers alpha&#8230;
+	</li>
+</ul>
+<p>
+	Si cette image est image.png et dans le même dossier que vos vidéos, pour l&rsquo;ajouter en sur-impression à la vidéo :
+</p>
+<pre class="brush:bash">
+avconv -i video.avi -vf "movie=image.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -q 12 video_watermark.avi
+</pre>
+<p>
+	J&rsquo;ai gardé l&rsquo;argument <code>-q 12</code> pour compresser la vidéo en même temps, et j&rsquo;ai ajouté l&rsquo;argument <code>-vf</code>, qui est assez compliqué&#8230; Si j&rsquo;ai bien compris, la partie&nbsp;<code>movie=image.png [watermark];</code> définie un calque à ajouter et le nomme watermark, puis la seconde partie&nbsp;<code>[in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]</code> permet d&rsquo;ajouter ce calcque. Le overlay permet de positionner l&rsquo;image, et les nom main_w, main_h, overlay_w et overlay_h correspondent respectivment aux largeurs et hauteurs de la vidéo et de l&rsquo;image. Si vous avez suivi, notre filigrane sera donc centrée ! &nbsp;Mais si vous voulez par exemple la positionner en haut à gauche, il faut utiliser <code>overlay=0:0</code>
+</p>
+<h2>
+	Démo !<br />
+</h2>
+<p>
+	Je fais à la fois la capture, le filigrane et la compression. La commande exacte est la suivante :
+</p>
+<pre class="brush:bash">
+avconv -f x11grab -show_region 1 -framerate 24 -s 1280x900 -i :0.0+0,105 -vf "movie=me.png [watermark]; [in][watermark] overlay=main_w/2-overlay_w/2:main_h/2-overlay_h/2 [out]" -threads 2 -q 12 -bt 8000000 -b 8500000 demo_blog.flv
+</pre>
+<p>
+	<div style='padding:0;margin:0; border:0;'><video  id='hana_flv_media_2'  src='http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv' width='600' height='338'  
+	preload='true'     controls='controls' >	<object width="600" height="338" type="application/x-shockwave-flash" data="http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf"> 		
+		<param name="movie" value="http://clementgrimal.fr/blog/wp-content/plugins/hana-flv-player/mediaelement/build/flashmediaelement.swf" /> 
+		<param name="flashvars" value="controls=true&amp;file=http://clementgrimal.fr/blog/wp-content/uploads/2013/02/demo_blog.flv&amp;poster=" />		
+		
+	</object></video></div><script type='text/javascript'>
+				 
+				jQuery('#hana_flv_media_2').mediaelementplayer({ pauseOtherPlayers: false , pluginType:'youtube'   });
+				</script>
+</p>
+<p>
+	Ok, ça fait un peu narcissique de se mettre en filigrane mais c&rsquo;est la première image que j&rsquo;avais sous la main !
+</p>
+<h2>
+	Sources<br />
+</h2>
+<ul>
+<li>La page du manuel de la commande avconv :&nbsp;<a href="http://libav.org/avconv.html" target="_blank">http://libav.org/avconv.html</a>
+	</li>
+<li>Un billet que j&rsquo;ai utilisé pour les paramètres concernant la qualité :&nbsp;<a href="http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg">http://my.opera.com/patkoscsaba/blog/2012/08/17/desktop-recording-with-avconv-formerly-know-as-ffmpeg</a>
+	</li>
+<li>Centrage de l&rsquo;image :&nbsp;<a href="http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg" target="_blank">http://stackoverflow.com/questions/10918907/how-to-add-transparent-watermark-in-center-of-a-video-with-ffmpeg</a>
+	</li>
+</ul>
+-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/tutoriel/" rel="tag">tutoriel</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a>, <a href="http://clementgrimal.fr/blog/tag/videos/" rel="tag">videos</a><a href="http://clementgrimal.fr/blog/2013/02/05/capture-video-compression-filigrane-unix/#comments" title="Commentaire sur Capture vidéo, compression et filigrane sous Unix"> | 1 Commentaire</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+	
+	<div class="post-286 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-partage tag-raspberry-pi tag-tutoriel tag-unix loop" id="post-286">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/01/30/raspberry-pi-partage-disque-dur-usb/index.html" rel="bookmark" title="Permalink to Raspberry Pi : installation et partage d&rsquo;un disque dur externe">Raspberry Pi : installation et partage d&rsquo;un disque dur externe</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 30 janvier 2013 // Mots-clés : <a href="../administration/index.html" rel="tag">administration</a>, <a href="../partage/index.html" rel="tag">partage</a>, <a href="../raspberry-pi/index.html" rel="tag">raspberry-pi</a>, <a href="index.html" rel="tag">tutoriel</a>, <a href="../unix/index.html" rel="tag">unix</a><br />
+<a href="../../2013/01/30/raspberry-pi-partage-disque-dur-usb/index.html#comments">5 commentaires.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/" rel="bookmark" title="Permalink to Raspberry Pi : installation et partage d&rsquo;un disque dur externe">30 janvier 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p>Comme je souhaite utiliser mon Raspberry comme &laquo;&nbsp;serveur de stockage&nbsp;&raquo; entre autres, j&rsquo;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&rsquo;explique comment j&rsquo;ai configuré ledit disque dur, pour un partage simple.</p>
+<h3>Le montage</h3>
+<p>Dans le monde Unix, le verbe &laquo;&nbsp;monter&nbsp;&raquo; désigne l&rsquo;opération barbare qui consiste à faire en sorte de pouvoir accéder à votre disque dur (ou autre périphérique). En effet, quand on le branche simplement, on ne peut pas y accéder tant qu&rsquo;il n&rsquo;a pas été monté. Donc on va faire en sorte que ce disque dur là tout neuf soit automatiquement monté dans un répertoire de notre choix, avec les permissions qui vont bien, afin d&rsquo;être sûr de toujours le retrouver.</p>
+<p>Pour savoir à quel &laquo;&nbsp;device&nbsp;&raquo; il correspond, utilisez la commande :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Dans le résultat obtenu, il faut chercher le bloc qui correspond au disque dur, pour moi c&rsquo;est :</p>
+<pre class="brush:plain">Disk /dev/sdb: 2000.4 GB, 2000398933504 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x524a5d81
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048  3907024895  1953511424    7  HPFS/NTFS/exFAT
+</pre>
+<p>Puisque je sais qu&rsquo;il fait 2To (enfin 2000398933504 octets). Il correspond donc à <code>/dev/sdb1</code> (une seule partition) et il est formaté en NTFS, tout va bien. Maintenant, il va nous falloir une seconde info le concernant : son UUID. C&rsquo;est un identifiant unique, pour le trouver, utilisez la commande :</p>
+<pre class="brush:bash">ls -l /dev/disk/by-uuid/
+</pre>
+<p>Et cherchez l&rsquo;UUID recherché est la suite de numéro et de lettres qui précède le <code>-&gt; ../../sdb1</code> dans mon cas. Dernière étape : choisir et créer le répertoire dans lequel on veut monter ce disque. J&rsquo;ai choisit de créer un dossier <code>/storage/</code> dans lequel je monterai mes disques durs, et donc pour celui là en l&rsquo;occurrence, on va créer le répertoire <code>/storage/mon_disque</code> :</p>
+<pre class="brush:bash">sudo mkdir /storage
+sudo mkdir /storage/mon_disque
+</pre>
+<p>On peut maintenant configurer le fichier <code>/etc/fstab</code> pour y ajouter la ligne qui correspondra au montage de notre disque dur :</p>
+<pre class="brush:bash">sudo vim /etc/fstab
+</pre>
+<p>Et ajoutez la ligne suivante à la fin :</p>
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    defaults    0    2
+</pre>
+<p>Voilà, vous pouvez maintenant monter manuellement votre disque en faisant la commande [<b>AJOUT : </b>il faut avoir installer le paquet <code>ntfs-3g</code> avant !] :</p>
+<pre class="brush:bash">sudo mount /dev/sdb1
+</pre>
+<p>Mais tout l&rsquo;intérêt est que maintenant, à chaque fois que vous brancherez <strong>ce disque</strong> sur <strong>ce raspberry</strong>, il sera toujours monté de la même façon, dans le dossier <code>/storage/mon_disque/</code> !</p>
+<p>Un point qui ne me plaisait pas spécialement avec cette configuration très simple, est que le disque dur est en accès 777, c&rsquo;est à dire que tout le monde peut écrire dessus ! Je ne sais pas si cela est fondamentalement grave mais j&rsquo;ai préféré changer les permissions. Le seul point délicat, c&rsquo;est que certains logiciels ont besoin de pouvoir accéder à ce disque : samba, client bittorrent, serveur web, etc&#8230; On va voir dans la suite comment j&rsquo;ai choisi de gérer cela.</p>
+<h3>Les permissions</h3>
+<p>Ce qui m&rsquo;a semblé le plus simple, c&rsquo;est de créer un groupe storage qui aura tous les droits sur mes disques durs externes, et j&rsquo;y ajouterai à la main les utilisateurs. Voilà la démarche que j&rsquo;ai suivie :</p>
+<ol>
+<li>Création du groupe :
+<pre class="brush:bash">sudo groupadd storage
+</pre>
+</li>
+<li>Récupération de l&rsquo;id de ce groupe. La commande :
+<pre class="brush:bash">cat /etc/group |grep storage
+</pre>
+<p>devrait vous renvoyer une seule ligne ressemblant à <code>:storage:x:1005:</code> L&rsquo;id du groupe est donc 1005, et on va en avoir besoin plus tard.</p>
+</li>
+<li>Ajout de l&rsquo;utilisateur pi (ou toto si vous vous appelez toto) :
+<pre class="brush:bash">sudo usermod -a -G storage pi
+</pre>
+</li>
+<li>Modification du fichier <code>/etc/fstab</code> pour que le dossier de montage appartienne au groupe storage (on remplace les options defaults) :
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    suid,dev,auto,async,gid=1005,umask=007    0    2
+</pre>
+<p>Le 1005 correspond à l&rsquo;id du groupe storage et le umask est un paramètre assez compliqué (voir mes sources à la fin du billet), mais la valeur 007 implique que les utilisateurs n&rsquo;appartenant pas au groupe storage pourront lire et parcourir le disque, mais pas écrire dessus.</p>
+</li>
+<li>Eventuellement, ajout des autres utilisateurs correspondant aux logiciels qui doivent pouvoir écrire sur le disque. Par exemple, si vous souhaitez partager certains dossiers via votre serveur web (voir mon billet <a title="Raspberry Pi : installation d’un serveur web" href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html">Installation d&rsquo;un serveur web</a>), l&rsquo;utilisateur correspondant au serveur Apache2 est www-data. Il faut donc faire :
+<pre class="brush:bash">sudo usermod -a -G storage www-data
+</pre>
+</li>
+</ol>
+<h3>Partage sur le serveur Web</h3>
+<p>J&rsquo;ai expliqué dans le billet <a title="Raspberry Pi : installation d’un serveur web" href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html">Installation d&rsquo;un serveur web</a> comment installer un simple serveur Apache. Vous pouvez par exemple partager un dossier de votre disque dur directement via le web en créant un lien symbolique. Par exemple, si vous souhaitez partager tout le contenu du dossier <code>/storage/mon_disque/dossier_public/</code>, vous pouvez utiliser la commande :</p>
+<pre class="brush:bash">sudo ln -s /storage/mon_disque/dossier_public/ /var/www/dossier_public
+</pre>
+<p>Si l&rsquo;adresse pour accéder à voter serveur web est <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com</a> (vous avez utiliser mon tutoriel <a title="Utilisation d’un DNS dynamique" href="../../2013/01/29/utilisation-dns-dynamique/index.html">Utilisation d’un DNS dynamique</a> ?), vous (ou n&rsquo;importe qui attention !) pouvez consulter le contenu de ce dossier à l&rsquo;adresse : <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com/dossier_public/</a></p>
+<p>Il est possible de protéger ce que vous partager sur votre serveur web, par mot de passe par exemple, mais j&rsquo;en parlerai plus tard. J&rsquo;ajoute tout de même un lien la dessus dans les sources de ce billet.</p>
+<h3>Partage avec Samba</h3>
+<p>Je pense que j&rsquo;écrirai un billet là-dessus, mais juste au cas où vous auriez déjà configuré un serveur Samba (partage de certains répertoires, y compris avec Windows), sachez que si vous avez suivi ce tutoriel, il vous faudra modifier légèrement votre configuration. Dans le fichier <code>/etc/samba/smb.conf</code>, pour chacun de vos partage, ajoutez la ligne force group = storage, ce qui donnera par exemple :</p>
+<pre class="brush:plain">[mon_disque]
+	path = /storage/mon_disque
+	browseable = yes
+	read only = no
+	guest ok = yes
+	force group = storage
+</pre>
+<h3>Accès par client Bittorrent</h3>
+<p>On verra dans un prochain billet comment installer un client Bittorrent (Transmission) sur votre Raspberry Pi, et le configure pour que les fichiers téléchargés arrivent sur votre disque externe. Il ne faudra donc pas oublier d&rsquo;ajouter l&rsquo;utilisateur debian-transmission au groupe storage :</p>
+<pre class="brush:bash">sudo usermod -a -G storage debian-transmission
+</pre>
+<h3>Sources</h3>
+<ul>
+<li>Manuel de fstab sur le site Ubuntu-fr : <a href="http://doc.ubuntu-fr.org/mount_fstab" target="_blank">http://doc.ubuntu-fr.org/mount_fstab</a></li>
+<li>Aide sur l&rsquo;utilisation de umask (en anglais) : <a href="http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html" target="_blank">http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</a></li>
+<li>Protection par mot de passe de dossiers pour Apache : <a href="http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/" target="_blank">http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/</a></li>
+</ul><!--
+				<p>Comme je souhaite utiliser mon Raspberry comme &laquo;&nbsp;serveur de stockage&nbsp;&raquo; entre autres, j&rsquo;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&rsquo;explique comment j&rsquo;ai configuré ledit disque dur, pour un partage simple.</p>
+<h3>Le montage</h3>
+<p>Dans le monde Unix, le verbe &laquo;&nbsp;monter&nbsp;&raquo; désigne l&rsquo;opération barbare qui consiste à faire en sorte de pouvoir accéder à votre disque dur (ou autre périphérique). En effet, quand on le branche simplement, on ne peut pas y accéder tant qu&rsquo;il n&rsquo;a pas été monté. Donc on va faire en sorte que ce disque dur là tout neuf soit automatiquement monté dans un répertoire de notre choix, avec les permissions qui vont bien, afin d&rsquo;être sûr de toujours le retrouver.</p>
+<p>Pour savoir à quel &laquo;&nbsp;device&nbsp;&raquo; il correspond, utilisez la commande :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Dans le résultat obtenu, il faut chercher le bloc qui correspond au disque dur, pour moi c&rsquo;est :</p>
+<pre class="brush:plain">Disk /dev/sdb: 2000.4 GB, 2000398933504 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x524a5d81
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048  3907024895  1953511424    7  HPFS/NTFS/exFAT
+</pre>
+<p>Puisque je sais qu&rsquo;il fait 2To (enfin 2000398933504 octets). Il correspond donc à <code>/dev/sdb1</code> (une seule partition) et il est formaté en NTFS, tout va bien. Maintenant, il va nous falloir une seconde info le concernant : son UUID. C&rsquo;est un identifiant unique, pour le trouver, utilisez la commande :</p>
+<pre class="brush:bash">ls -l /dev/disk/by-uuid/
+</pre>
+<p>Et cherchez l&rsquo;UUID recherché est la suite de numéro et de lettres qui précède le <code>-&gt; ../../sdb1</code> dans mon cas. Dernière étape : choisir et créer le répertoire dans lequel on veut monter ce disque. J&rsquo;ai choisit de créer un dossier <code>/storage/</code> dans lequel je monterai mes disques durs, et donc pour celui là en l&rsquo;occurrence, on va créer le répertoire <code>/storage/mon_disque</code> :</p>
+<pre class="brush:bash">sudo mkdir /storage
+sudo mkdir /storage/mon_disque
+</pre>
+<p>On peut maintenant configurer le fichier <code>/etc/fstab</code> pour y ajouter la ligne qui correspondra au montage de notre disque dur :</p>
+<pre class="brush:bash">sudo vim /etc/fstab
+</pre>
+<p>Et ajoutez la ligne suivante à la fin :</p>
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    defaults    0    2
+</pre>
+<p>Voilà, vous pouvez maintenant monter manuellement votre disque en faisant la commande [<b>AJOUT : </b>il faut avoir installer le paquet <code>ntfs-3g</code> avant !] :</p>
+<pre class="brush:bash">sudo mount /dev/sdb1
+</pre>
+<p>Mais tout l&rsquo;intérêt est que maintenant, à chaque fois que vous brancherez <strong>ce disque</strong> sur <strong>ce raspberry</strong>, il sera toujours monté de la même façon, dans le dossier <code>/storage/mon_disque/</code> !</p>
+<p>Un point qui ne me plaisait pas spécialement avec cette configuration très simple, est que le disque dur est en accès 777, c&rsquo;est à dire que tout le monde peut écrire dessus ! Je ne sais pas si cela est fondamentalement grave mais j&rsquo;ai préféré changer les permissions. Le seul point délicat, c&rsquo;est que certains logiciels ont besoin de pouvoir accéder à ce disque : samba, client bittorrent, serveur web, etc&#8230; On va voir dans la suite comment j&rsquo;ai choisi de gérer cela.</p>
+<h3>Les permissions</h3>
+<p>Ce qui m&rsquo;a semblé le plus simple, c&rsquo;est de créer un groupe storage qui aura tous les droits sur mes disques durs externes, et j&rsquo;y ajouterai à la main les utilisateurs. Voilà la démarche que j&rsquo;ai suivie :</p>
+<ol>
+<li>Création du groupe :
+<pre class="brush:bash">sudo groupadd storage
+</pre>
+</li>
+<li>Récupération de l&rsquo;id de ce groupe. La commande :
+<pre class="brush:bash">cat /etc/group |grep storage
+</pre>
+<p>devrait vous renvoyer une seule ligne ressemblant à <code>:storage:x:1005:</code> L&rsquo;id du groupe est donc 1005, et on va en avoir besoin plus tard.</p>
+</li>
+<li>Ajout de l&rsquo;utilisateur pi (ou toto si vous vous appelez toto) :
+<pre class="brush:bash">sudo usermod -a -G storage pi
+</pre>
+</li>
+<li>Modification du fichier <code>/etc/fstab</code> pour que le dossier de montage appartienne au groupe storage (on remplace les options defaults) :
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    suid,dev,auto,async,gid=1005,umask=007    0    2
+</pre>
+<p>Le 1005 correspond à l&rsquo;id du groupe storage et le umask est un paramètre assez compliqué (voir mes sources à la fin du billet), mais la valeur 007 implique que les utilisateurs n&rsquo;appartenant pas au groupe storage pourront lire et parcourir le disque, mais pas écrire dessus.</p>
+</li>
+<li>Eventuellement, ajout des autres utilisateurs correspondant aux logiciels qui doivent pouvoir écrire sur le disque. Par exemple, si vous souhaitez partager certains dossiers via votre serveur web (voir mon billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a>), l&rsquo;utilisateur correspondant au serveur Apache2 est www-data. Il faut donc faire :
+<pre class="brush:bash">sudo usermod -a -G storage www-data
+</pre>
+</li>
+</ol>
+<h3>Partage sur le serveur Web</h3>
+<p>J&rsquo;ai expliqué dans le billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a> comment installer un simple serveur Apache. Vous pouvez par exemple partager un dossier de votre disque dur directement via le web en créant un lien symbolique. Par exemple, si vous souhaitez partager tout le contenu du dossier <code>/storage/mon_disque/dossier_public/</code>, vous pouvez utiliser la commande :</p>
+<pre class="brush:bash">sudo ln -s /storage/mon_disque/dossier_public/ /var/www/dossier_public
+</pre>
+<p>Si l&rsquo;adresse pour accéder à voter serveur web est <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com</a> (vous avez utiliser mon tutoriel <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">Utilisation d’un DNS dynamique</a> ?), vous (ou n&rsquo;importe qui attention !) pouvez consulter le contenu de ce dossier à l&rsquo;adresse : <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com/dossier_public/</a></p>
+<p>Il est possible de protéger ce que vous partager sur votre serveur web, par mot de passe par exemple, mais j&rsquo;en parlerai plus tard. J&rsquo;ajoute tout de même un lien la dessus dans les sources de ce billet.</p>
+<h3>Partage avec Samba</h3>
+<p>Je pense que j&rsquo;écrirai un billet là-dessus, mais juste au cas où vous auriez déjà configuré un serveur Samba (partage de certains répertoires, y compris avec Windows), sachez que si vous avez suivi ce tutoriel, il vous faudra modifier légèrement votre configuration. Dans le fichier <code>/etc/samba/smb.conf</code>, pour chacun de vos partage, ajoutez la ligne force group = storage, ce qui donnera par exemple :</p>
+<pre class="brush:plain">[mon_disque]
+	path = /storage/mon_disque
+	browseable = yes
+	read only = no
+	guest ok = yes
+	force group = storage
+</pre>
+<h3>Accès par client Bittorrent</h3>
+<p>On verra dans un prochain billet comment installer un client Bittorrent (Transmission) sur votre Raspberry Pi, et le configure pour que les fichiers téléchargés arrivent sur votre disque externe. Il ne faudra donc pas oublier d&rsquo;ajouter l&rsquo;utilisateur debian-transmission au groupe storage :</p>
+<pre class="brush:bash">sudo usermod -a -G storage debian-transmission
+</pre>
+<h3>Sources</h3>
+<ul>
+<li>Manuel de fstab sur le site Ubuntu-fr : <a href="http://doc.ubuntu-fr.org/mount_fstab" target="_blank">http://doc.ubuntu-fr.org/mount_fstab</a></li>
+<li>Aide sur l&rsquo;utilisation de umask (en anglais) : <a href="http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html" target="_blank">http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</a></li>
+<li>Protection par mot de passe de dossiers pour Apache : <a href="http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/" target="_blank">http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/</a></li>
+</ul>-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/partage/" rel="tag">partage</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/tutoriel/" rel="tag">tutoriel</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a><a href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comments" title="Commentaire sur Raspberry Pi : installation et partage d&rsquo;un disque dur externe"> | 5 Commentaires</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+	
+	<div class="post-222 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-raspberry-pi tag-tutoriel tag-unix tag-web loop" id="post-222">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html" rel="bookmark" title="Permalink to Raspberry Pi : installation d&rsquo;un serveur web">Raspberry Pi : installation d&rsquo;un serveur web</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 24 janvier 2013 // Mots-clés : <a href="../administration/index.html" rel="tag">administration</a>, <a href="../raspberry-pi/index.html" rel="tag">raspberry-pi</a>, <a href="index.html" rel="tag">tutoriel</a>, <a href="../unix/index.html" rel="tag">unix</a>, <a href="../web/index.html" rel="tag">web</a><br />
+<a href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html#comments">6 commentaires.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/" rel="bookmark" title="Permalink to Raspberry Pi : installation d&rsquo;un serveur web">24 janvier 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p>Dans ce billet, je vais décrire comment j&rsquo;ai installé un serveur web sur mon Raspberry Pi, mais surtout comment j&rsquo;ai configuré mon installation sachant que mon fournisseur d&rsquo;accès est SFR.</p>
+<p>Dans la première moitié, je décris l&rsquo;installation du serveur et la configuration minimale pour tester. Et dans la seconde partie, je décris comment s&rsquo;en sortir sans adresse IP fixe (comme c&rsquo;est le cas chez SFR).</p>
+<p><strong>MODIFICATION : </strong>j&rsquo;ai finalement réussi à utilisé un service de DNS dynamique, qui me permet de ne pas forcément utiliser mon script compliqué : <a title="Utilisation d’un DNS dynamique" href="../../2013/01/29/utilisation-dns-dynamique/index.html">voir ce billet</a> ! </p>
+<h3 style="clear: both;">Installation du serveur et configuration minimale</h3>
+<h4>Installation du serveur</h4>
+<p>On va installer un serveur web, communément appelé <a href="https://fr.wikipedia.org/wiki/LAMP" target="_blak">LAMP</a>, pour Linux / Apache / MySQL / PHP. Avec ça vous aurez de quoi faire tourner un petit site web, avec base de données et pages dynamiques. Il suffit d&rsquo;installer les paquets suivants :</p>
+<pre class="brush:bash">	sudo apt-get install apache2 php5 mysql-server libapache2-mod-php5 php5-mysql
+</pre>
+<p>La racine de votre site se situe alors dans le dossier <code>/var/www/</code> et si vous allez sur la page <a href="http://localhost/" target="_blank">localhost:80</a>, vous devriez voir la page par défaut d&rsquo;Apache qui dit &laquo;&nbsp;It Works!&nbsp;&raquo;.</p>
+<h4>Trouver son adresse IP externe</h4>
+<p>Il y a plusieurs façon de faire : vous pouvez vous rendre sur l&rsquo;interface de votre box <a href="http://192.168.1.1/" target="_blank">192.168.1.1</a> et l&rsquo;adresse IP est alors visible en haut à droite. Vous pouvez également utiliser un site web tel que <a href="http://www.ipogre.com/" target="_blank">ipogre.com</a> (nous l&rsquo;utiliserons d&rsquo;ailleurs dans la seconde partie).</p>
+<p>Mais si vous donner cette adresse IP à quelqu&rsquo;un pour qu&rsquo;il puisse voir le site web hebergé sur votre Raspberry, cela ne marchera pas car il &laquo;&nbsp;atterrira&nbsp;&raquo; sur la box ! On va donc voir comment la paramétrer dans la suite.</p>
+<h4>Paramètrer sa box</h4>
+<p>Par défaut, lorsqu&rsquo;un nouvel équipement se connecte à la box (wifi ou ethernet), elle lui attribue une adresse IP locale aléatoire du type <code>192.168.1.XX</code>. Pour que le Raspberry soit toujours à la même adresse (ce sera mieux pour le retrouver), on va demander à la box de lui attribuer une IP locale fixe. Il faut aller sur l&rsquo;interface de la box (<a href="http://localhost/" target="_blank">localhost:80</a>), dans l&rsquo;onglet DHCP de la section Réseau. Regarder l&rsquo;aide de SFR à ce sujet qui est très bien faire : <a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Héberger son site web à la maison avec sa box</a>.</p>
+<p>Maintenant, il faut rediriger le port 80 (celui du serveur web) vers votre Raspberry. C&rsquo;est aussi expliqué sur la page d&rsquo;aide de SFR, et il suffit d&rsquo;ajouter une règle NAT. D&rsquo;ailleurs, vous pouvez en profiter pour ajouter d&rsquo;autres règles. En redirigeant également le port 22, vous pourrez vous connecter en ssh à votre Raspberry depuis n&rsquo;importe où !</p>
+<h4>Test</h4>
+<p>Vous pouvez maintenant donner votre adresse IP externe à votre fameux ami qui meurt d&rsquo;envie de voir le site web que vous hébergez sur votre Raspberry. Disons que cette adresse est <code>A.B.C.D</code>, s&rsquo;il se rend à l&rsquo;adresse <a href="#">A.B.C.D</a> sur son navigateur, il atterrira sur votre site ! Si vous testez de chez vous, vous arriverez sur l&rsquo;interface de la box, ce qui est moins intéressant, utilisez l&rsquo;adresse IP locale de votre raspberry.</p>
+<p>&nbsp;</p>
+<h3>Script pour ne pas utiliser DynDNS</h3>
+<p>Chez SFR, l&rsquo;adresse IP de votre box change régulièrement, et il est possible de souscrire à un service de DNS dynamique pour que l&rsquo;adresse <a href="javascript:void(0)">mon-rpi.dyndns.fr</a> redirige toujours vers votre box. Seulement je n&rsquo;ai pas réussi ! Il faut normalement aller dans l&rsquo;onglet DynDNS de la section Réseau de l&rsquo;interface de la box, mais le dervide dyndns.fr n&rsquo;est pas présent, et donc j&rsquo;ai préféré m&rsquo;en passer pour l&rsquo;instant.</p>
+<p>Pour ne pas être bloqué, on m&rsquo;a soufflé l&rsquo;idée suivante : faire un script qui vérifie si l&rsquo;adresse IP a changée, si oui le script doit m&rsquo;envoyer un mail avec la nouvelle adresse IP. Puis il suffit de faire s&rsquo;exécuter ce script automatiquement à intervalles réguliers.</p>
+<h4>Le script</h4>
+<p>On va mettre le script dans le répertoire <code>/usr/local/bin/ipcheck.sh</code> :</p>
+<pre class="brush:bash">#!/bin/bash
+IPFILE=/etc/ipaddress
+
+CURRENT_IP=$(curl ipogre.com)
+
+MAIL_TO=votre_adresse@domaine.fr
+
+if [ -f $IPFILE ]; then
+	KNOWN_IP=$(cat $IPFILE)
+	else
+	KNOWN_IP=
+fi
+
+if [ "$CURRENT_IP" != "$KNOWN_IP" ]; then
+	echo $CURRENT_IP &gt; $IPFILE
+
+	MAIL_SUBJECT="L'adresse IP du RPI a changé !"
+	MAIL_BODY="C'est maintenant $CURRENT_IP"
+
+	echo $MAIL_BODY | mail -s "$MAIL_SUBJECT" $MAIL_TO
+	logger -t ipcheck -- Nouvelle adresse IP : $CURRENT_IP
+else
+	logger -t ipcheck -- Même adresse IP.
+fi
+</pre>
+<p>Donc l&rsquo;adresse IP va être stockée dans le fichier <code>/etc/ipaddress</code> et on utilise le site <a href="http://www.ipogre.com/" target="_blank">ipogre.com</a> pour récupérer l&rsquo;adresse externe. Puis on compare l&rsquo;ancienne adresse avec la courante, et si ce n&rsquo;est pas la même, on envoie le mail. Voyons maintenant ce qu&rsquo;il faut installer et configurer pour que tout marche bien.</p>
+<h4>Installation curl</h4>
+<p>Je ne sais plus s&rsquo;il est installé de base dans Raspbian, dans le doute :</p>
+<pre class="brush:bash">	sudo apt-get install curl
+</pre>
+<h4>Envoi de mail</h4>
+<p>La partie qui risque de poser problème concerne l&rsquo;envoi de mail. Car la commande <code>mail</code> ne fait qu&rsquo;appeler le <a title="Définition de MTA" href="https://fr.wikipedia.org/wiki/Mail_Transfer_Agent" target="_blank">MTA</a> installé localement. J&rsquo;ai opté pour <a title="Page du paquet Debian" href="http://wiki.debian.org/sSMTP" target="_blank"><code>ssmtp</code></a> qui est très simple à installer et configurer :</p>
+<pre class="brush:bash">sudo apt-get install ssmtp
+</pre>
+<p>Je l&rsquo;ai configurer pour utilisé mon compte Gmail pour les envois. Il faut alors éditer le fichier <code>/etc/ssmtp/ssmtp.conf</code> pour modifier les lignes suivantes :</p>
+<pre class="brush:plain">mailhub=smtp.gmail.com:587
+UseTLS=Yes
+UseSTARTTLS=Yes
+AuthUser=votre_login_gmail
+AuthPass=votre_mot_de_passe_gmail
+</pre>
+<p><strong>Attention</strong>, votre mot de passe Gmail n&rsquo;est pas crypté, il faut donc s&rsquo;assurer que le fichier ne sera pas lisible par n&rsquo;importe qui ! :</p>
+<pre class="brush:bash">sudo chmod 640 /etc/ssmtp/ssmtp.conf
+sudo chown root:mail /etc/ssmtp/ssmtp.conf
+</pre>
+<h4>Cron du script</h4>
+<p>On va &laquo;&nbsp;croner&nbsp;&raquo; ce script pour qu&rsquo;il s&rsquo;exécute automatiquement toutes les heures. Comme il n&rsquo;y a que l&rsquo;utilisateur <code>root</code> (cf. le <code>chown</code> à l&rsquo;étape précédente), il faut ajouter la tâche en sudo :</p>
+<pre class="brush:bash">	sudo crontab -e
+</pre>
+<p>Et ajouter la ligne suivante :</p>
+<pre class="brush:bash">0 * * * * /usr/local/bin/ipcheck.sh &gt;/dev/null 2&gt;&amp;1
+</pre>
+<p>Voilà ! Maintenant, toutes les heures, votre RPi vérifiera que son adresse IP externe n&rsquo;a pas changée. Si elle a en effet changée, il vous enverra un e-mail pour vous donner la nouvelle adresse. Vous pourrez également voir le log dans le fichier <code>/var/log/user.log</code>, en utilisant la commande <code>tail</code> par exemple.</p>
+<h3>Conclusion</h3>
+<p>Bien sûr, le gros problème avec cette solution (sans DNS dynamique), est qu&rsquo;il vous faudra prévenir vos amis à chaque changement d&rsquo;adresse IP ! Ce n&rsquo;est bien sûr pas une solution viable pour un vrai site (mais fait uniquement pour partager avec des amis), et il faudra alors songer à acheter un vrai nom de domaine, associé à une solution de DNS dynamique.</p>
+<div>
+<p class="beforelist"><strong>Sources (en anglais&#8230;) :</strong></p>
+<ul>
+<li><a href="http://www.penguintutor.com/linux/raspberrypi-webserver" target="_blank">Installation serveur web sur Raspberry Pi</a></li>
+<li><a href="http://ubuntuforums.org/archive/index.php/t-526176.html" target="_blank">Récupérer son adresse IP externe depuis le terminal, et script pour l&rsquo;envoi d&rsquo;un mail si modifiée</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Serveur web derrière box SFR</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/emails-avec-sfr/desactiver-filtrage-smtp/fc-2491-69602" target="_blank">Autoriser l&rsquo;envoi de mail derrière votre box SFR</a></li>
+<li><a href="http://stackoverflow.com/questions/9168432/unix-standard-directory-to-put-custom-executables-or-scripts" target="_blank">Où placer ces exécutables perso ?</a></li>
+</ul>
+</div>
+<p>N&rsquo;hésitez pas à me faire part de toute remarques / corrections / erreurs !</p><!--
+				<p>Dans ce billet, je vais décrire comment j&rsquo;ai installé un serveur web sur mon Raspberry Pi, mais surtout comment j&rsquo;ai configuré mon installation sachant que mon fournisseur d&rsquo;accès est SFR.</p>
+<p>Dans la première moitié, je décris l&rsquo;installation du serveur et la configuration minimale pour tester. Et dans la seconde partie, je décris comment s&rsquo;en sortir sans adresse IP fixe (comme c&rsquo;est le cas chez SFR).</p>
+<p><strong>MODIFICATION : </strong>j&rsquo;ai finalement réussi à utilisé un service de DNS dynamique, qui me permet de ne pas forcément utiliser mon script compliqué : <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">voir ce billet</a> ! </p>
+<h3 style="clear: both;">Installation du serveur et configuration minimale</h3>
+<h4>Installation du serveur</h4>
+<p>On va installer un serveur web, communément appelé <a href="https://fr.wikipedia.org/wiki/LAMP" target="_blak">LAMP</a>, pour Linux / Apache / MySQL / PHP. Avec ça vous aurez de quoi faire tourner un petit site web, avec base de données et pages dynamiques. Il suffit d&rsquo;installer les paquets suivants :</p>
+<pre class="brush:bash">	sudo apt-get install apache2 php5 mysql-server libapache2-mod-php5 php5-mysql
+</pre>
+<p>La racine de votre site se situe alors dans le dossier <code>/var/www/</code> et si vous allez sur la page <a href="http://localhost:80" target="_blank">localhost:80</a>, vous devriez voir la page par défaut d&rsquo;Apache qui dit &laquo;&nbsp;It Works!&nbsp;&raquo;.</p>
+<h4>Trouver son adresse IP externe</h4>
+<p>Il y a plusieurs façon de faire : vous pouvez vous rendre sur l&rsquo;interface de votre box <a href="http://192.168.1.1" target="_blank">192.168.1.1</a> et l&rsquo;adresse IP est alors visible en haut à droite. Vous pouvez également utiliser un site web tel que <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> (nous l&rsquo;utiliserons d&rsquo;ailleurs dans la seconde partie).</p>
+<p>Mais si vous donner cette adresse IP à quelqu&rsquo;un pour qu&rsquo;il puisse voir le site web hebergé sur votre Raspberry, cela ne marchera pas car il &laquo;&nbsp;atterrira&nbsp;&raquo; sur la box ! On va donc voir comment la paramétrer dans la suite.</p>
+<h4>Paramètrer sa box</h4>
+<p>Par défaut, lorsqu&rsquo;un nouvel équipement se connecte à la box (wifi ou ethernet), elle lui attribue une adresse IP locale aléatoire du type <code>192.168.1.XX</code>. Pour que le Raspberry soit toujours à la même adresse (ce sera mieux pour le retrouver), on va demander à la box de lui attribuer une IP locale fixe. Il faut aller sur l&rsquo;interface de la box (<a href="http://localhost:80" target="_blank">localhost:80</a>), dans l&rsquo;onglet DHCP de la section Réseau. Regarder l&rsquo;aide de SFR à ce sujet qui est très bien faire : <a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Héberger son site web à la maison avec sa box</a>.</p>
+<p>Maintenant, il faut rediriger le port 80 (celui du serveur web) vers votre Raspberry. C&rsquo;est aussi expliqué sur la page d&rsquo;aide de SFR, et il suffit d&rsquo;ajouter une règle NAT. D&rsquo;ailleurs, vous pouvez en profiter pour ajouter d&rsquo;autres règles. En redirigeant également le port 22, vous pourrez vous connecter en ssh à votre Raspberry depuis n&rsquo;importe où !</p>
+<h4>Test</h4>
+<p>Vous pouvez maintenant donner votre adresse IP externe à votre fameux ami qui meurt d&rsquo;envie de voir le site web que vous hébergez sur votre Raspberry. Disons que cette adresse est <code>A.B.C.D</code>, s&rsquo;il se rend à l&rsquo;adresse <a href="#">A.B.C.D</a> sur son navigateur, il atterrira sur votre site ! Si vous testez de chez vous, vous arriverez sur l&rsquo;interface de la box, ce qui est moins intéressant, utilisez l&rsquo;adresse IP locale de votre raspberry.</p>
+<p>&nbsp;</p>
+<h3>Script pour ne pas utiliser DynDNS</h3>
+<p>Chez SFR, l&rsquo;adresse IP de votre box change régulièrement, et il est possible de souscrire à un service de DNS dynamique pour que l&rsquo;adresse <a href="javascript:void(0)">mon-rpi.dyndns.fr</a> redirige toujours vers votre box. Seulement je n&rsquo;ai pas réussi ! Il faut normalement aller dans l&rsquo;onglet DynDNS de la section Réseau de l&rsquo;interface de la box, mais le dervide dyndns.fr n&rsquo;est pas présent, et donc j&rsquo;ai préféré m&rsquo;en passer pour l&rsquo;instant.</p>
+<p>Pour ne pas être bloqué, on m&rsquo;a soufflé l&rsquo;idée suivante : faire un script qui vérifie si l&rsquo;adresse IP a changée, si oui le script doit m&rsquo;envoyer un mail avec la nouvelle adresse IP. Puis il suffit de faire s&rsquo;exécuter ce script automatiquement à intervalles réguliers.</p>
+<h4>Le script</h4>
+<p>On va mettre le script dans le répertoire <code>/usr/local/bin/ipcheck.sh</code> :</p>
+<pre class="brush:bash">#!/bin/bash
+IPFILE=/etc/ipaddress
+
+CURRENT_IP=$(curl ipogre.com)
+
+MAIL_TO=votre_adresse@domaine.fr
+
+if [ -f $IPFILE ]; then
+	KNOWN_IP=$(cat $IPFILE)
+	else
+	KNOWN_IP=
+fi
+
+if [ "$CURRENT_IP" != "$KNOWN_IP" ]; then
+	echo $CURRENT_IP &gt; $IPFILE
+
+	MAIL_SUBJECT="L'adresse IP du RPI a changé !"
+	MAIL_BODY="C'est maintenant $CURRENT_IP"
+
+	echo $MAIL_BODY | mail -s "$MAIL_SUBJECT" $MAIL_TO
+	logger -t ipcheck -- Nouvelle adresse IP : $CURRENT_IP
+else
+	logger -t ipcheck -- Même adresse IP.
+fi
+</pre>
+<p>Donc l&rsquo;adresse IP va être stockée dans le fichier <code>/etc/ipaddress</code> et on utilise le site <a href="http://www.ipogre.com" target="_blank">ipogre.com</a> pour récupérer l&rsquo;adresse externe. Puis on compare l&rsquo;ancienne adresse avec la courante, et si ce n&rsquo;est pas la même, on envoie le mail. Voyons maintenant ce qu&rsquo;il faut installer et configurer pour que tout marche bien.</p>
+<h4>Installation curl</h4>
+<p>Je ne sais plus s&rsquo;il est installé de base dans Raspbian, dans le doute :</p>
+<pre class="brush:bash">	sudo apt-get install curl
+</pre>
+<h4>Envoi de mail</h4>
+<p>La partie qui risque de poser problème concerne l&rsquo;envoi de mail. Car la commande <code>mail</code> ne fait qu&rsquo;appeler le <a title="Définition de MTA" href="https://fr.wikipedia.org/wiki/Mail_Transfer_Agent" target="_blank">MTA</a> installé localement. J&rsquo;ai opté pour <a title="Page du paquet Debian" href="http://wiki.debian.org/sSMTP" target="_blank"><code>ssmtp</code></a> qui est très simple à installer et configurer :</p>
+<pre class="brush:bash">sudo apt-get install ssmtp
+</pre>
+<p>Je l&rsquo;ai configurer pour utilisé mon compte Gmail pour les envois. Il faut alors éditer le fichier <code>/etc/ssmtp/ssmtp.conf</code> pour modifier les lignes suivantes :</p>
+<pre class="brush:plain">mailhub=smtp.gmail.com:587
+UseTLS=Yes
+UseSTARTTLS=Yes
+AuthUser=votre_login_gmail
+AuthPass=votre_mot_de_passe_gmail
+</pre>
+<p><strong>Attention</strong>, votre mot de passe Gmail n&rsquo;est pas crypté, il faut donc s&rsquo;assurer que le fichier ne sera pas lisible par n&rsquo;importe qui ! :</p>
+<pre class="brush:bash">sudo chmod 640 /etc/ssmtp/ssmtp.conf
+sudo chown root:mail /etc/ssmtp/ssmtp.conf
+</pre>
+<h4>Cron du script</h4>
+<p>On va &laquo;&nbsp;croner&nbsp;&raquo; ce script pour qu&rsquo;il s&rsquo;exécute automatiquement toutes les heures. Comme il n&rsquo;y a que l&rsquo;utilisateur <code>root</code> (cf. le <code>chown</code> à l&rsquo;étape précédente), il faut ajouter la tâche en sudo :</p>
+<pre class="brush:bash">	sudo crontab -e
+</pre>
+<p>Et ajouter la ligne suivante :</p>
+<pre class="brush:bash">0 * * * * /usr/local/bin/ipcheck.sh &gt;/dev/null 2&gt;&amp;1
+</pre>
+<p>Voilà ! Maintenant, toutes les heures, votre RPi vérifiera que son adresse IP externe n&rsquo;a pas changée. Si elle a en effet changée, il vous enverra un e-mail pour vous donner la nouvelle adresse. Vous pourrez également voir le log dans le fichier <code>/var/log/user.log</code>, en utilisant la commande <code>tail</code> par exemple.</p>
+<h3>Conclusion</h3>
+<p>Bien sûr, le gros problème avec cette solution (sans DNS dynamique), est qu&rsquo;il vous faudra prévenir vos amis à chaque changement d&rsquo;adresse IP ! Ce n&rsquo;est bien sûr pas une solution viable pour un vrai site (mais fait uniquement pour partager avec des amis), et il faudra alors songer à acheter un vrai nom de domaine, associé à une solution de DNS dynamique.</p>
+<div>
+<p class="beforelist"><strong>Sources (en anglais&#8230;) :</strong></p>
+<ul>
+<li><a href="http://www.penguintutor.com/linux/raspberrypi-webserver" target="_blank">Installation serveur web sur Raspberry Pi</a></li>
+<li><a href="http://ubuntuforums.org/archive/index.php/t-526176.html" target="_blank">Récupérer son adresse IP externe depuis le terminal, et script pour l&rsquo;envoi d&rsquo;un mail si modifiée</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/connexion/hebergement-site-web-box/fc-462-73201" target="_blank">Serveur web derrière box SFR</a></li>
+<li><a href="http://assistance.sfr.fr/internet_box-nb4/emails-avec-sfr/desactiver-filtrage-smtp/fc-2491-69602" target="_blank">Autoriser l&rsquo;envoi de mail derrière votre box SFR</a></li>
+<li><a href="http://stackoverflow.com/questions/9168432/unix-standard-directory-to-put-custom-executables-or-scripts" target="_blank">Où placer ces exécutables perso ?</a></li>
+</ul>
+</div>
+<p>N&rsquo;hésitez pas à me faire part de toute remarques / corrections / erreurs !</p>-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/tutoriel/" rel="tag">tutoriel</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a>, <a href="http://clementgrimal.fr/blog/tag/web/" rel="tag">web</a><a href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/#comments" title="Commentaire sur Raspberry Pi : installation d&rsquo;un serveur web"> | 6 Commentaires</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+        
+        			
+			<div class="nav">
+				<div class="nav-left"></div>
+				<div class="nav-right"><a href="page/2/index.html" >Billets précédents &raquo;</a></div>
+			</div><!-- close .nav-->
+		
+		        
+    
+</div><!-- close #content-->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../2013/12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="../../2013/03/21/projet-sur-les-epaules-de-darwin/index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="../../2013/02/12/ssh-securite/index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="../../2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../2013/02/05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='../raspberry-pi/index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../2013/12/index.html'>décembre 2013</a></li>
+	<li><a href='../../2013/03/index.html'>mars 2013</a></li>
+	<li><a href='../../2013/02/index.html'>février 2013</a></li>
+	<li><a href='../../2013/01/index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/tag/tutoriel/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:01 GMT -->
+</html>

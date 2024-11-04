@@ -1,0 +1,243 @@
+/* Grandes zones de la page */
+body {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	margin: 0;
+	padding: 0;
+	background-color: #E9FFB2;
+}
+#header {
+	height: 8.3em; 
+	text-align: right;
+	padding-right: 15px;
+	padding-top: 10px;
+}
+#conteneur {
+	position: relative;
+	width: 800px;
+	margin: 0 auto; 
+	background-color:#E9FFB2;
+	height: 100%; /* a enlever */
+}
+#gauche {
+	position: absolute;
+	left:0;
+	width: 139px;
+}
+html>body #centre { /* non compris par IE */
+	margin-left: 150px;
+	height: auto;
+	min-height:400px;
+}
+#centre {
+	background-color:#DAFF7F;
+	height: 400px;
+	margin-left: 150px;
+	min-height:400px;
+	height: 100%; /* a enlever */
+	border: solid 1px #314400;
+	border-bottom-width: 7px;
+	border-right-width: 3px;
+	/* padding: 10px 10px 10px 20px; */
+}
+#pied {
+	height: 30px;
+	background-color: #E9FFB2;
+	text-align: right;
+	padding-top: 5px;
+}
+
+/* Liens */
+a{
+	color: #D32C34;
+	text-decoration: none;
+}
+a:visited{
+	color: #D32C34;
+	text-decoration: none;
+}
+a:hover{
+	color: #314400;
+	text-decoration: none;
+}
+
+/* Header */
+#nom{
+	font-size: 2em;
+	font-weight: 900;
+	font-variant: small-caps;
+	color: #314400;
+}
+#titre{
+	font-style: italic;
+	font-size: 1.3em;
+	color: #364900;
+}
+#header a img{
+	border-color: #E9FFB2;
+	margin-right:5px;
+}
+#choix_langue{
+	margin-top: 10px;
+}
+
+/* Colonne de gauche */
+#gauche div{
+	margin: 15px 0 0 10px;
+}
+#menu {
+	/* margin: 0;
+	padding:0; */
+}
+#menu ul{
+	list-style-type: none;
+	margin: 0;
+	padding:0;
+}
+#menu li {
+	/* border-top: 1px solid #660000; */
+	font-size:1.2em;
+	font-weight:bold;
+	margin-top: 5px;
+}
+#menu ul li a {
+    padding-right: 10px;
+	padding-top:0.4em;
+    width: 100%; 
+    height: 1.6em;
+    display: block;
+	text-align: right;
+    text-decoration: none;
+    color: #000;	
+	border: dotted 1px #314400;
+}
+#menu ul li a.current{
+	color: #D32C34;
+	background-color:#DAFF7F;
+	border: solid 1px #314400; 
+	border-right-color: #DAFF7F;
+}
+#menu ul li a:hover {
+    background: #E2FF99;
+	border: solid 1px #314400; 
+	border-right-style: hidden;
+}
+#menu ul li a.current:hover{
+	color: #D32C34;
+	background-color:#DAFF7F;
+	border: solid 1px #314400; 
+	border-right-color: #DAFF7F;
+}
+#menu #dl{
+	text-align: center;
+	background-color: #314400;
+	padding: 8px;
+}	
+#menu #dl a{
+	width: 100%;
+	color: #E9FFB2;
+}
+
+/* pied */
+#pied a img{
+	border-color: #E9FFB2;
+}
+#pied p{
+	display: inline;
+}
+
+/* Divers */
+acronym{
+	cursor: help;
+}
+.separator{
+	margin: 30px 0;
+	text-align: center;
+}
+.separator hr{
+	color: #314400;
+	background-color: #314400;
+	width: 90%;
+	height: 5px;
+}
+
+/* Elements du centre */
+.element{
+	background-color: #E4FFA3;
+	margin: 10px;
+	border-bottom: dashed 1px #D32C34;
+	padding-top: 1px;
+}
+#langues .element{
+	min-height: 90px;
+}
+.element  .element_title{
+	margin: 10px;
+	font-variant: small-caps;
+	font-weight: 700;
+	font-size: 1.1em;
+	color: #D32C34;
+}
+.element  .element_title .sub{
+	margin: 4px;
+	font-variant: normal;
+	font-weight: 650;
+	font-size: 0.8em;
+	color: #D32C34;
+}
+.element  .element_body{
+	/* position: relative; */
+	margin: 10px;
+}
+.element .element_body p{
+   text-align: justify;
+   /*text-indent: 10px;*/
+}
+/* .element .element_body p:first-letter {
+   font-weight: bold;
+   font-size: 1.1em;
+} */
+.element  .element_body .label{
+	position: absolute;
+	left:160px;
+	width: 100px;
+	text-align: right;
+	color: #D32C34;	
+}
+.element  .element_body .face_label { 
+	margin-left: 105px;
+}
+
+/* Les drapeaux */
+img.flag{
+	float: left;
+	border: solid 1px #314400;
+	margin-right: 5px;
+}
+
+/* En savoir plus... */
+dl dd {
+	margin-left: 10px;
+	border-left: 1px solid #314400;
+	border-bottom: 1px solid #314400;
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+dl dt {
+	font-weight: bold;
+	cursor: help;
+}
+dl {
+	/* border: 1px solid black;
+	margin: 5px; */
+}
+
+/* Noscript */
+#noscript{
+	width: 640px;
+	margin: 5px 0 7px auto;
+	border: 1px solid #D32C34;
+	background-color: #F9F0C3;
+	padding: 5px;
+	text-align: justify;
+}

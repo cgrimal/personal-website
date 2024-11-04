@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Commentaires sur : Raspberry Pi : installation et partage d&#8217;un disque dur externe</title>
+	<atom:link href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Fri, 05 Apr 2024 23:40:25 +0000</lastBuildDate>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Par : kaze</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comment-143090</link>
+		<dc:creator><![CDATA[kaze]]></dc:creator>
+		<pubDate>Fri, 20 May 2016 23:41:43 +0000</pubDate>
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286#comment-143090</guid>
+		<description><![CDATA[J&#039;ai réussi le partage du disque dur externe mais j&#039;ai un problème d&#039;autorisation 
+
+sur SAMBA /etc/samba/smb.conf j&#039;ai : 
+
+[***]
+   comment = DDExt
+   path = /storage/***
+   browseable = yes
+   read only = no
+   guest ok = yes
+   security = SHARE
+
+et sur /etc/fstab pour que ce soit ouvert à tous j&#039;ai :
+UUID=*** /storage/SAMSUNG ntfs-3g defaults,umask=777  0 2
+
+comment puis-je faire pour y accèder en simple utilisateur en raspbian et sur windows ?]]></description>
+		<content:encoded><![CDATA[<p>J&rsquo;ai réussi le partage du disque dur externe mais j&rsquo;ai un problème d&rsquo;autorisation </p>
+<p>sur SAMBA /etc/samba/smb.conf j&rsquo;ai : </p>
+<p>[***]<br />
+   comment = DDExt<br />
+   path = /storage/***<br />
+   browseable = yes<br />
+   read only = no<br />
+   guest ok = yes<br />
+   security = SHARE</p>
+<p>et sur /etc/fstab pour que ce soit ouvert à tous j&rsquo;ai :<br />
+UUID=*** /storage/SAMSUNG ntfs-3g defaults,umask=777  0 2</p>
+<p>comment puis-je faire pour y accèder en simple utilisateur en raspbian et sur windows ?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Par : Sadzeih</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comment-704</link>
+		<dc:creator><![CDATA[Sadzeih]]></dc:creator>
+		<pubDate>Wed, 18 Sep 2013 08:27:30 +0000</pubDate>
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286#comment-704</guid>
+		<description><![CDATA[Bonjour,
+J&#039;ai configuré la raspberry comme dans le tuto pour en faire un serveur web. Tout marche sauf que j&#039;aimerais qu&#039;on puisse accéder au site web directement depuis l&#039;adresse (dans l&#039;exemple mon-rpi.dnsdynamic.com) et pas depuis un sous dossier /public.
+J&#039;ai cherché pas mal de temps mais je ne trouve pas de solution,
+Je ne suis pas un expert de Linux ;).
+
+merci !]]></description>
+		<content:encoded><![CDATA[<p>Bonjour,<br />
+J&rsquo;ai configuré la raspberry comme dans le tuto pour en faire un serveur web. Tout marche sauf que j&rsquo;aimerais qu&rsquo;on puisse accéder au site web directement depuis l&rsquo;adresse (dans l&rsquo;exemple mon-rpi.dnsdynamic.com) et pas depuis un sous dossier /public.<br />
+J&rsquo;ai cherché pas mal de temps mais je ne trouve pas de solution,<br />
+Je ne suis pas un expert de Linux ;).</p>
+<p>merci !</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Par : xavier</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comment-391</link>
+		<dc:creator><![CDATA[xavier]]></dc:creator>
+		<pubDate>Wed, 17 Jul 2013 13:23:52 +0000</pubDate>
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286#comment-391</guid>
+		<description><![CDATA[Bonjour Clément,
+
+Merci de tes explications mais de mon côté je bloque prêt du but ..
+Je vois bien &quot;admin&quot; en me connectant via samba, mais pas la racine PI, et pas non plus \storage\&quot;mon disque&quot;. Quand je vérifie via putty, j&#039;ai bien 
+admin@RaspberryEthserv /storage/BackUp $ ..
+D&#039;un autre côté je ne sais pas non plus modofier le fichier fstab.conf .. peut être mon problème vient il de là ?!?  Merci de ton aide]]></description>
+		<content:encoded><![CDATA[<p>Bonjour Clément,</p>
+<p>Merci de tes explications mais de mon côté je bloque prêt du but ..<br />
+Je vois bien &laquo;&nbsp;admin&nbsp;&raquo; en me connectant via samba, mais pas la racine PI, et pas non plus \storage\&nbsp;&raquo;mon disque&nbsp;&raquo;. Quand je vérifie via putty, j&rsquo;ai bien<br />
+admin@RaspberryEthserv /storage/BackUp $ ..<br />
+D&rsquo;un autre côté je ne sais pas non plus modofier le fichier fstab.conf .. peut être mon problème vient il de là ?!?  Merci de ton aide</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Par : Clément</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comment-13</link>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+		<pubDate>Tue, 05 Feb 2013 16:55:15 +0000</pubDate>
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286#comment-13</guid>
+		<description><![CDATA[Tout à fait ! Il suffit d&#039;installer et de configurer un serveur &lt;strong&gt;Samba&lt;/strong&gt; sur votre Raspberry Pi comme expliqué dans ce billet (si nécessaire, je ferais un autre billet plus détaillé là-dessus). Ensuite, sur n&#039;importe quel ordinateur sous Windows connecté au même réseau, ouvrez un explorateur et rendez vous dans la partie Réseau, vous devriez voir le petit nom de votre Raspberry Pi apparaître.]]></description>
+		<content:encoded><![CDATA[<p>Tout à fait ! Il suffit d&rsquo;installer et de configurer un serveur <strong>Samba</strong> sur votre Raspberry Pi comme expliqué dans ce billet (si nécessaire, je ferais un autre billet plus détaillé là-dessus). Ensuite, sur n&rsquo;importe quel ordinateur sous Windows connecté au même réseau, ouvrez un explorateur et rendez vous dans la partie Réseau, vous devriez voir le petit nom de votre Raspberry Pi apparaître.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Par : Bencici</title>
+		<link>http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comment-12</link>
+		<dc:creator><![CDATA[Bencici]]></dc:creator>
+		<pubDate>Tue, 05 Feb 2013 16:30:45 +0000</pubDate>
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=286#comment-12</guid>
+		<description><![CDATA[Merci, donc avec sa je peux continuer à utiliser mon DD externe sur Windows ?]]></description>
+		<content:encoded><![CDATA[<p>Merci, donc avec sa je peux continuer à utiliser mon DD externe sur Windows ?</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; outils</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/outils/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Convertir une série d&#8217;images en pdf</title>
+		<link>http://clementgrimal.fr/blog/2013/01/22/conversion-jpg-png-pdf/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/22/conversion-jpg-png-pdf/#comments</comments>
+		<pubDate>Tue, 22 Jan 2013 20:00:43 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[outils]]></category>
+		<category><![CDATA[tutoriel]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=47</guid>
+		<description><![CDATA[Si comme moi, vous scannez à tout va les documents importants (ou pas) dont vous pensez avoir besoin plus tard, vous avez surement rencontré le problème de la configuration du scanner utilisé&#8230; Scanné au format jpg ? Au format pdf ? pdf bien sûr ! Mais surtout, si votre document fait plusieurs pages, vous ne [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Si comme moi, vous scannez à tout va les documents importants (ou pas) dont vous pensez avoir besoin plus tard, vous avez surement rencontré le problème de la configuration du scanner utilisé&#8230;</p>
+<p>Scanné au format jpg ? Au format pdf ? pdf bien sûr ! Mais surtout, si votre document fait plusieurs pages, vous ne voulez qu&rsquo;un seul fichier pdf à la fin.</p>
+<p>Si vous êtes sous Ubuntu (ou une autre distribution similaire de votre préférence), il suffit d&rsquo;installer ImageMagick (<code>sudo apt-get install imagemagick</code> par exemple) !</p>
+<p>Une fois installé, cet utilitaire très pratique vous permet de faire tout ça, en une seule commande très simple. Si vos images sont dans le dossier <code>/mon/dossier/</code>, il vous suffit de faire :</p>
+<pre class="brush:bash">cd /mon/dossier/
+convert *.jpg fichier_multi_pages.pdf</pre>
+<p>Si en plus, les images étaient scannées en trop bonne qualité et que vous ne souhaitez pas gâcher votre espace disque, vous pouvez ajouter un paramètre à la commande pour réduire leur taille :</p>
+<pre class="brush:bash">convert *.jpg -resize 50% fichier_multi_pages.pdf</pre>
+
+<p>Bref, dès lors qu&rsquo;il s&rsquo;agit de manipuler des images, <strong>ImageMagick</strong> se révèle fort utile, et ce billet ne présente qu&rsquo;un exemple d&rsquo;utilisation parmi bien d&rsquo;autres !</p>
+<div><p class="beforelist"><strong>Sources :</strong></p>
+<ul>
+<li><a href="http://www.aide-ubuntu.com/Convertir-une-serie-d-images-JPEG,33">http://www.aide-ubuntu.com/Convertir-une-serie-d-images-JPEG,33</a></li>
+<li><a href="http://www.imagemagick.org/script/convert.php">Le manuel de la commande <code>convert</code></a></li>
+</ul>
+</div>
+]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/22/conversion-jpg-png-pdf/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+		</item>
+	</channel>
+</rss>

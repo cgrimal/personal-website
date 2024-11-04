@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; mtp</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/mtp/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Comment connecter un smartphone sous Android 4.1 à Ubuntu ?</title>
+		<link>http://clementgrimal.fr/blog/2013/01/20/smartphone-android-ubuntu-mtp/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/20/smartphone-android-ubuntu-mtp/#comments</comments>
+		<pubDate>Sun, 20 Jan 2013 18:13:15 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[android]]></category>
+		<category><![CDATA[mtp]]></category>
+		<category><![CDATA[tutoriel]]></category>
+		<category><![CDATA[ubuntu]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=69</guid>
+		<description><![CDATA[Les téléphones sous Android 4.1 &#171;&#160;Jelly Beans&#160;&#187; (c&#8217;est même le cas depuis Android 3 apparemment) qui n&#8217;ont pas de carte mémoire SD, et donc une seule partition, comme par exemple le Google Samsung Galaxy Nexus (héhé), ne fonctionnent plus comme des clés usb lorsqu&#8217;on les relie à un ordinateur. En effet, ce système a été abandonné sur ces [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Les téléphones sous Android 4.1 <i>&laquo;&nbsp;Jelly Beans&nbsp;&raquo;</i> (c&rsquo;est même le cas depuis Android 3 apparemment)<i> </i>qui n&rsquo;ont pas de carte mémoire SD, et donc une seule partition, comme par exemple le Google Samsung Galaxy Nexus (héhé), ne fonctionnent plus comme des clés usb lorsqu&rsquo;on les relie à un ordinateur.</p>
+<p>En effet, ce système a été abandonné sur ces appareils, et Google a fait le choix du protocole MTP <i>&laquo;&nbsp;Media Transfer Protocol&nbsp;&raquo;</i> qui fonctionne en natif sous Windows (et aussi sous MacOS bien que je n&rsquo;ai pas vérifié). En revanche, sous Ubuntu, c&rsquo;est une toute autre histoire !</p>
+<p>Comme je n&rsquo;ai pas trouvé de tutoriel en français, je me propose de traduire ceux que j&rsquo;ai utilisé pour accéder à la mémoire de mon téléphone sous Ubuntu (cela doit <i> a priori</i> également fonctionner sous d&rsquo;autres distributions Unix).</p>
+<p>Dans les étapes suivantes, je suppose que vous avez <code>vim</code> d&rsquo;installé, si ce n&rsquo;est pas le cas, votre éditeur de texte préféré fera l&rsquo;affaire.</p>
+<ol>
+<li>Installez les paquets <code>mtp-tools</code> et <code>mtpfs</code> :
+<pre class="brush:bash">sudo apt-get install mtp-tools mtpfs</pre>
+</li>
+<li style="margin-top: 20px;">Connectez votre téléphone avec le câble usb.</li>
+<li style="margin-top: 20px;">Trouvez maintenant le <code>idVendor</code> et le <code>idProduct</code> de votre appareil :
+<pre class="brush:bash">mtp-detect | grep idVendor
+mtp-detect | grep idProduct</pre>
+</li>
+<li style="margin-top: 20px;">Créez (ou éditez) maintenant le fichier permettant d&rsquo;ajouter une règle pour que Ubuntu puisse accéder à votre téléphone :
+<pre class="brush:bash">sudo vim /etc/udev/rules.d/51-android.rules</pre>
+<p>et ajoutez-y la ligne suivante :</p>
+<pre class="brush:plain">SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="6860", MODE="0666"</pre>
+<p>en remplaçant <code>{idVendor}</code> et <code>{idProduct}</code> par les valeurs trouvées à l&rsquo;étape précédente.</p>
+</li>
+<li style="margin-top: 20px;">Pour appliquer la règle, il faut relancer <code><code>udev<code> :</code></code></code>
+<pre class="brush:bash">sudo service udev restart</pre>
+</li>
+<li style="margin-top: 20px;">Créez maintenant le répertoire dans lequel sera monter votre téléphone :
+<pre class="brush:bash">sudo mkdir /media/nexus
+sudo chmod a+rwx /media/nexus</pre>
+</li>
+<li style="margin-top: 20px;">Ajoutez votre nom d&rsquo;utilisateur au groupe <code>fuse</code> :
+<pre class="brush:bash">sudo adduser {utilisateur} fuse</pre>
+<p>en remplaçant <code>{utilisateur}</code> par votre nom d&rsquo;utilisateur.</p>
+</li>
+<li style="margin-top: 20px;">Enlever le <code>#</code> de la dernière ligne du fichier <code>/etc/fuse.conf</code> (s&rsquo;il est présent) :
+<pre class="brush:bash">sudo vim /etc/fuse.conf</pre>
+</li>
+<li style="margin-top: 20px;">Créez les deux alias suivants pour vous permettre de facilement connecter et déconnecter votre téléphone :
+<pre class="brush:bash">echo "alias android-connect=\"mtpfs -o allow_other /media/nexus\"" &gt;&gt; ~/.bashrc
+echo "alias android-disconnect=\"fusermount -u /media/nexus\"" &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+</li>
+<li style="margin-top: 20px;">Redémarrez votre ordinateur.</li>
+<li style="margin-top: 20px;">Vérifiez que votre téléphone est bien reliez en usb à votre ordinateur, et connectez-le avec la commande :
+<pre class="brush:bash">android-connect</pre>
+</li>
+<li style="margin-top: 20px;">Vous pouvez maintenant accéder à la mémoire interne de votre téléphone dans le répertoire <code>/media/nexus/</code></li>
+<li style="margin-top: 20px;">Pour le déconnecter :
+<pre class="brush:bash">android-disconnect</pre>
+</li>
+</ol>
+<p>Voilà c&rsquo;est terminé ! C&rsquo;était laborieux mais maintenant, il vous suffit d&rsquo;utiliser ces deux commandes pour facilement accéder à la mémoire de votre beau téléphone. En espérant tout de même qu&rsquo;une solution plus simple soit disponible dans les futures versions d&rsquo;Ubuntu&#8230;</p>
+<div>
+<p class="beforelist"><strong>Sources :</strong></p>
+<ul>
+<li><a href="http://www.omgubuntu.co.uk/2011/12/how-to-connect-your-android-ice-cream-sandwich-phone-to-ubuntu-for-file-access">http://www.omgubuntu.co.uk/2011/12/how-to-connect-your-android-ice-cream-sandwich-phone-to-ubuntu-for-file-access</a></li>
+<li><a href="http://shkspr.mobi/blog/index.php/2012/01/connecting-samsung-ics-to-ubuntu-using-mtp/">http://shkspr.mobi/blog/index.php/2012/01/connecting-samsung-ics-to-ubuntu-using-mtp/</a></li>
+</ul>
+</div>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/20/smartphone-android-ubuntu-mtp/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/03/21/projet-sur-les-epaules-de-darwin/?replytocom=674 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo; | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="darwin,git,python,web,de,les,vous,pour,je,clement,grimal,blog,raspeberry,pi,raspberrypi" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;" />
+	<meta property="og:url" content="index.html" />
+	<meta property="article:published_time" content="2013-03-21" />
+	<meta property="article:modified_time" content="2013-12-13" />
+	<meta property="article:author" content="../../../../author/admin/index.html" />
+	<meta property="article:section" content="Non classé" />
+	<meta property="article:tag" content="darwin" />
+	<meta property="article:tag" content="git" />
+	<meta property="article:tag" content="python" />
+	<meta property="article:tag" content="web" />
+	<meta property="og:site_name" content="Les notes de Clément" />
+	<meta name="twitter:card" content="summary" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo; Flux des commentaires" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-includes/js/comment-reply.min4587.js?ver=3.8.41'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Sécuriser son accès SSH' href='../../../02/12/ssh-securite/index.html' />
+<link rel='next' title='Nouvel hébergement !' href='../../../12/24/nouvel-hebergement/index.html' />
+<meta name="generator" content="WordPress 3.8.41" />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../../../index778b.html?p=477' />
+<meta name='robots' content='noindex,follow' />
+<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="single single-post postid-477 single-format-standard custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+	
+		
+		<div class="post-477 post type-post status-publish format-standard hentry category-non-classe tag-darwin tag-git tag-python tag-web single-page" id="post-477">
+		
+			<h2 class="entry-title">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</h2>
+
+			<p class="entry-meta-single">
+				Le 21 mars 2013 // Mots-clés : <a href="../../../../tag/darwin/index.html" rel="tag">darwin</a>, <a href="../../../../tag/git/index.html" rel="tag">git</a>, <a href="../../../../tag/python/index.html" rel="tag">python</a>, <a href="../../../../tag/web/index.html" rel="tag">web</a>			</p>
+
+<!--
+<p class="entry-meta-single">Le 21 mars 2013</p>
+-->
+			<div class="entry-content">
+				
+				<p>J&rsquo;ai déjà parlé de cette superbe émission dans un précédent article, <a title="Sur les épaules de Darwin" href="../../../01/17/sur-les-epaules-de-darwin/index.html">Sur les épaules de Darwin, de Jean-Claude Ameisen</a>, et je ne le referai donc pas ici. J&rsquo;avais également parlé de la page que j&rsquo;ai créé pour suivre cette émission, et surtout pourvoir ré-écouter ou télécharger des épisodes : <a title="http://www.clementgrimal.fr/darwin/" href="http://www.clementgrimal.fr/darwin/" target="_blank">http://www.clementgrimal.fr/darwin/</a>. Mais surtout, j&rsquo;avais promis de partager la recette qui se cache derrière cette page !</p>
+<p>Pour créer cette page, j&rsquo;utilise plusieurs scripts écrits en Python, qui utilisent eux-mêmes un fichier base de données pour stocker toutes les informations sur les épisodes (titre, date de diffusion, &#8230;). Afin de facilement les partager avec tout le monde, j&rsquo;ai donc créé un projet sur le site GitHub : <a href="https://github.com/cgrimal/darwin">https://github.com/cgrimal/darwin</a>. Maintenant, rien ne vous empêche de récupérer intégralement ces scripts, pour vous même créer une page web autour de l&rsquo;émission (merci de me prévenir quand même, ça me fera plaisir !), et même de télécharger les épisodes en mp3.</p>
+<p>Non seulement je pense que c&rsquo;est une bonne chose de partager ce genre de projet car je ne compte pas faire de l&rsquo;argent avec, mais en plus, cela m&rsquo;a permis de m&rsquo;initier à git, qui est un système de gestion de version bien pratique !</p>
+<h3>Comment télécharger les fichiers mp3 de l&rsquo;émission ?</h3>
+<p>En fait, je pense que beaucoup de gens se posent la question, et si vous êtes dans ce cas, je pense modestement pouvoir vous aider. Cependant, pour mieux répondre, il me faut vous poser la question suivante : êtes-vous un informaticien/geek/python-gourou ?</p>
+<ul>
+<li><strong>Si oui</strong>, vous n&rsquo;avez surement pas besoin de moi, mais si vous ne voulez pas ré-inventer la roue, servez-vous de mon code : darwin_create_database.py pour récupérer les informations (dont les liens directs vers les fichiers mp3), puis darwin_download.py pour télécharger les fichiers.</li>
+<li><strong>Sinon</strong>, vous pouvez cliquer sur les liens &laquo;&nbsp;Télécharger&nbsp;&raquo; pour télécharger les émissions une par une, ou alors me demander dans <a href="#reply-title">les commentaires</a> ou directement par mail (<a title="Envoyez-moi un mail !" href="mailto:clement.grimal@gmail.com" target="_blank">clement.grimal@gmail.com</a>) de l&rsquo;aide !</li>
+</ul>				
+			</div><!-- close .entry-content -->
+			
+			            
+			<!--				
+<div class="entry-meta-single">
+					Mots-clés : <a href="http://clementgrimal.fr/blog/tag/darwin/" rel="tag">darwin</a>, <a href="http://clementgrimal.fr/blog/tag/git/" rel="tag">git</a>, <a href="http://clementgrimal.fr/blog/tag/python/" rel="tag">python</a>, <a href="http://clementgrimal.fr/blog/tag/web/" rel="tag">web</a>				</div>--><!-- close .entry-meta-single -->
+
+					
+		</div><!-- close #post -->
+		
+		<div id="single">
+		
+			<div class="single-block">
+			
+				
+		
+			
+		<h3 id="comments">9 commentaires. <!--'Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;'--></h3>
+		<ol class="commentlist">
+							   <li class="comment even thread-even depth-1" id="li-comment-168">
+		 <div id="comment-168">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Buffet</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-168">18 avril 2013 à 13 h 24 min</a></div>
+	
+		  <p>Génial ! Merci beaucoup d&rsquo;avoir monté ce projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;&#8230; J&rsquo;ai découvert cette émission il y a seulement quelques mois et je la trouve absolument fantastique.Je l&rsquo;écoute en podcast sur mon Ipad mais n&rsquo;avais pas de solution pour télécharger en MP3 les anciennes émissions. Il ne m&rsquo;en restait plus qu&rsquo;une à écouter quand je me suis mise à chercher une solution sur le web et je suis alors tombée sur votre site. Ouf&#8230;quelle joie de pouvoir continuer à écouter la voix envoutante de Jean-Chaude Ameisen. Quand on aime la science, on ne peut qu&rsquo;adorer son émission ! Encore merci !</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index749e.html?replytocom=168#respond' onclick='return addComment.moveForm("comment-168", "168", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-300">
+		 <div id="comment-300">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://www.gasparedicaro.com/' rel='external nofollow' class='url'>Di Caro</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-300">1 juin 2013 à 17 h 26 min</a></div>
+	
+		  <p>Bravo Clement</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexb3d4.html?replytocom=300#respond' onclick='return addComment.moveForm("comment-300", "300", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-even depth-1" id="li-comment-531">
+		 <div id="comment-531">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">PASCAL</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-531">11 août 2013 à 13 h 16 min</a></div>
+	
+		  <p>Bonjour<br />
+J&rsquo;essaie de télécharger toutes les émissions sur le rêve .<br />
+Sur ma tablette, quand je clique sur &laquo;&nbsp;télécharger&nbsp;&raquo;, ça se télécharge rapidement dans un dossier.<br />
+Sur mon ordi, quand je fais la même chose, je tombe sur un lecteur : je peux écouter l&rsquo;émission mais pas l&rsquo;enregistrer.<br />
+Quand je clique à droite, je n&rsquo;ai pas &laquo;&nbsp;enregistrer la cible sous &laquo;&nbsp;.<br />
+Pouvez-vous m&rsquo;aider?<br />
+Merci</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index965c.html?replytocom=531#respond' onclick='return addComment.moveForm("comment-531", "531", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	<ul class="children">
+	   <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-583">
+		 <div id="comment-583">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Clément</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-583">20 août 2013 à 21 h 02 min</a></div>
+	
+		  <p>Bonjour Pascal, quel navigateur utilisez-vous sur votre ordinateur ?</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexb1be.html?replytocom=583#respond' onclick='return addComment.moveForm("comment-583", "583", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-674">
+		 <div id="comment-674">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='http://orthopedie.wordpress.com/' rel='external nofollow' class='url'>Yves Seghin</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-674">11 septembre 2013 à 13 h 49 min</a></div>
+	
+		  <p>Quelle belle initiative. Quel beau partage ! Je suis connaisseur d&rsquo;un petit quelque chose et j&rsquo;ai commencé aussi un blog de partage :  <a href="http://orthopedie.wordpress.com/" rel="nofollow">http://orthopedie.wordpress.com/</a><br />
+Ma femme est morte d&rsquo;un cancer très lent (8 ans) qui a grignoté progressivement ce fameux propre de l&rsquo;homme que Damasio décrit si bien et qu&rsquo;Ameisen creuse encore et encore. À l&rsquo;heure où certains vendraient leur âme pour être reconnu comme philosophe, je pense qu&rsquo;Ameisen en est un au sens pré socratique, mais qu&rsquo;il s&rsquo;en défendrait sûrement.<br />
+Merci, merci. Yves</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexc46c.html?replytocom=674#respond' onclick='return addComment.moveForm("comment-674", "674", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-682">
+		 <div id="comment-682">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Jerome</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-682">13 septembre 2013 à 20 h 11 min</a></div>
+	
+		  <p>Bravo et merci.<br />
+C&rsquo;est génial.</p>
+<p>Faut-il télécharger toutes les émissions une par une, ou peut-on tout télécharger d&rsquo;un coup ? </p>
+<p>Merci d&rsquo;avance pour votre réponse<br />
+Jerome</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index0e4b.html?replytocom=682#respond' onclick='return addComment.moveForm("comment-682", "682", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-1184">
+		 <div id="comment-1184">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">Lipon</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-1184">26 novembre 2013 à 10 h 35 min</a></div>
+	
+		  <p>Bravo, merci pour ton travail précieux</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index9df2.html?replytocom=1184#respond' onclick='return addComment.moveForm("comment-1184", "1184", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-30748">
+		 <div id="comment-30748">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn">hanssens</cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-30748">2 février 2015 à 10 h 17 min</a></div>
+	
+		  <p>merci beaucoup</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='index41bc.html?replytocom=30748#respond' onclick='return addComment.moveForm("comment-30748", "30748", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-148375">
+		 <div id="comment-148375">
+		  <div class="comment-author vcard">
+			 	
+			 <cite class="fn"><a href='https://lemuelbigg.blogspot.com/' rel='external nofollow' class='url'>76Dee</a></cite> <span class="says">a dit :</span>		  </div>
+		  	
+		  <div class="comment-meta commentmetadata"><a href="index.html#comment-148375">8 août 2017 à 19 h 40 min</a></div>
+	
+		  <p>Hello blogger, i must say you have high quality content here.<br />
+Your page should go viral. You need initial traffic only. How to get it?<br />
+Search for; Mertiso&rsquo;s tips go viral</p>
+	
+		  <div class="reply">
+			 <a class='comment-reply-link' href='indexd5d8.html?replytocom=148375#respond' onclick='return addComment.moveForm("comment-148375", "148375", "respond", "477")'>Répondre</a>		  </div>
+		 </div>
+	</li><!-- #comment-## -->
+		</ol>
+	
+		
+		
+		
+
+
+		
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Répondre à <a href="#comment-674">Yves Seghin</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond">Annuler le commentaire</a></small></h3>
+									<form action="http://clementgrimal.fr/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" /></p>
+<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" /></p>
+												<p class="comment-form-comment"><label for="comment">Commentaire</label><textarea id="comment" name="comment" rows="8"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Valider le commentaire" />
+							<input type='hidden' name='comment_post_ID' value='477' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='674' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="47ac0f3373" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="145"/></p>					</form>
+							</div><!-- #respond -->
+			
+			
+			</div><!-- close .single-block -->
+			
+			<div class="nav">
+			
+				<div class="nav-left">&laquo; <a href="../../../12/24/nouvel-hebergement/index.html" rel="next">Nouvel hébergement !</a></div>
+				<div class="nav-right"><a href="../../../02/12/ssh-securite/index.html" rel="prev">Sécuriser son accès SSH</a> &raquo;</div>
+			
+			</div><!-- close .nav -->
+		
+		</div><!-- close #single -->
+		
+	
+</div><!-- close #content -->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../../12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="../../../02/12/ssh-securite/index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="../../../02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../../02/05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../../../../tag/administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../../../../tag/android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../../../../tag/blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../../../../tag/cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../../../../tag/culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../../../../tag/darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../../../../tag/dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../../../../tag/geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../../../../tag/git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../../../../tag/hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../../../../tag/mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../../../../tag/musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../../../../tag/outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../../../../tag/partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../../../../tag/python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../../../../tag/radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='../../../../tag/raspberry-pi/index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../../../../tag/reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../../../../tag/science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../../../../tag/science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../../../../tag/securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='../../../../tag/tutoriel/index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../../../../tag/ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../../../../tag/unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../../../../tag/videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../../../../tag/web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../../12/index.html'>décembre 2013</a></li>
+	<li><a href='../../index.html'>mars 2013</a></li>
+	<li><a href='../../../02/index.html'>février 2013</a></li>
+	<li><a href='../../../01/index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="../../../02/12/ssh-securite/index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript' src='../../../../wp-content/plugins/akismet/_inc/form5b75.js?ver=3.0.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/2013/03/21/projet-sur-les-epaules-de-darwin/?replytocom=674 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:31:31 GMT -->
+</html>

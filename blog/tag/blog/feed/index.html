@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; blog</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/blog/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Nouvel hébergement !</title>
+		<link>http://clementgrimal.fr/blog/2013/12/24/nouvel-hebergement/</link>
+		<comments>http://clementgrimal.fr/blog/2013/12/24/nouvel-hebergement/#comments</comments>
+		<pubDate>Tue, 24 Dec 2013 00:29:30 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[hebergement]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=504</guid>
+		<description><![CDATA[Bon j&#8217;ai un peu laisser ce blog à l&#8217;abandon&#8230; Il y a eu plusieurs raisons : manque de temps, Raspberry Pi en panne. Je vais essayer de lui donner un second souffle ! Déjà, j&#8217;ai changé de formule d&#8217;hébergement, histoire d&#8217;avoir un peu plus de liberté et d&#8217;avoir mon serveur bac-à-sable à moi. Donc je [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Bon j&rsquo;ai un peu laisser ce blog à l&rsquo;abandon&#8230; Il y a eu plusieurs raisons : manque de temps, Raspberry Pi en panne. Je vais essayer de lui donner un second souffle !</p>
+<p>Déjà, j&rsquo;ai changé de formule d&rsquo;hébergement, histoire d&rsquo;avoir un peu plus de liberté et d&rsquo;avoir mon serveur bac-à-sable à moi. Donc je viens juste de passer d&rsquo;un hébergement mutualisé avec nom de domaine géré, à un modeste serveur de la gamme <a title="Kimsufi.com" href="http://www.kimsufi.com/fr/" target="_blank">Kimsufi d&rsquo;OVH</a>, et mon domaine <a title="Clément Grimal" href="http://clementgrimal.fr" target="_blank">clementgrimal.fr</a> est maintenant géré par <a title="Gandi.net" href="https://www.gandi.net/" target="_blank">Gandi</a>. Je pense que ce sera plus confortable d&rsquo;avoir les deux séparés comme ça.</p>
+<p>En faisant cette migration, je me suis rendu compte que le service que j&rsquo;avais l&rsquo;habitude de payer pour l&rsquo;hébergement mutualisé était plus important que je ne l&rsquo;imaginé, mais que je pouvais désormais m&rsquo;en passer, car j&rsquo;ai appris à gérer un serveur pour le travail : Nginx, php-fpm, MySQL, etc. J&rsquo;ai repris mon article qui expliquait comment protéger son Raspberry Pi (<a title="Sécuriser son accès SSH" href="http://clementgrimal.fr/blog/2013/02/12/ssh-securite/">Sécuriser son accès SSH</a>), en particulier pour installer Fail2Ban. Bref, pas mal de configuration, mais rien d&rsquo;insurmontable , et au final pas mal de possibilité pour m&rsquo;amuser avec des trucs inaccessibles en hébergement mutualisé : serveur Node.js, cron de tâches (comme la mise à jour de la page sur Darwin <a title="Sur les épaules de Darwin" href="http://clement.grimal.de/darwin/" target="_blank">clement.grimal.de/darwin</a>), etc.</p>
+<p>D&rsquo;ailleurs, je voudrais juste profiter de cette article pour expliquer que j&rsquo;ai dû transférer ce blog, et que je n&rsquo;ai pas utilisé les fonctions export/import de WordPress, car j&rsquo;ai fais le changement de DNS un peu vite, et que je n&rsquo;avais donc plus accès à mon blog ! J&rsquo;ai donc fait une copie de tous les fichiers, et un export de la base de données. J&rsquo;ai donc ensuite copier les fichiers dans mon répertoire web, et importer la base de données. J&rsquo;ai donc également configuré un utilisateur MySQL dédié au blog (accès restreint à la base du blog) et modifier le fichier wp-config.php en conséquence, pour la connexion à la base de données. Finalement, mes pages d&rsquo;articles ne fonctionnait pas à cause de la ré-écriture d&rsquo;url, il a fallut que je modifie un peu ma vhost en ajoutant le bloc&nbsp;:</p>
+<pre class="brush:other">location /blog/ {
+    try_files $uri $uri/ /blog/index.php?$args;
+}</pre>
+<p>Finalement, si on veut que WordPress puisse faire les mise à jour facilement, on peut le mettre en mode direct en ajoutant dans le fichier wp-config.php les lignes suivantes&nbsp;:</p>
+<pre class="brush:php">define( 'FS_METHOD', 'direct' );
+define( 'FS_CHMOD_DIR', 0777 );
+define( 'FS_CHMOD_FILE', 0777 );</pre>
+<p>Voilà, histoire de finir sur quelque chose de concret : je vais enfin pouvoir héberger les épisodes de l&rsquo;émission Sur les épaules de Darwin sur mon serveur !</p>
+<h2>Sources</h2>
+<ul>
+<li>Guide général sur l&rsquo;installation d&rsquo;un blog WordPress avec Nginx&nbsp;: <a href="https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04" target="_blank">https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</a></li>
+<li>Pour mon problème de ré-écriture des urls pour les articles&nbsp;: <a href="http://nginxlibrary.com/wordpress-permalinks/" target="_blank">http://nginxlibrary.com/wordpress-permalinks/</a></li>
+<li>Pour que WordPress puisse faire les mise à jour facilement (la réponse est dans les commentaires je crois)&nbsp;: <a href="http://vps2.me/avoid-wordpress-asking-ftp-credentials-when-install-upgrade-plugins/" target="_blank">http://vps2.me/avoid-wordpress-asking-ftp-credentials-when-install-upgrade-plugins/</a></li>
+</ul>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/12/24/nouvel-hebergement/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Bonjour tout le monde&#160;!</title>
+		<link>http://clementgrimal.fr/blog/2013/01/16/bonjour-tout-le-monde/</link>
+		<comments>http://clementgrimal.fr/blog/2013/01/16/bonjour-tout-le-monde/#comments</comments>
+		<pubDate>Wed, 16 Jan 2013 19:33:04 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[blog]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=1</guid>
+		<description><![CDATA[C&#8217;est parti pour le lancement de mon énième blog ! Mais attention cette fois ci, j&#8217;y crois ! Si vous voulez en savoir un peu plus sur moi et surtout sur ce blog, direction la page À propos. En résumé, je compte me servir de ce blog pour partager des solutions à des problèmes que j&#8217;ai rencontré [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>
+C&rsquo;est parti pour le lancement de mon énième blog ! Mais attention cette fois ci, j&rsquo;y crois !
+</p>
+<p>
+Si vous voulez en savoir un peu plus sur moi et surtout sur ce blog, direction la page <a title="À propos" href="http://clementgrimal.fr/blog/a-propos/">À propos</a>. En résumé, je compte me servir de ce blog pour partager des solutions à des problèmes que j&rsquo;ai rencontré et qui risque fort de concerner le Javascript (et son compagnon jQuery) et autres joyeux langages. Il y a aura probablement d&rsquo;autres sujets geek car je viens de recevoir mon Raspberry Pi !!! Et puis de temps, je vous parlerai d&rsquo;un film ou d&rsquo;un livre qui m&rsquo;a régalé.
+</p>
+<p>
+Pour la fréquence de publication, je n&rsquo;ai aucun idée de ce que cela pourra donner et il faudra probablement quelques temps pour que cela se stabilise !
+</p>
+<p>
+Finalement, n&rsquo;hésitez pas à me retrouver sur Twitter&amp;Cie : <a title="Ailleurs sur le web" href="http://clementgrimal.fr/blog/ailleurs-sur-le-web/">Ailleurs sur le web</a>.</p>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/01/16/bonjour-tout-le-monde/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+<!-- Mirrored from clementgrimal.fr/blog/tag/raspberry-pi/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:30:38 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Raspberry-pi | Les notes de Clément</title>
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/tweaker4/style.css" />
+<!--[if IE]>
+	<link rel="stylesheet" href="http://clementgrimal.fr/blog/wp-content/themes/tweaker4/ie.css" type="text/css" media="screen, projection" />
+<![endif]-->
+
+<!-- SEO Ultimate (http://www.seodesignsolutions.com/wordpress-seo/) -->
+	<meta name="keywords" content="clement,grimal,blog,raspeberry,pi,raspberrypi" />
+<!-- /SEO Ultimate -->
+
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux des commentaires" href="../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Les notes de Clément &raquo; Flux du mot-clé raspberry-pi" href="feed/index.html" />
+<link rel='stylesheet' id='tweaker4-theme-options-css'  href='../../wp-content/themes/tweaker4/options/options4587.css?ver=3.8.41' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='../../wp-content/plugins/table-of-contents-plus/screen6149.css?ver=1404' type='text/css' media='all' />
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery3e5a.js?ver=1.10.2'></script>
+<script type='text/javascript' src='../../wp-includes/js/jquery/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='../../wp-content/plugins/easy-spoiler/js/easy-spoiler62ea.js?ver=1.2'></script>
+<script type='text/javascript' src='../../wp-content/plugins/google-analyticator/external-tracking.minb7f2.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.8.41" />
+<link type="text/css" rel="stylesheet" href="../../wp-content/plugins/easy-spoiler/easy-spoiler.css" />
+<script type='text/javascript'>
+var g_hanaFlash = false;
+try {
+  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+  if(fo) g_hanaFlash = true;
+}catch(e){
+  if(navigator.mimeTypes ['application/x-shockwave-flash'] != undefined) g_hanaFlash = true;
+}
+function hanaTrackEvents(arg1,arg2,arg3,arg4) { if ( typeof( pageTracker ) !=='undefined') { pageTracker._trackEvent(arg1, arg2, arg3, arg4);} else if ( typeof(_gaq) !=='undefined'){  _gaq.push(['_trackEvent', arg1, arg2, arg3, arg4]);}}
+function hana_check_mobile_device(){ if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)  || navigator.userAgent.match(/Android/i)) { return true; }else return false; }
+</script>
+	<link type="text/css" rel="stylesheet" href="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/styles/shCoreRDark.css" />
+    <style type="text/css">div#toc_container {width: 225px;}</style>	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css">
+				#header {
+					background: url();
+				}
+			</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f4f4f4; }
+</style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-37444414-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setVar', 'exclude_me']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="archive tag tag-raspberry-pi tag-6 custom-background">
+	
+	<div id="wrapper"><!-- closed in footer.php -->
+		
+		<div id="skip">
+			<a href="#content" title="">Skip to Content</a>
+		</div><!-- close #skip-->
+		
+		<div id="title-container">
+			
+			<div id="title">
+				<h1 class="site-title"><a href="../../index.html" title="">Les notes de Clément</a></h1>
+				<span class="site-description">Spécialiste de rien // Partageur de tout</span>
+			</div><!-- close #title-->
+
+			<div class="social_buttons">
+	<a href="http://fr-fr.facebook.com/clement.grimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/facebook2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/facebook.png';" alt="facebook" src="../../wp-content/uploads/2013/01/facebook.png" width="37" height="37" /></a>
+	<a href="http://twitter.com/ClementGrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/twitter2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/twitter.png';" alt="facebook" src="../../wp-content/uploads/2013/01/twitter.png" width="37" height="37" /></a>
+	<a href="../../feed/index.html">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/rss2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/rss.png';" alt="facebook" src="../../wp-content/uploads/2013/01/rss.png" width="37" height="37" /></a>
+	<a href="http://fr.linkedin.com/in/clementgrimal">
+		<img class="alignnone size-full" style="display: inline" onmouseover="this.src='../../wp-content/uploads/2013/01/linkedin2.png';" onmouseout="this.src='../../wp-content/uploads/2013/01/linkedin.png';" alt="facebook" src="../../wp-content/uploads/2013/01/linkedin.png" width="37" height="37" /></a>
+</div>
+			<img class="avatar" src="../../wp-content/uploads/2013/01/me-hflip.jpg" />
+
+			
+			
+			
+		</div><!-- close #title-container-->
+		
+		<div id="header">
+		
+			
+		
+		</div><!-- close #header-->
+		
+		<div id="access">
+			
+			<ul><li><a href="../../index.html" title="Aller à l'accueil" rel="nofollow">Accueil</a></li><li class="page_item page-item-7"><a href="../../a-propos/index.html">&Agrave; propos</a></li>
+<li class="page_item page-item-39"><a href="../../ailleurs-sur-le-web/index.html">Ailleurs sur le web</a></li>
+<li class="page_item page-item-329"><a href="../../raspberry-pi/index.html">Raspberry Pi</a></li>
+</ul>			
+		</div><!-- close #access-->
+		
+		<div id="container"><!-- closed in sidebar.php -->
+<div id="content">
+
+	    
+	                        <div class="archive-results"><span>Billets avec le mot-clé <strong>raspberry-pi</strong></span></div>
+                
+        	
+	<div class="post-355 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-raspberry-pi tag-securite tag-unix loop" id="post-355">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/02/12/ssh-securite/index.html" rel="bookmark" title="Permalink to Sécuriser son accès SSH">Sécuriser son accès SSH</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 12 février 2013 // Mots-clés : <a href="../administration/index.html" rel="tag">administration</a>, <a href="index.html" rel="tag">raspberry-pi</a>, <a href="../securite/index.html" rel="tag">sécurité</a>, <a href="../unix/index.html" rel="tag">unix</a><br />
+<a href="../../2013/02/12/ssh-securite/index.html#comments">12 commentaires.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/02/12/ssh-securite/" rel="bookmark" title="Permalink to Sécuriser son accès SSH">12 février 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p style="clear: both;" >Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&rsquo;y connecter un écran, une souris et un écran, il est très commode de s&rsquo;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&rsquo;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, le connecter à son réseau avec un câble Ethernet, et depuis son ordinateur personnel (connecté au même réseau), faire :</p>
+<pre class="brush:bash">ssh pi@raspberry
+</pre>
+<p>Ensuite, si l&rsquo;on ajoute une règle NAT sur sa box pour rediriger le port 22 (celui du serveur SSH), on peut se connecter, en utilisant l&rsquo;adresse IP externe à la place de raspberry, à son Raspberry Pi de n&rsquo;importe où ! Et ce n&rsquo;importe quand ! C&rsquo;est super n&rsquo;est-ce pas ? Sauf qu&rsquo;il serait bon que n&rsquo;importe qui ne puisse pas le faire&#8230; On va donc voir quelles règles simples appliquées pour réduire les chances qu&rsquo;un petit malin se connecte sur votre réseau.</p>
+<h2>Pourquoi se protéger ?</h2>
+<p>Pour commencer, il faut dire qu&rsquo;il y a pénurie d&rsquo;adresse IP dans le monde, car leur nombre n&rsquo;est pas infinie et il y a de plus en plus d&rsquo;appareils reliés à internet ! C&rsquo;est pourquoi il existe une nouvelle norme IPv6, mais elle n&rsquo;est pas encore majoritairement utilisée. De plus, sur toute machine Linux, il y a pas défaut un compte <code>root</code>, qui est le super administrateur de la machine ! En bref, il peut tout faire, et c&rsquo;est par lui que vous passer dès lors que vous modifier votre système (voir la commande <code>sudo</code> par exemple, qui veut dire &laquo;&nbsp;super user do&nbsp;&raquo;). Donc en faisant :</p>
+<pre class="brush:bash">ssh root@adresse_aleatoire
+</pre>
+<p>J&rsquo;ai plutôt de bonne chance d&rsquo;essayer de me connecter à un ordinateur existant, ayant un serveur SSH utilisant le port 22, et ayant un utilisateur s&rsquo;appelant <code>root</code> ! Ensuite, rien de m&rsquo;empêche d&rsquo;essayer automatiquement des milliers de mots de passe, et avec un peu de chance, je le trouverais ! Il suffit d&rsquo;un programme qui teste méthodiquement toutes les chaînes de caractères, à raison d&rsquo;un essai par seconde, on peut tester 86400 mots de passe par jour ! Même si le nombre de combinaisons possibles est largement plus grand que ça, avec le temps nécessaire, un pirate pourra alors se connecter en root à votre Raspberry Pi !</p>
+<blockquote>
+<p>Mais il va faire quoi ? Ecouter ma musique ?!</p>
+</blockquote>
+<p>Il y a peu de chance&#8230; Son intérêt sera plutôt d&rsquo;installer un programme sur votre système, qu&rsquo;il pourra utiliser à sa guise plus tard s&rsquo;il désire lancer une attaque vers un site en particulier. Votre ordinateur est alors devenu ce que l&rsquo;on appelle un zombie, faisant partie d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Botnet#Usages_principaux_des_botnets_malveillants" target="_blank">BotNet</a> !</p>
+<h2>Quelques règles simples</h2>
+<p>Pour éviter ce scénario, on peut appliquer les quelques règles suivantes.</p>
+<h3>Changer le port</h3>
+<p>Rien de plus simple, éditer la configuration de votre serveur <code>ssh</code>, qui est décrite dans le fichier <code>/etc/ssh/sshd_config</code>, pour y faire figurer la ligne :</p>
+<pre class="brush:plain">Port 1337
+</pre>
+<p><strong>Attention : </strong>vous risquez d&rsquo;être déconnecté si vous faite l&rsquo;opération en étant justement connecté en SSH&#8230; Donc vous pouvez dans un premier temps utiliser 2 ports, le 22 et le 1337 en dupliquant cette ligne. Puis supprimer la ligne Port 22 ultérieurement. Vous pouvez remplacer 1337 par n&rsquo;importe quel numéro compris entre 1024 et 65537, en vérifiant qu&rsquo;il n&rsquo;est pas déjà utilisé par un autre programme.</p>
+<p>Il faut alors penser à changer la règle NAT dans votre box, pour rediriger le port 1337 (et plus le 22). Pour vous connecter maintenant, utilisez l&rsquo;option <code>-p</code> de la commande <code>ssh</code> :</p>
+<pre class="brush:bash">ssh -p 1337 pi@raspberry
+</pre>
+<h3>Désactiver la connexion root</h3>
+<p>Pour éviter à quiconque (vous y compris) de vous connecter directement en super utilisateur à votre Raspberry Pi . Il faut également éditer le fichier <code>/etc/ssh/sshd_config</code>, pour modifier la ligne:</p>
+<pre class="brush:plain">PermitRootLogin no
+</pre>
+<h3>Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</h3>
+<p>Pour éviter les attaques de type &laquo;&nbsp;brute force&nbsp;&raquo; qui consiste à essayer le plus possible de mots de passe, il est possible d&rsquo;installer un logiciel qui va se charger de bannir une adresse IP si un utilisateur échoue à se connecter plus d&rsquo;un certain nombre de fois. J&rsquo;utilise personnellement le logiciel <code>fail2ban</code> (il y en a d&rsquo;autres !), disponible dans les dépôts. Il y a pas grand chose à faire pour le configurer, on modifie le fichier <code>/etc/fail2ban/jail.conf</code>, les paramètres intéressants sont les suivants :</p>
+<pre class="brush:plain">ignoreip = 127.0.0.1/8
+bantime  = 600
+maxretry = 3
+
+destemail = votre_adresse@mail.com
+
+action = %(action_mwl)s
+</pre>
+<p><code>ignoreip</code> permet de ne pas se faire bannir depuis le Raspberry Pi lui même, <code>bantime</code> est le temps de bannissement en secondes (10 minutes par défaut donc), <code>maxretry</code> le nombre d&rsquo;échecs pour être bannit. Ensuite, <code>destmail</code> est l&rsquo;adresse email à laquelle seront envoyés les alertes, et surtout action sera l&rsquo;action en cas de bannissement. J&rsquo;aime bien <code>action_mwl</code> qui est celle qui envoie le plus d&rsquo;informations. Cette action (les autres aussi) peut  elle-même être personnalisée en éditant le fichier  <code>/etc/fail2ban/action.d/sendmail-whois-lines.conf</code></p>
+<p><strong>Remarque :</strong> pour que l&rsquo;envoi des mail se passe correctement, il vous faudra avoir correctement installé et configuré un MTA sur votre système, et j&rsquo;ai déjà expliqué comment faire dans ce billet : <a href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html#Envoi_de_mail">Installation d&rsquo;un serveur web (Envoi de mail)</a></p>
+<h3>Ne pas utiliser de mot de passe</h3>
+<p>Finalement, il est possible de ne pas utiliser de mot de passe pour se connecter, mais de passer par la génération de clé de cryptage. Cette méthode est très bien pour des installations critiques, mais je trouve que l&rsquo;on perd alors en flexibilité, et je ne l&rsquo;utilise personnellement pas&#8230; Je ne détaillerai donc pas ici comme procéder, mais il existe de nombreux tutoriels en ligne, par exemple : <a href="http://www.lea-linux.org/documentations/Trucs:Connection_SSH_sans_mot_de_passe">lea-linux.org : Connection_SSH_sans_mot_de_passe</a></p>
+<h3>Sources</h3>
+<ul>
+<li>Pénurie d&rsquo;adresses IP v4 annoncée : <a href="http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html">http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html</a></li>
+<li>Discussion sur comment sécuriser l&rsquo;accès SSH à son Raspberry : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122</a></li>
+<li>Changer le port SSH : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.itworld.com/nls_unixssh0500506</a></li>
+<li>Wiki sur l&rsquo;installation et la configuration de Fail2ban : <a href="https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban">https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban</a></li>
+</ul><!--
+				<p style="clear: both;" >Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&rsquo;y connecter un écran, une souris et un écran, il est très commode de s&rsquo;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&rsquo;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, le connecter à son réseau avec un câble Ethernet, et depuis son ordinateur personnel (connecté au même réseau), faire :</p>
+<pre class="brush:bash">ssh pi@raspberry
+</pre>
+<p>Ensuite, si l&rsquo;on ajoute une règle NAT sur sa box pour rediriger le port 22 (celui du serveur SSH), on peut se connecter, en utilisant l&rsquo;adresse IP externe à la place de raspberry, à son Raspberry Pi de n&rsquo;importe où ! Et ce n&rsquo;importe quand ! C&rsquo;est super n&rsquo;est-ce pas ? Sauf qu&rsquo;il serait bon que n&rsquo;importe qui ne puisse pas le faire&#8230; On va donc voir quelles règles simples appliquées pour réduire les chances qu&rsquo;un petit malin se connecte sur votre réseau.</p>
+<h2>Pourquoi se protéger ?</h2>
+<p>Pour commencer, il faut dire qu&rsquo;il y a pénurie d&rsquo;adresse IP dans le monde, car leur nombre n&rsquo;est pas infinie et il y a de plus en plus d&rsquo;appareils reliés à internet ! C&rsquo;est pourquoi il existe une nouvelle norme IPv6, mais elle n&rsquo;est pas encore majoritairement utilisée. De plus, sur toute machine Linux, il y a pas défaut un compte <code>root</code>, qui est le super administrateur de la machine ! En bref, il peut tout faire, et c&rsquo;est par lui que vous passer dès lors que vous modifier votre système (voir la commande <code>sudo</code> par exemple, qui veut dire &laquo;&nbsp;super user do&nbsp;&raquo;). Donc en faisant :</p>
+<pre class="brush:bash">ssh root@adresse_aleatoire
+</pre>
+<p>J&rsquo;ai plutôt de bonne chance d&rsquo;essayer de me connecter à un ordinateur existant, ayant un serveur SSH utilisant le port 22, et ayant un utilisateur s&rsquo;appelant <code>root</code> ! Ensuite, rien de m&rsquo;empêche d&rsquo;essayer automatiquement des milliers de mots de passe, et avec un peu de chance, je le trouverais ! Il suffit d&rsquo;un programme qui teste méthodiquement toutes les chaînes de caractères, à raison d&rsquo;un essai par seconde, on peut tester 86400 mots de passe par jour ! Même si le nombre de combinaisons possibles est largement plus grand que ça, avec le temps nécessaire, un pirate pourra alors se connecter en root à votre Raspberry Pi !</p>
+<blockquote>
+<p>Mais il va faire quoi ? Ecouter ma musique ?!</p>
+</blockquote>
+<p>Il y a peu de chance&#8230; Son intérêt sera plutôt d&rsquo;installer un programme sur votre système, qu&rsquo;il pourra utiliser à sa guise plus tard s&rsquo;il désire lancer une attaque vers un site en particulier. Votre ordinateur est alors devenu ce que l&rsquo;on appelle un zombie, faisant partie d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Botnet#Usages_principaux_des_botnets_malveillants" target="_blank">BotNet</a> !</p>
+<h2>Quelques règles simples</h2>
+<p>Pour éviter ce scénario, on peut appliquer les quelques règles suivantes.</p>
+<h3>Changer le port</h3>
+<p>Rien de plus simple, éditer la configuration de votre serveur <code>ssh</code>, qui est décrite dans le fichier <code>/etc/ssh/sshd_config</code>, pour y faire figurer la ligne :</p>
+<pre class="brush:plain">Port 1337
+</pre>
+<p><strong>Attention : </strong>vous risquez d&rsquo;être déconnecté si vous faite l&rsquo;opération en étant justement connecté en SSH&#8230; Donc vous pouvez dans un premier temps utiliser 2 ports, le 22 et le 1337 en dupliquant cette ligne. Puis supprimer la ligne Port 22 ultérieurement. Vous pouvez remplacer 1337 par n&rsquo;importe quel numéro compris entre 1024 et 65537, en vérifiant qu&rsquo;il n&rsquo;est pas déjà utilisé par un autre programme.</p>
+<p>Il faut alors penser à changer la règle NAT dans votre box, pour rediriger le port 1337 (et plus le 22). Pour vous connecter maintenant, utilisez l&rsquo;option <code>-p</code> de la commande <code>ssh</code> :</p>
+<pre class="brush:bash">ssh -p 1337 pi@raspberry
+</pre>
+<h3>Désactiver la connexion root</h3>
+<p>Pour éviter à quiconque (vous y compris) de vous connecter directement en super utilisateur à votre Raspberry Pi . Il faut également éditer le fichier <code>/etc/ssh/sshd_config</code>, pour modifier la ligne:</p>
+<pre class="brush:plain">PermitRootLogin no
+</pre>
+<h3>Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</h3>
+<p>Pour éviter les attaques de type &laquo;&nbsp;brute force&nbsp;&raquo; qui consiste à essayer le plus possible de mots de passe, il est possible d&rsquo;installer un logiciel qui va se charger de bannir une adresse IP si un utilisateur échoue à se connecter plus d&rsquo;un certain nombre de fois. J&rsquo;utilise personnellement le logiciel <code>fail2ban</code> (il y en a d&rsquo;autres !), disponible dans les dépôts. Il y a pas grand chose à faire pour le configurer, on modifie le fichier <code>/etc/fail2ban/jail.conf</code>, les paramètres intéressants sont les suivants :</p>
+<pre class="brush:plain">ignoreip = 127.0.0.1/8
+bantime  = 600
+maxretry = 3
+
+destemail = votre_adresse@mail.com
+
+action = %(action_mwl)s
+</pre>
+<p><code>ignoreip</code> permet de ne pas se faire bannir depuis le Raspberry Pi lui même, <code>bantime</code> est le temps de bannissement en secondes (10 minutes par défaut donc), <code>maxretry</code> le nombre d&rsquo;échecs pour être bannit. Ensuite, <code>destmail</code> est l&rsquo;adresse email à laquelle seront envoyés les alertes, et surtout action sera l&rsquo;action en cas de bannissement. J&rsquo;aime bien <code>action_mwl</code> qui est celle qui envoie le plus d&rsquo;informations. Cette action (les autres aussi) peut  elle-même être personnalisée en éditant le fichier  <code>/etc/fail2ban/action.d/sendmail-whois-lines.conf</code></p>
+<p><strong>Remarque :</strong> pour que l&rsquo;envoi des mail se passe correctement, il vous faudra avoir correctement installé et configuré un MTA sur votre système, et j&rsquo;ai déjà expliqué comment faire dans ce billet : <a href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/#Envoi_de_mail">Installation d&rsquo;un serveur web (Envoi de mail)</a></p>
+<h3>Ne pas utiliser de mot de passe</h3>
+<p>Finalement, il est possible de ne pas utiliser de mot de passe pour se connecter, mais de passer par la génération de clé de cryptage. Cette méthode est très bien pour des installations critiques, mais je trouve que l&rsquo;on perd alors en flexibilité, et je ne l&rsquo;utilise personnellement pas&#8230; Je ne détaillerai donc pas ici comme procéder, mais il existe de nombreux tutoriels en ligne, par exemple : <a href="http://www.lea-linux.org/documentations/Trucs:Connection_SSH_sans_mot_de_passe">lea-linux.org : Connection_SSH_sans_mot_de_passe</a></p>
+<h3>Sources</h3>
+<ul>
+<li>Pénurie d&rsquo;adresses IP v4 annoncée : <a href="http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html">http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html</a></li>
+<li>Discussion sur comment sécuriser l&rsquo;accès SSH à son Raspberry : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122</a></li>
+<li>Changer le port SSH : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.itworld.com/nls_unixssh0500506</a></li>
+<li>Wiki sur l&rsquo;installation et la configuration de Fail2ban : <a href="https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban">https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban</a></li>
+</ul>-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/securite/" rel="tag">sécurité</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a><a href="http://clementgrimal.fr/blog/2013/02/12/ssh-securite/#comments" title="Commentaire sur Sécuriser son accès SSH"> | 12 Commentaires</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+	
+	<div class="post-399 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-raspberry-pi loop" id="post-399">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html" rel="bookmark" title="Permalink to Raspberry Pi : gestion de sa carte SD">Raspberry Pi : gestion de sa carte SD</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 6 février 2013 // Mots-clés : <a href="../administration/index.html" rel="tag">administration</a>, <a href="index.html" rel="tag">raspberry-pi</a><br />
+<a href="../../2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html#comments">7 commentaires.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/" rel="bookmark" title="Permalink to Raspberry Pi : gestion de sa carte SD">6 février 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p>A force de jouer avec mon Raspberry Pi, j&rsquo;ai eu le désagrément de le voir refuser de démarrer&#8230; La partition <code>/root</code> de ma carte SD était corrompue. J&rsquo;ai donc du me résoudre à réinstaller Raspbian, et à repartir de zéro, l&rsquo;occasion cependant d&rsquo;apprendre à faire des sauvegardes et des restaurations !</p>
+<p>Bien sûr, je travaille sous Linux (Xubuntu puisque vous voulez tout savoir), et si vous êtes sous Windows, je sais qu&rsquo;il est possible de faire la même chose, mais je ne le couvrirai pas dans ce billet.</p>
+<p>Ce qu&rsquo;il faut comprendre, c&rsquo;est que comme ma carte SD est de taille relativement faible (8Go), il est facile de faire une sauvegarde complète de son contenu (surtout en compressant le résultat).</p>
+<p>La commande qu&rsquo;il faut utiliser est la commande <code>dd</code>, la même que j&rsquo;ai utilisé pour ma première installation de Raspbian. Ses deux arguments principaux sont :</p>
+<ul>
+<li><code>if</code> :  fichier d&rsquo;entrée (ou périphérique)</li>
+<li><code>of</code> : fichier de sortie (ou périphérique)</li>
+</ul>
+<p>Il faut déjà savoir à quel périphérique correspond votre lecteur de carte SD, utilisez la commande <code>fdisk</code> :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Et cherchez un disque d&rsquo;environ 8Go. Si Raspbian est installé sur la carte, vous avez normalement deux partitions, voilà ce que j&rsquo;obtiens par exemple :</p>
+<pre class="brush:plain">Disk /dev/sda: 7969 MB, 7969177600 bytes
+4 heads, 16 sectors/track, 243200 cylinders, total 15564800 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00017b69
+
+		Device Boot      Start         End      Blocks   Id  System
+/dev/sda1            8192      122879       57344    c  W95 FAT32 (LBA)
+/dev/sda2          122880    15564799     7720960   83  Linux
+</pre>
+<h2>Sauvegarde</h2>
+<p>Je sais donc que c&rsquo;est <code>/dev/sda</code> qui correspond à ma carte SD que je souhaite sauvegarder. Pour faire une sauvegarde, il me suffit alors d&rsquo;utiliser :</p>
+<pre class="brush:bash">sudo dd if=/dev/sda of=/chemin/vers/ma/sauvegarde.img bs=1M
+</pre>
+<p>Le fichier <code>/chemin/vers/ma/sauvegarde.img</code> fait alors exactement 8Go. J&rsquo;ai personnellement fait plusieurs sauvegardes pendant que je re-configurais mon Raspberry Pi. Par exemple, après avoir fait une mise à jour complète du système, <a title="Raspberry Pi : installation et partage d’un disque dur externe" href="../../2013/01/30/raspberry-pi-partage-disque-dur-usb/index.html">installer vos disques externes</a>, sécuriser votre accès SSH (article à venir), <a title="Raspberry Pi : installation d’un serveur web" href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html">installer votre serveur web</a> et <a title="Utilisation d’un DNS dynamique" href="../../2013/01/29/utilisation-dns-dynamique/index.html">configurer votre DNS dynamique</a>, une petite sauvegarde du système ne fait pas de mal !</p>
+<h2>Restauration</h2>
+<p>Il est possible de restaurer cette image en inversant les argument <code>if</code> et <code>of</code> :</p>
+<pre class="brush:bash">sudo dd if=/chemin/vers/ma/sauvegarde.img of=/dev/sda bs=1M
+</pre>
+<p><strong>Attention : </strong> en utilisant <code>of=/dev/sda</code> vous écrasez complètement le disque sda, donc vérifiez bien avec la commande <code>fdisk</code>.</p>
+<h2>Compression</h2>
+<p>Si vous faites régulièrement l&rsquo;opération, pensez qu&rsquo;il est possible de compresser les images pour qu&rsquo;elles occupent moins de 8Go sur votre disque en utilisant la commande <code>gzip</code> par exemple :</p>
+<pre class="brush:bash">gzip /chemin/vers/ma/sauvegarde.img
+</pre>
+<p>qui créera un fichier <code>/chemin/vers/ma/sauvegarde.img.gz</code>, bien plus petit que 8Go. Il est également possible de faire la sauvegarde et la compression en une seule opération, et pour cela, je vous recommande la lecture des pages 12 et 13 du dernier numéro du magazine MagPi (dans les sources).</p>
+<h2><strong>Effacer la table de partition</strong></h2>
+<p>Lorsque j&rsquo;ai eu mon problème de partition <code>/root</code> corrompue, même en re-copiant une image toute fraîche de Raspbian sur ma carte SD, mon Raspberry Pi refuser toujours de démarrer. Il a fallu que j&rsquo;efface complètement la table de partition de la carte avec la commande :</p>
+<pre class="brush:bash">sudo dd if=/dev/zero of=/dev/sda bs=1M count=2
+</pre>
+<p><strong>Attention :</strong> vérifiez bien que <code>/dev/sda</code> est la carte SD, et pas un autre disque dur !</p>
+<h2 class="beforelist">Sources</h2>
+<ul>
+<li>Le blog qui m&rsquo;a sauvé : <a href="http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278" target="_blank">http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278</a></li>
+<li>Le numéro du magazine MagPi avec un article très complet sur la gestion de sa carte SD en pages 12 et 13 : <a href="http://issuu.com/themagpi/docs/issue_9_final" target="_blank">http://issuu.com/themagpi/docs/issue_9_final</a></li>
+</ul><!--
+				<p>A force de jouer avec mon Raspberry Pi, j&rsquo;ai eu le désagrément de le voir refuser de démarrer&#8230; La partition <code>/root</code> de ma carte SD était corrompue. J&rsquo;ai donc du me résoudre à réinstaller Raspbian, et à repartir de zéro, l&rsquo;occasion cependant d&rsquo;apprendre à faire des sauvegardes et des restaurations !</p>
+<p>Bien sûr, je travaille sous Linux (Xubuntu puisque vous voulez tout savoir), et si vous êtes sous Windows, je sais qu&rsquo;il est possible de faire la même chose, mais je ne le couvrirai pas dans ce billet.</p>
+<p>Ce qu&rsquo;il faut comprendre, c&rsquo;est que comme ma carte SD est de taille relativement faible (8Go), il est facile de faire une sauvegarde complète de son contenu (surtout en compressant le résultat).</p>
+<p>La commande qu&rsquo;il faut utiliser est la commande <code>dd</code>, la même que j&rsquo;ai utilisé pour ma première installation de Raspbian. Ses deux arguments principaux sont :</p>
+<ul>
+<li><code>if</code> :  fichier d&rsquo;entrée (ou périphérique)</li>
+<li><code>of</code> : fichier de sortie (ou périphérique)</li>
+</ul>
+<p>Il faut déjà savoir à quel périphérique correspond votre lecteur de carte SD, utilisez la commande <code>fdisk</code> :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Et cherchez un disque d&rsquo;environ 8Go. Si Raspbian est installé sur la carte, vous avez normalement deux partitions, voilà ce que j&rsquo;obtiens par exemple :</p>
+<pre class="brush:plain">Disk /dev/sda: 7969 MB, 7969177600 bytes
+4 heads, 16 sectors/track, 243200 cylinders, total 15564800 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00017b69
+
+		Device Boot      Start         End      Blocks   Id  System
+/dev/sda1            8192      122879       57344    c  W95 FAT32 (LBA)
+/dev/sda2          122880    15564799     7720960   83  Linux
+</pre>
+<h2>Sauvegarde</h2>
+<p>Je sais donc que c&rsquo;est <code>/dev/sda</code> qui correspond à ma carte SD que je souhaite sauvegarder. Pour faire une sauvegarde, il me suffit alors d&rsquo;utiliser :</p>
+<pre class="brush:bash">sudo dd if=/dev/sda of=/chemin/vers/ma/sauvegarde.img bs=1M
+</pre>
+<p>Le fichier <code>/chemin/vers/ma/sauvegarde.img</code> fait alors exactement 8Go. J&rsquo;ai personnellement fait plusieurs sauvegardes pendant que je re-configurais mon Raspberry Pi. Par exemple, après avoir fait une mise à jour complète du système, <a title="Raspberry Pi : installation et partage d’un disque dur externe" href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/">installer vos disques externes</a>, sécuriser votre accès SSH (article à venir), <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">installer votre serveur web</a> et <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">configurer votre DNS dynamique</a>, une petite sauvegarde du système ne fait pas de mal !</p>
+<h2>Restauration</h2>
+<p>Il est possible de restaurer cette image en inversant les argument <code>if</code> et <code>of</code> :</p>
+<pre class="brush:bash">sudo dd if=/chemin/vers/ma/sauvegarde.img of=/dev/sda bs=1M
+</pre>
+<p><strong>Attention : </strong> en utilisant <code>of=/dev/sda</code> vous écrasez complètement le disque sda, donc vérifiez bien avec la commande <code>fdisk</code>.</p>
+<h2>Compression</h2>
+<p>Si vous faites régulièrement l&rsquo;opération, pensez qu&rsquo;il est possible de compresser les images pour qu&rsquo;elles occupent moins de 8Go sur votre disque en utilisant la commande <code>gzip</code> par exemple :</p>
+<pre class="brush:bash">gzip /chemin/vers/ma/sauvegarde.img
+</pre>
+<p>qui créera un fichier <code>/chemin/vers/ma/sauvegarde.img.gz</code>, bien plus petit que 8Go. Il est également possible de faire la sauvegarde et la compression en une seule opération, et pour cela, je vous recommande la lecture des pages 12 et 13 du dernier numéro du magazine MagPi (dans les sources).</p>
+<h2><strong>Effacer la table de partition</strong></h2>
+<p>Lorsque j&rsquo;ai eu mon problème de partition <code>/root</code> corrompue, même en re-copiant une image toute fraîche de Raspbian sur ma carte SD, mon Raspberry Pi refuser toujours de démarrer. Il a fallu que j&rsquo;efface complètement la table de partition de la carte avec la commande :</p>
+<pre class="brush:bash">sudo dd if=/dev/zero of=/dev/sda bs=1M count=2
+</pre>
+<p><strong>Attention :</strong> vérifiez bien que <code>/dev/sda</code> est la carte SD, et pas un autre disque dur !</p>
+<h2 class="beforelist">Sources</h2>
+<ul>
+<li>Le blog qui m&rsquo;a sauvé : <a href="http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278" target="_blank">http://www.chrisnewland.com/solved-raspberry-pi-panic-vfs-unable-to-mount-root-fs-on-unknown-block1792-278</a></li>
+<li>Le numéro du magazine MagPi avec un article très complet sur la gestion de sa carte SD en pages 12 et 13 : <a href="http://issuu.com/themagpi/docs/issue_9_final" target="_blank">http://issuu.com/themagpi/docs/issue_9_final</a></li>
+</ul>-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a><a href="http://clementgrimal.fr/blog/2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/#comments" title="Commentaire sur Raspberry Pi : gestion de sa carte SD"> | 7 Commentaires</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+	
+	<div class="post-286 post type-post status-publish format-standard hentry category-non-classe tag-administration tag-partage tag-raspberry-pi tag-tutoriel tag-unix loop" id="post-286">
+			
+					
+			<div class="entry-title">
+				
+				<h2><a href="../../2013/01/30/raspberry-pi-partage-disque-dur-usb/index.html" rel="bookmark" title="Permalink to Raspberry Pi : installation et partage d&rsquo;un disque dur externe">Raspberry Pi : installation et partage d&rsquo;un disque dur externe</a></h2>
+			
+			</div><!-- close .entry-title-->
+		
+				
+					
+			<!--<div class="entry-meta">-->
+				
+				
+<p class="entry-meta-single">
+	Le 30 janvier 2013 // Mots-clés : <a href="../administration/index.html" rel="tag">administration</a>, <a href="../partage/index.html" rel="tag">partage</a>, <a href="index.html" rel="tag">raspberry-pi</a>, <a href="../tutoriel/index.html" rel="tag">tutoriel</a>, <a href="../unix/index.html" rel="tag">unix</a><br />
+<a href="../../2013/01/30/raspberry-pi-partage-disque-dur-usb/index.html#comments">5 commentaires.</a>
+</p>
+<!--
+					<p>Par <a href="http://clementgrimal.fr/blog/author/admin/" title="Articles par Clément" rel="author">Clément</a>Le <a href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/" rel="bookmark" title="Permalink to Raspberry Pi : installation et partage d&rsquo;un disque dur externe">30 janvier 2013</a></p>
+-->
+							
+			<!--</div>--><!-- close .entry-meta-->
+		
+				
+		<div class="entry-content">
+		
+										<p>Comme je souhaite utiliser mon Raspberry comme &laquo;&nbsp;serveur de stockage&nbsp;&raquo; entre autres, j&rsquo;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&rsquo;explique comment j&rsquo;ai configuré ledit disque dur, pour un partage simple.</p>
+<h3>Le montage</h3>
+<p>Dans le monde Unix, le verbe &laquo;&nbsp;monter&nbsp;&raquo; désigne l&rsquo;opération barbare qui consiste à faire en sorte de pouvoir accéder à votre disque dur (ou autre périphérique). En effet, quand on le branche simplement, on ne peut pas y accéder tant qu&rsquo;il n&rsquo;a pas été monté. Donc on va faire en sorte que ce disque dur là tout neuf soit automatiquement monté dans un répertoire de notre choix, avec les permissions qui vont bien, afin d&rsquo;être sûr de toujours le retrouver.</p>
+<p>Pour savoir à quel &laquo;&nbsp;device&nbsp;&raquo; il correspond, utilisez la commande :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Dans le résultat obtenu, il faut chercher le bloc qui correspond au disque dur, pour moi c&rsquo;est :</p>
+<pre class="brush:plain">Disk /dev/sdb: 2000.4 GB, 2000398933504 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x524a5d81
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048  3907024895  1953511424    7  HPFS/NTFS/exFAT
+</pre>
+<p>Puisque je sais qu&rsquo;il fait 2To (enfin 2000398933504 octets). Il correspond donc à <code>/dev/sdb1</code> (une seule partition) et il est formaté en NTFS, tout va bien. Maintenant, il va nous falloir une seconde info le concernant : son UUID. C&rsquo;est un identifiant unique, pour le trouver, utilisez la commande :</p>
+<pre class="brush:bash">ls -l /dev/disk/by-uuid/
+</pre>
+<p>Et cherchez l&rsquo;UUID recherché est la suite de numéro et de lettres qui précède le <code>-&gt; ../../sdb1</code> dans mon cas. Dernière étape : choisir et créer le répertoire dans lequel on veut monter ce disque. J&rsquo;ai choisit de créer un dossier <code>/storage/</code> dans lequel je monterai mes disques durs, et donc pour celui là en l&rsquo;occurrence, on va créer le répertoire <code>/storage/mon_disque</code> :</p>
+<pre class="brush:bash">sudo mkdir /storage
+sudo mkdir /storage/mon_disque
+</pre>
+<p>On peut maintenant configurer le fichier <code>/etc/fstab</code> pour y ajouter la ligne qui correspondra au montage de notre disque dur :</p>
+<pre class="brush:bash">sudo vim /etc/fstab
+</pre>
+<p>Et ajoutez la ligne suivante à la fin :</p>
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    defaults    0    2
+</pre>
+<p>Voilà, vous pouvez maintenant monter manuellement votre disque en faisant la commande [<b>AJOUT : </b>il faut avoir installer le paquet <code>ntfs-3g</code> avant !] :</p>
+<pre class="brush:bash">sudo mount /dev/sdb1
+</pre>
+<p>Mais tout l&rsquo;intérêt est que maintenant, à chaque fois que vous brancherez <strong>ce disque</strong> sur <strong>ce raspberry</strong>, il sera toujours monté de la même façon, dans le dossier <code>/storage/mon_disque/</code> !</p>
+<p>Un point qui ne me plaisait pas spécialement avec cette configuration très simple, est que le disque dur est en accès 777, c&rsquo;est à dire que tout le monde peut écrire dessus ! Je ne sais pas si cela est fondamentalement grave mais j&rsquo;ai préféré changer les permissions. Le seul point délicat, c&rsquo;est que certains logiciels ont besoin de pouvoir accéder à ce disque : samba, client bittorrent, serveur web, etc&#8230; On va voir dans la suite comment j&rsquo;ai choisi de gérer cela.</p>
+<h3>Les permissions</h3>
+<p>Ce qui m&rsquo;a semblé le plus simple, c&rsquo;est de créer un groupe storage qui aura tous les droits sur mes disques durs externes, et j&rsquo;y ajouterai à la main les utilisateurs. Voilà la démarche que j&rsquo;ai suivie :</p>
+<ol>
+<li>Création du groupe :
+<pre class="brush:bash">sudo groupadd storage
+</pre>
+</li>
+<li>Récupération de l&rsquo;id de ce groupe. La commande :
+<pre class="brush:bash">cat /etc/group |grep storage
+</pre>
+<p>devrait vous renvoyer une seule ligne ressemblant à <code>:storage:x:1005:</code> L&rsquo;id du groupe est donc 1005, et on va en avoir besoin plus tard.</p>
+</li>
+<li>Ajout de l&rsquo;utilisateur pi (ou toto si vous vous appelez toto) :
+<pre class="brush:bash">sudo usermod -a -G storage pi
+</pre>
+</li>
+<li>Modification du fichier <code>/etc/fstab</code> pour que le dossier de montage appartienne au groupe storage (on remplace les options defaults) :
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    suid,dev,auto,async,gid=1005,umask=007    0    2
+</pre>
+<p>Le 1005 correspond à l&rsquo;id du groupe storage et le umask est un paramètre assez compliqué (voir mes sources à la fin du billet), mais la valeur 007 implique que les utilisateurs n&rsquo;appartenant pas au groupe storage pourront lire et parcourir le disque, mais pas écrire dessus.</p>
+</li>
+<li>Eventuellement, ajout des autres utilisateurs correspondant aux logiciels qui doivent pouvoir écrire sur le disque. Par exemple, si vous souhaitez partager certains dossiers via votre serveur web (voir mon billet <a title="Raspberry Pi : installation d’un serveur web" href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html">Installation d&rsquo;un serveur web</a>), l&rsquo;utilisateur correspondant au serveur Apache2 est www-data. Il faut donc faire :
+<pre class="brush:bash">sudo usermod -a -G storage www-data
+</pre>
+</li>
+</ol>
+<h3>Partage sur le serveur Web</h3>
+<p>J&rsquo;ai expliqué dans le billet <a title="Raspberry Pi : installation d’un serveur web" href="../../2013/01/24/raspberry-pi-serveur-web-sfr-box/index.html">Installation d&rsquo;un serveur web</a> comment installer un simple serveur Apache. Vous pouvez par exemple partager un dossier de votre disque dur directement via le web en créant un lien symbolique. Par exemple, si vous souhaitez partager tout le contenu du dossier <code>/storage/mon_disque/dossier_public/</code>, vous pouvez utiliser la commande :</p>
+<pre class="brush:bash">sudo ln -s /storage/mon_disque/dossier_public/ /var/www/dossier_public
+</pre>
+<p>Si l&rsquo;adresse pour accéder à voter serveur web est <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com</a> (vous avez utiliser mon tutoriel <a title="Utilisation d’un DNS dynamique" href="../../2013/01/29/utilisation-dns-dynamique/index.html">Utilisation d’un DNS dynamique</a> ?), vous (ou n&rsquo;importe qui attention !) pouvez consulter le contenu de ce dossier à l&rsquo;adresse : <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com/dossier_public/</a></p>
+<p>Il est possible de protéger ce que vous partager sur votre serveur web, par mot de passe par exemple, mais j&rsquo;en parlerai plus tard. J&rsquo;ajoute tout de même un lien la dessus dans les sources de ce billet.</p>
+<h3>Partage avec Samba</h3>
+<p>Je pense que j&rsquo;écrirai un billet là-dessus, mais juste au cas où vous auriez déjà configuré un serveur Samba (partage de certains répertoires, y compris avec Windows), sachez que si vous avez suivi ce tutoriel, il vous faudra modifier légèrement votre configuration. Dans le fichier <code>/etc/samba/smb.conf</code>, pour chacun de vos partage, ajoutez la ligne force group = storage, ce qui donnera par exemple :</p>
+<pre class="brush:plain">[mon_disque]
+	path = /storage/mon_disque
+	browseable = yes
+	read only = no
+	guest ok = yes
+	force group = storage
+</pre>
+<h3>Accès par client Bittorrent</h3>
+<p>On verra dans un prochain billet comment installer un client Bittorrent (Transmission) sur votre Raspberry Pi, et le configure pour que les fichiers téléchargés arrivent sur votre disque externe. Il ne faudra donc pas oublier d&rsquo;ajouter l&rsquo;utilisateur debian-transmission au groupe storage :</p>
+<pre class="brush:bash">sudo usermod -a -G storage debian-transmission
+</pre>
+<h3>Sources</h3>
+<ul>
+<li>Manuel de fstab sur le site Ubuntu-fr : <a href="http://doc.ubuntu-fr.org/mount_fstab" target="_blank">http://doc.ubuntu-fr.org/mount_fstab</a></li>
+<li>Aide sur l&rsquo;utilisation de umask (en anglais) : <a href="http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html" target="_blank">http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</a></li>
+<li>Protection par mot de passe de dossiers pour Apache : <a href="http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/" target="_blank">http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/</a></li>
+</ul><!--
+				<p>Comme je souhaite utiliser mon Raspberry comme &laquo;&nbsp;serveur de stockage&nbsp;&raquo; entre autres, j&rsquo;ai acheté un disque dur USB alimenté, car les 8Go de la carte SD étaient un peu juste. Dans ce billet, j&rsquo;explique comment j&rsquo;ai configuré ledit disque dur, pour un partage simple.</p>
+<h3>Le montage</h3>
+<p>Dans le monde Unix, le verbe &laquo;&nbsp;monter&nbsp;&raquo; désigne l&rsquo;opération barbare qui consiste à faire en sorte de pouvoir accéder à votre disque dur (ou autre périphérique). En effet, quand on le branche simplement, on ne peut pas y accéder tant qu&rsquo;il n&rsquo;a pas été monté. Donc on va faire en sorte que ce disque dur là tout neuf soit automatiquement monté dans un répertoire de notre choix, avec les permissions qui vont bien, afin d&rsquo;être sûr de toujours le retrouver.</p>
+<p>Pour savoir à quel &laquo;&nbsp;device&nbsp;&raquo; il correspond, utilisez la commande :</p>
+<pre class="brush:bash">sudo fdisk -l
+</pre>
+<p>Dans le résultat obtenu, il faut chercher le bloc qui correspond au disque dur, pour moi c&rsquo;est :</p>
+<pre class="brush:plain">Disk /dev/sdb: 2000.4 GB, 2000398933504 bytes
+255 heads, 63 sectors/track, 243201 cylinders, total 3907029167 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x524a5d81
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            2048  3907024895  1953511424    7  HPFS/NTFS/exFAT
+</pre>
+<p>Puisque je sais qu&rsquo;il fait 2To (enfin 2000398933504 octets). Il correspond donc à <code>/dev/sdb1</code> (une seule partition) et il est formaté en NTFS, tout va bien. Maintenant, il va nous falloir une seconde info le concernant : son UUID. C&rsquo;est un identifiant unique, pour le trouver, utilisez la commande :</p>
+<pre class="brush:bash">ls -l /dev/disk/by-uuid/
+</pre>
+<p>Et cherchez l&rsquo;UUID recherché est la suite de numéro et de lettres qui précède le <code>-&gt; ../../sdb1</code> dans mon cas. Dernière étape : choisir et créer le répertoire dans lequel on veut monter ce disque. J&rsquo;ai choisit de créer un dossier <code>/storage/</code> dans lequel je monterai mes disques durs, et donc pour celui là en l&rsquo;occurrence, on va créer le répertoire <code>/storage/mon_disque</code> :</p>
+<pre class="brush:bash">sudo mkdir /storage
+sudo mkdir /storage/mon_disque
+</pre>
+<p>On peut maintenant configurer le fichier <code>/etc/fstab</code> pour y ajouter la ligne qui correspondra au montage de notre disque dur :</p>
+<pre class="brush:bash">sudo vim /etc/fstab
+</pre>
+<p>Et ajoutez la ligne suivante à la fin :</p>
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    defaults    0    2
+</pre>
+<p>Voilà, vous pouvez maintenant monter manuellement votre disque en faisant la commande [<b>AJOUT : </b>il faut avoir installer le paquet <code>ntfs-3g</code> avant !] :</p>
+<pre class="brush:bash">sudo mount /dev/sdb1
+</pre>
+<p>Mais tout l&rsquo;intérêt est que maintenant, à chaque fois que vous brancherez <strong>ce disque</strong> sur <strong>ce raspberry</strong>, il sera toujours monté de la même façon, dans le dossier <code>/storage/mon_disque/</code> !</p>
+<p>Un point qui ne me plaisait pas spécialement avec cette configuration très simple, est que le disque dur est en accès 777, c&rsquo;est à dire que tout le monde peut écrire dessus ! Je ne sais pas si cela est fondamentalement grave mais j&rsquo;ai préféré changer les permissions. Le seul point délicat, c&rsquo;est que certains logiciels ont besoin de pouvoir accéder à ce disque : samba, client bittorrent, serveur web, etc&#8230; On va voir dans la suite comment j&rsquo;ai choisi de gérer cela.</p>
+<h3>Les permissions</h3>
+<p>Ce qui m&rsquo;a semblé le plus simple, c&rsquo;est de créer un groupe storage qui aura tous les droits sur mes disques durs externes, et j&rsquo;y ajouterai à la main les utilisateurs. Voilà la démarche que j&rsquo;ai suivie :</p>
+<ol>
+<li>Création du groupe :
+<pre class="brush:bash">sudo groupadd storage
+</pre>
+</li>
+<li>Récupération de l&rsquo;id de ce groupe. La commande :
+<pre class="brush:bash">cat /etc/group |grep storage
+</pre>
+<p>devrait vous renvoyer une seule ligne ressemblant à <code>:storage:x:1005:</code> L&rsquo;id du groupe est donc 1005, et on va en avoir besoin plus tard.</p>
+</li>
+<li>Ajout de l&rsquo;utilisateur pi (ou toto si vous vous appelez toto) :
+<pre class="brush:bash">sudo usermod -a -G storage pi
+</pre>
+</li>
+<li>Modification du fichier <code>/etc/fstab</code> pour que le dossier de montage appartienne au groupe storage (on remplace les options defaults) :
+<pre class="brush:plain">UUID=votre_UUID    /storage/mon_disque    ntfs-3g    suid,dev,auto,async,gid=1005,umask=007    0    2
+</pre>
+<p>Le 1005 correspond à l&rsquo;id du groupe storage et le umask est un paramètre assez compliqué (voir mes sources à la fin du billet), mais la valeur 007 implique que les utilisateurs n&rsquo;appartenant pas au groupe storage pourront lire et parcourir le disque, mais pas écrire dessus.</p>
+</li>
+<li>Eventuellement, ajout des autres utilisateurs correspondant aux logiciels qui doivent pouvoir écrire sur le disque. Par exemple, si vous souhaitez partager certains dossiers via votre serveur web (voir mon billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a>), l&rsquo;utilisateur correspondant au serveur Apache2 est www-data. Il faut donc faire :
+<pre class="brush:bash">sudo usermod -a -G storage www-data
+</pre>
+</li>
+</ol>
+<h3>Partage sur le serveur Web</h3>
+<p>J&rsquo;ai expliqué dans le billet <a title="Raspberry Pi : installation d’un serveur web" href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/">Installation d&rsquo;un serveur web</a> comment installer un simple serveur Apache. Vous pouvez par exemple partager un dossier de votre disque dur directement via le web en créant un lien symbolique. Par exemple, si vous souhaitez partager tout le contenu du dossier <code>/storage/mon_disque/dossier_public/</code>, vous pouvez utiliser la commande :</p>
+<pre class="brush:bash">sudo ln -s /storage/mon_disque/dossier_public/ /var/www/dossier_public
+</pre>
+<p>Si l&rsquo;adresse pour accéder à voter serveur web est <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com</a> (vous avez utiliser mon tutoriel <a title="Utilisation d’un DNS dynamique" href="http://clementgrimal.fr/blog/2013/01/29/utilisation-dns-dynamique/">Utilisation d’un DNS dynamique</a> ?), vous (ou n&rsquo;importe qui attention !) pouvez consulter le contenu de ce dossier à l&rsquo;adresse : <a onclick="return false;" href="javascript:void(0)" target="_blank">mon-rpi.dnsdynamic.com/dossier_public/</a></p>
+<p>Il est possible de protéger ce que vous partager sur votre serveur web, par mot de passe par exemple, mais j&rsquo;en parlerai plus tard. J&rsquo;ajoute tout de même un lien la dessus dans les sources de ce billet.</p>
+<h3>Partage avec Samba</h3>
+<p>Je pense que j&rsquo;écrirai un billet là-dessus, mais juste au cas où vous auriez déjà configuré un serveur Samba (partage de certains répertoires, y compris avec Windows), sachez que si vous avez suivi ce tutoriel, il vous faudra modifier légèrement votre configuration. Dans le fichier <code>/etc/samba/smb.conf</code>, pour chacun de vos partage, ajoutez la ligne force group = storage, ce qui donnera par exemple :</p>
+<pre class="brush:plain">[mon_disque]
+	path = /storage/mon_disque
+	browseable = yes
+	read only = no
+	guest ok = yes
+	force group = storage
+</pre>
+<h3>Accès par client Bittorrent</h3>
+<p>On verra dans un prochain billet comment installer un client Bittorrent (Transmission) sur votre Raspberry Pi, et le configure pour que les fichiers téléchargés arrivent sur votre disque externe. Il ne faudra donc pas oublier d&rsquo;ajouter l&rsquo;utilisateur debian-transmission au groupe storage :</p>
+<pre class="brush:bash">sudo usermod -a -G storage debian-transmission
+</pre>
+<h3>Sources</h3>
+<ul>
+<li>Manuel de fstab sur le site Ubuntu-fr : <a href="http://doc.ubuntu-fr.org/mount_fstab" target="_blank">http://doc.ubuntu-fr.org/mount_fstab</a></li>
+<li>Aide sur l&rsquo;utilisation de umask (en anglais) : <a href="http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html" target="_blank">http://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html</a></li>
+<li>Protection par mot de passe de dossiers pour Apache : <a href="http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/" target="_blank">http://www.cyberciti.biz/faq/howto-setup-apache-password-protect-directory-with-htaccess-file/</a></li>
+</ul>-->
+					
+		</div><!-- close .entry-content-->
+		
+		
+<!--
+				
+			<div class="entry-meta">
+									Mots-clés : <a href="http://clementgrimal.fr/blog/tag/administration/" rel="tag">administration</a>, <a href="http://clementgrimal.fr/blog/tag/partage/" rel="tag">partage</a>, <a href="http://clementgrimal.fr/blog/tag/raspberry-pi/" rel="tag">raspberry-pi</a>, <a href="http://clementgrimal.fr/blog/tag/tutoriel/" rel="tag">tutoriel</a>, <a href="http://clementgrimal.fr/blog/tag/unix/" rel="tag">unix</a><a href="http://clementgrimal.fr/blog/2013/01/30/raspberry-pi-partage-disque-dur-usb/#comments" title="Commentaire sur Raspberry Pi : installation et partage d&rsquo;un disque dur externe"> | 5 Commentaires</a></p>
+							</div>
+		-->
+		
+				
+	</div><!-- close #post-->
+	
+        
+        			
+			<div class="nav">
+				<div class="nav-left"></div>
+				<div class="nav-right"><a href="page/2/index.html" >Billets précédents &raquo;</a></div>
+			</div><!-- close .nav-->
+		
+		        
+    
+</div><!-- close #content-->
+
+    <div id="sidebar">
+	
+		
+					<div class="widget">		<h4 class="widget-title">Articles récents</h4>		<ul>
+					<li>
+				<a href="../../2013/12/24/nouvel-hebergement/index.html">Nouvel hébergement !</a>
+						</li>
+					<li>
+				<a href="../../2013/03/21/projet-sur-les-epaules-de-darwin/index.html">Projet &laquo;&nbsp;Sur les épaules de Darwin&nbsp;&raquo;</a>
+						</li>
+					<li>
+				<a href="../../2013/02/12/ssh-securite/index.html">Sécuriser son accès SSH</a>
+						</li>
+					<li>
+				<a href="../../2013/02/06/raspberry-pi-carte-sd-sauvegarde-restauration/index.html">Raspberry Pi : gestion de sa carte SD</a>
+						</li>
+					<li>
+				<a href="../../2013/02/05/capture-video-compression-filigrane-unix/index.html">Capture vidéo, compression et filigrane sous Unix</a>
+						</li>
+				</ul>
+		</div><div class="widget"><h4 class="widget-title">Mots-clés</h4><div class="tagcloud"><a href='../administration/index.html' class='tag-link-34' title='5 sujets' style='font-size: 20.218181818182pt;'>administration</a>
+<a href='../android/index.html' class='tag-link-9' title='1 sujet' style='font-size: 8pt;'>android</a>
+<a href='../blog/index.html' class='tag-link-2' title='2 sujets' style='font-size: 12.581818181818pt;'>blog</a>
+<a href='../cinema/index.html' class='tag-link-16' title='1 sujet' style='font-size: 8pt;'>cinema</a>
+<a href='../culture/index.html' class='tag-link-7' title='3 sujets' style='font-size: 15.636363636364pt;'>culture</a>
+<a href='../darwin/index.html' class='tag-link-18' title='2 sujets' style='font-size: 12.581818181818pt;'>darwin</a>
+<a href='../dns/index.html' class='tag-link-31' title='1 sujet' style='font-size: 8pt;'>dns</a>
+<a href='../geekeries/index.html' class='tag-link-5' title='1 sujet' style='font-size: 8pt;'>geekeries</a>
+<a href='../git/index.html' class='tag-link-37' title='1 sujet' style='font-size: 8pt;'>git</a>
+<a href='../hebergement/index.html' class='tag-link-38' title='1 sujet' style='font-size: 8pt;'>hebergement</a>
+<a href='../mtp/index.html' class='tag-link-11' title='1 sujet' style='font-size: 8pt;'>mtp</a>
+<a href='../musique/index.html' class='tag-link-17' title='1 sujet' style='font-size: 8pt;'>musique</a>
+<a href='../outils/index.html' class='tag-link-14' title='1 sujet' style='font-size: 8pt;'>outils</a>
+<a href='../partage/index.html' class='tag-link-32' title='1 sujet' style='font-size: 8pt;'>partage</a>
+<a href='../python/index.html' class='tag-link-13' title='1 sujet' style='font-size: 8pt;'>python</a>
+<a href='../radio/index.html' class='tag-link-4' title='1 sujet' style='font-size: 8pt;'>radio</a>
+<a href='index.html' class='tag-link-6' title='6 sujets' style='font-size: 22pt;'>raspberry-pi</a>
+<a href='../reportage/index.html' class='tag-link-22' title='1 sujet' style='font-size: 8pt;'>reportage</a>
+<a href='../science/index.html' class='tag-link-3' title='1 sujet' style='font-size: 8pt;'>science</a>
+<a href='../science-fiction/index.html' class='tag-link-20' title='1 sujet' style='font-size: 8pt;'>science-fiction</a>
+<a href='../securite/index.html' class='tag-link-36' title='1 sujet' style='font-size: 8pt;'>sécurité</a>
+<a href='../tutoriel/index.html' class='tag-link-12' title='5 sujets' style='font-size: 20.218181818182pt;'>tutoriel</a>
+<a href='../ubuntu/index.html' class='tag-link-10' title='1 sujet' style='font-size: 8pt;'>ubuntu</a>
+<a href='../unix/index.html' class='tag-link-33' title='6 sujets' style='font-size: 22pt;'>unix</a>
+<a href='../videos/index.html' class='tag-link-19' title='2 sujets' style='font-size: 12.581818181818pt;'>videos</a>
+<a href='../web/index.html' class='tag-link-21' title='2 sujets' style='font-size: 12.581818181818pt;'>web</a></div>
+</div><div class="widget"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='../../2013/12/index.html'>décembre 2013</a></li>
+	<li><a href='../../2013/03/index.html'>mars 2013</a></li>
+	<li><a href='../../2013/02/index.html'>février 2013</a></li>
+	<li><a href='../../2013/01/index.html'>janvier 2013</a></li>
+		</ul>
+</div><div class="widget"><h4 class="widget-title">Liens</h4>			<div class="textwidget"><ul>
+<li><a href="http://www.clementgrimal.fr/darwin/">Sur les épaules de Darwin</a></li>
+</ul></div>
+		</div><div class="widget"><h4 class="widget-title">Commentaires</h4><ul id="recentcomments"><li class="recentcomments"><a href='http://www.willowbrookmuseum.org/' rel='external nofollow' class='url'>www.willowbrookmuseum.org</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-606075">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://mrsbargains.com/' rel='external nofollow' class='url'>Healthy Life Centers - mrsbargains.com</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-570354">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://www.fue.edu.eg/academics/undergraduate_programs' rel='external nofollow' class='url'>Faculty of Economics &amp; Political Science future university in egypt</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-537136">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='https://casinox-jp.com/' rel='external nofollow' class='url'>GlennGah</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-226522">Sécuriser son accès SSH</a></li><li class="recentcomments"><a href='http://www.jerseyswholesale.us.org/' rel='external nofollow' class='url'>HowardInOff</a> dans <a href="../../2013/02/12/ssh-securite/index.html#comment-177005">Sécuriser son accès SSH</a></li></ul></div>
+			
+    </div><!-- close #sidebar-->
+
+</div><!-- close #container, opened in header.php-->			<div id="footer-container">
+            
+				<div id="footer-left">
+									</div><!-- close #footer-left-->
+                
+				<div id="footer-center">
+									</div><!-- close #footer-center-->
+                
+				<div id="footer-right">
+									</div><!-- close #footer-right-->
+			
+            </div><!-- close #footer-container-->
+			
+			<!-- It is completely optional, but if you like the Theme I would appreciate it if you keep the credit link at the bottom. -->
+			<div id="footer-bottom">
+				<span>Copyright &copy; 2024 Les notes de Clément | 
+				<!--Propulsé par <a href="http://wordpress.org/">WordPress</a> et <a href="http://tweaker.co.za/">Tweaker4</a>-->
+				Propulsé par <a href="http://wordpress.org/">WordPress</a>, avec un thème bidouillé à partir de <a href="http://tweaker.co.za/">Tweaker4</a></span>
+</span>
+			</div><!-- close #footer-bottom-->
+		
+		</div><!-- close #wrapper, openend in header.php -->
+		
+		    <script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/shAutoloader.js"></script>
+    <script type="text/javascript">
+    function path()
+    {
+      var args = arguments,
+          result = []
+          ;
+      for(var i = 0; i < args.length; i++)
+          result.push(args[i].replace('@', '../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/index.html'));
+      return result
+    };
+    SyntaxHighlighter.autoloader.apply(null, path(
+      'applescript            @shBrushAppleScript.js',
+      'actionscript3 as3      @shBrushAS3.js',
+      'bash shell             @shBrushBash.js',
+      'coldfusion cf          @shBrushColdFusion.js',
+      'cpp c                  @shBrushCpp.js',
+      'c# c-sharp csharp      @shBrushCSharp.js',
+      'css                    @shBrushCss.js',
+      'delphi pascal          @shBrushDelphi.js',
+      'diff patch pas         @shBrushDiff.js',
+      'erl erlang             @shBrushErlang.js',
+      'groovy                 @shBrushGroovy.js',
+      'java                   @shBrushJava.js',
+      'jfx javafx             @shBrushJavaFX.js',
+      'js jscript javascript  @shBrushJScript.js',
+      'perl pl                @shBrushPerl.js',
+      'php                    @shBrushPhp.js',
+      'text plain             @shBrushPlain.js',
+      'ps                     @shBrushPowerShell.js',
+      'py python              @shBrushPython.js',
+      'ruby rails ror rb      @shBrushRuby.js',
+      'sass scss              @shBrushSass.js',
+      'scala                  @shBrushScala.js',
+      'sql                    @shBrushSql.js',
+      'vb vbnet               @shBrushVb.js',
+      'xml xhtml xslt html    @shBrushXml.js',
+      'other                  @shBrushOther.js'
+    ));
+    SyntaxHighlighter.defaults['auto-links'] = true;
+    SyntaxHighlighter.defaults['collapse'] = false;
+    SyntaxHighlighter.defaults['first-line'] = 1;
+    SyntaxHighlighter.defaults['gutter'] = true;
+    SyntaxHighlighter.defaults['smart-tabs'] = true;
+    SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.defaults['toolbar'] = true;
+    SyntaxHighlighter.config.tagName = "pre";
+	SyntaxHighlighter.config.clipboardSwf = '../../wp-content/plugins/syntax-highlighter-with-add-button-in-editor/scripts/clipboard.swf';
+    SyntaxHighlighter.all();
+    </script>
+    <div id="su-footer-links" style="text-align: center;"></div><script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../wp-content/plugins/table-of-contents-plus/front6149.js?ver=1404'></script>
+	
+	</body>
+	
+
+<!-- Mirrored from clementgrimal.fr/blog/tag/raspberry-pi/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 10 Apr 2024 12:30:38 GMT -->
+</html>

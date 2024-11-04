@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Les notes de Clément &#187; sécurité</title>
+	<atom:link href="http://clementgrimal.fr/blog/tag/securite/feed/" rel="self" type="application/rss+xml" />
+	<link>http://clementgrimal.fr/blog</link>
+	<description>Spécialiste de rien // Partageur de tout</description>
+	<lastBuildDate>Tue, 24 Dec 2013 00:29:30 +0000</lastBuildDate>
+	<language>fr-FR</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=3.8.41</generator>
+	<item>
+		<title>Sécuriser son accès SSH</title>
+		<link>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/</link>
+		<comments>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/#comments</comments>
+		<pubDate>Tue, 12 Feb 2013 18:14:30 +0000</pubDate>
+		<dc:creator><![CDATA[Clément]]></dc:creator>
+				<category><![CDATA[Non classé]]></category>
+		<category><![CDATA[administration]]></category>
+		<category><![CDATA[raspberry-pi]]></category>
+		<category><![CDATA[sécurité]]></category>
+		<category><![CDATA[unix]]></category>
+
+		<guid isPermaLink="false">http://clementgrimal.fr/blog/?p=355</guid>
+		<description><![CDATA[Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&#8217;y connecter un écran, une souris et un écran, il est très commode de s&#8217;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&#8217;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p style="clear: both;" >Afin de pouvoir contrôler son Raspberry Pi sans avoir besoin d&rsquo;y connecter un écran, une souris et un écran, il est très commode de s&rsquo;y connecter via un accès SSH. Un serveur SSH étant installé par défaut sur Raspbian, il n&rsquo;y a alors aucune configuration particulière à faire, et on peut brancher son Raspberry Pi, le connecter à son réseau avec un câble Ethernet, et depuis son ordinateur personnel (connecté au même réseau), faire :</p>
+<pre class="brush:bash">ssh pi@raspberry
+</pre>
+<p>Ensuite, si l&rsquo;on ajoute une règle NAT sur sa box pour rediriger le port 22 (celui du serveur SSH), on peut se connecter, en utilisant l&rsquo;adresse IP externe à la place de raspberry, à son Raspberry Pi de n&rsquo;importe où ! Et ce n&rsquo;importe quand ! C&rsquo;est super n&rsquo;est-ce pas ? Sauf qu&rsquo;il serait bon que n&rsquo;importe qui ne puisse pas le faire&#8230; On va donc voir quelles règles simples appliquées pour réduire les chances qu&rsquo;un petit malin se connecte sur votre réseau.</p>
+<h2>Pourquoi se protéger ?</h2>
+<p>Pour commencer, il faut dire qu&rsquo;il y a pénurie d&rsquo;adresse IP dans le monde, car leur nombre n&rsquo;est pas infinie et il y a de plus en plus d&rsquo;appareils reliés à internet ! C&rsquo;est pourquoi il existe une nouvelle norme IPv6, mais elle n&rsquo;est pas encore majoritairement utilisée. De plus, sur toute machine Linux, il y a pas défaut un compte <code>root</code>, qui est le super administrateur de la machine ! En bref, il peut tout faire, et c&rsquo;est par lui que vous passer dès lors que vous modifier votre système (voir la commande <code>sudo</code> par exemple, qui veut dire &laquo;&nbsp;super user do&nbsp;&raquo;). Donc en faisant :</p>
+<pre class="brush:bash">ssh root@adresse_aleatoire
+</pre>
+<p>J&rsquo;ai plutôt de bonne chance d&rsquo;essayer de me connecter à un ordinateur existant, ayant un serveur SSH utilisant le port 22, et ayant un utilisateur s&rsquo;appelant <code>root</code> ! Ensuite, rien de m&rsquo;empêche d&rsquo;essayer automatiquement des milliers de mots de passe, et avec un peu de chance, je le trouverais ! Il suffit d&rsquo;un programme qui teste méthodiquement toutes les chaînes de caractères, à raison d&rsquo;un essai par seconde, on peut tester 86400 mots de passe par jour ! Même si le nombre de combinaisons possibles est largement plus grand que ça, avec le temps nécessaire, un pirate pourra alors se connecter en root à votre Raspberry Pi !</p>
+<blockquote>
+<p>Mais il va faire quoi ? Ecouter ma musique ?!</p>
+</blockquote>
+<p>Il y a peu de chance&#8230; Son intérêt sera plutôt d&rsquo;installer un programme sur votre système, qu&rsquo;il pourra utiliser à sa guise plus tard s&rsquo;il désire lancer une attaque vers un site en particulier. Votre ordinateur est alors devenu ce que l&rsquo;on appelle un zombie, faisant partie d&rsquo;un <a href="https://fr.wikipedia.org/wiki/Botnet#Usages_principaux_des_botnets_malveillants" target="_blank">BotNet</a> !</p>
+<h2>Quelques règles simples</h2>
+<p>Pour éviter ce scénario, on peut appliquer les quelques règles suivantes.</p>
+<h3>Changer le port</h3>
+<p>Rien de plus simple, éditer la configuration de votre serveur <code>ssh</code>, qui est décrite dans le fichier <code>/etc/ssh/sshd_config</code>, pour y faire figurer la ligne :</p>
+<pre class="brush:plain">Port 1337
+</pre>
+<p><strong>Attention : </strong>vous risquez d&rsquo;être déconnecté si vous faite l&rsquo;opération en étant justement connecté en SSH&#8230; Donc vous pouvez dans un premier temps utiliser 2 ports, le 22 et le 1337 en dupliquant cette ligne. Puis supprimer la ligne Port 22 ultérieurement. Vous pouvez remplacer 1337 par n&rsquo;importe quel numéro compris entre 1024 et 65537, en vérifiant qu&rsquo;il n&rsquo;est pas déjà utilisé par un autre programme.</p>
+<p>Il faut alors penser à changer la règle NAT dans votre box, pour rediriger le port 1337 (et plus le 22). Pour vous connecter maintenant, utilisez l&rsquo;option <code>-p</code> de la commande <code>ssh</code> :</p>
+<pre class="brush:bash">ssh -p 1337 pi@raspberry
+</pre>
+<h3>Désactiver la connexion root</h3>
+<p>Pour éviter à quiconque (vous y compris) de vous connecter directement en super utilisateur à votre Raspberry Pi . Il faut également éditer le fichier <code>/etc/ssh/sshd_config</code>, pour modifier la ligne:</p>
+<pre class="brush:plain">PermitRootLogin no
+</pre>
+<h3>Installation d&rsquo;un logiciel qui bannit en cas d&rsquo;échec</h3>
+<p>Pour éviter les attaques de type &laquo;&nbsp;brute force&nbsp;&raquo; qui consiste à essayer le plus possible de mots de passe, il est possible d&rsquo;installer un logiciel qui va se charger de bannir une adresse IP si un utilisateur échoue à se connecter plus d&rsquo;un certain nombre de fois. J&rsquo;utilise personnellement le logiciel <code>fail2ban</code> (il y en a d&rsquo;autres !), disponible dans les dépôts. Il y a pas grand chose à faire pour le configurer, on modifie le fichier <code>/etc/fail2ban/jail.conf</code>, les paramètres intéressants sont les suivants :</p>
+<pre class="brush:plain">ignoreip = 127.0.0.1/8
+bantime  = 600
+maxretry = 3
+
+destemail = votre_adresse@mail.com
+
+action = %(action_mwl)s
+</pre>
+<p><code>ignoreip</code> permet de ne pas se faire bannir depuis le Raspberry Pi lui même, <code>bantime</code> est le temps de bannissement en secondes (10 minutes par défaut donc), <code>maxretry</code> le nombre d&rsquo;échecs pour être bannit. Ensuite, <code>destmail</code> est l&rsquo;adresse email à laquelle seront envoyés les alertes, et surtout action sera l&rsquo;action en cas de bannissement. J&rsquo;aime bien <code>action_mwl</code> qui est celle qui envoie le plus d&rsquo;informations. Cette action (les autres aussi) peut  elle-même être personnalisée en éditant le fichier  <code>/etc/fail2ban/action.d/sendmail-whois-lines.conf</code></p>
+<p><strong>Remarque :</strong> pour que l&rsquo;envoi des mail se passe correctement, il vous faudra avoir correctement installé et configuré un MTA sur votre système, et j&rsquo;ai déjà expliqué comment faire dans ce billet : <a href="http://clementgrimal.fr/blog/2013/01/24/raspberry-pi-serveur-web-sfr-box/#Envoi_de_mail">Installation d&rsquo;un serveur web (Envoi de mail)</a></p>
+<h3>Ne pas utiliser de mot de passe</h3>
+<p>Finalement, il est possible de ne pas utiliser de mot de passe pour se connecter, mais de passer par la génération de clé de cryptage. Cette méthode est très bien pour des installations critiques, mais je trouve que l&rsquo;on perd alors en flexibilité, et je ne l&rsquo;utilise personnellement pas&#8230; Je ne détaillerai donc pas ici comme procéder, mais il existe de nombreux tutoriels en ligne, par exemple : <a href="http://www.lea-linux.org/documentations/Trucs:Connection_SSH_sans_mot_de_passe">lea-linux.org : Connection_SSH_sans_mot_de_passe</a></p>
+<h3>Sources</h3>
+<ul>
+<li>Pénurie d&rsquo;adresses IP v4 annoncée : <a href="http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html">http://www.tomsguide.fr/actualite/Adresse-IP-Europe,18390.html</a></li>
+<li>Discussion sur comment sécuriser l&rsquo;accès SSH à son Raspberry : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122</a></li>
+<li>Changer le port SSH : <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?f=36&amp;t=7122">http://www.itworld.com/nls_unixssh0500506</a></li>
+<li>Wiki sur l&rsquo;installation et la configuration de Fail2ban : <a href="https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban">https://www.isalo.org/wiki.debian-fr/index.php?title=Fail2ban</a></li>
+</ul>]]></content:encoded>
+			<wfw:commentRss>http://clementgrimal.fr/blog/2013/02/12/ssh-securite/feed/</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+	</channel>
+</rss>
